@@ -2,6 +2,7 @@ using System;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using Cinemachine;
 
 public class Pull : MonoBehaviour
 {
@@ -11,6 +12,7 @@ public class Pull : MonoBehaviour
     public LineRenderer line;
     public float shootpower = 30f;
     public float maxpower = 50f;
+    [SerializeField] private CinemachineInputProvider cinemachineInput;
 
     // Update is called once per frame
     void Update()
@@ -19,7 +21,7 @@ public class Pull : MonoBehaviour
         Vector3 inputPos = new Vector3(xroat, yroat, xroat);
         if (Input.GetMouseButton(0))
         {
-
+            LockCamera();
             xroat += Input.GetAxis("Mouse X") * rotatespeed;
             //yroat += Input.GetAxis("Mouse Y") * rotatespeed;         
             transform.rotation = Quaternion.Euler(yroat, xroat, 0f);
@@ -35,6 +37,18 @@ public class Pull : MonoBehaviour
         {
             ball.velocity = transform.forward * shootpower;
             line.gameObject.SetActive(false);
+            UnLockCamera();
         }
+    }
+    void LockCamera()
+    {
+        if (cinemachineInput != null)
+            cinemachineInput.enabled = false;
+
+    }
+    void UnLockCamera()
+    {
+        if (cinemachineInput != null)
+            cinemachineInput.enabled = true;
     }
 }
