@@ -36,6 +36,5 @@ public class Pull : MonoBehaviour
             ball.velocity = transform.forward * shootpower;
             line.gameObject.SetActive(false);
         }
-
     }
 }
