@@ -18,7 +18,6 @@ public class Pull : MonoBehaviour
     {
         timeManager = GetComponent<TimeManager>();
     }
-    // Update is called once per frame
     void Update()
     {
         transform.position = ball.position;
@@ -28,7 +27,7 @@ public class Pull : MonoBehaviour
             LockCamera();
             timeManager.DoSlowmotion();
             xroat += Input.GetAxis("Mouse X") * rotatespeed;
-            //yroat += Input.GetAxis("Mouse Y") * rotatespeed;         
+            yroat += Input.GetAxis("Mouse Y") * rotatespeed;         
             transform.rotation = Quaternion.Euler(yroat, xroat, 0f);
             line.gameObject.SetActive(true);
             line.SetPosition(0, transform.position);
