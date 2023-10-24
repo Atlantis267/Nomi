@@ -133,7 +133,7 @@ PrefabInstance:
     - target: {fileID: -8679921383154817045, guid: e07fad298d368e344aa3aacc6d7f5aa3,
         type: 3}
       propertyPath: m_RootOrder
-      value: 4
+      value: 5
       objectReference: {fileID: 0}
     - target: {fileID: -8679921383154817045, guid: e07fad298d368e344aa3aacc6d7f5aa3,
         type: 3}
@@ -400,7 +400,7 @@ PrefabInstance:
     - target: {fileID: -8679921383154817045, guid: cc754bc4b98e0a9499c1d27bb195ed68,
         type: 3}
       propertyPath: m_RootOrder
-      value: 1
+      value: 2
       objectReference: {fileID: 0}
     - target: {fileID: -8679921383154817045, guid: cc754bc4b98e0a9499c1d27bb195ed68,
         type: 3}
@@ -737,6 +737,21 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: -3321503337445351420, guid: 31e30d2b7cc0c764cb3f93cd55aa763f,
         type: 3}
+      propertyPath: m_CastShadows
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: -3321503337445351420, guid: 31e30d2b7cc0c764cb3f93cd55aa763f,
+        type: 3}
+      propertyPath: m_DynamicOccludee
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: -3321503337445351420, guid: 31e30d2b7cc0c764cb3f93cd55aa763f,
+        type: 3}
+      propertyPath: m_LightProbeUsage
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: -3321503337445351420, guid: 31e30d2b7cc0c764cb3f93cd55aa763f,
+        type: 3}
       propertyPath: m_Materials.Array.data[0]
       value: 
       objectReference: {fileID: 2100000, guid: e75dc8a36f019b8438270e3b2730efa4, type: 2}
@@ -750,6 +765,16 @@ PrefabInstance:
       propertyPath: m_IsActive
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 7221227965396478950, guid: 31e30d2b7cc0c764cb3f93cd55aa763f,
+        type: 3}
+      propertyPath: m_IsActive
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 7874897558233715535, guid: 31e30d2b7cc0c764cb3f93cd55aa763f,
+        type: 3}
+      propertyPath: m_Materials.Array.data[0]
+      value: 
+      objectReference: {fileID: 2100000, guid: fc407c860f6226242a61ce4c7da07b81, type: 2}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 31e30d2b7cc0c764cb3f93cd55aa763f, type: 3}
 --- !u!1 &1844188668

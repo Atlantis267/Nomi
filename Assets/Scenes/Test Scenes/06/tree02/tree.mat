@@ -12,10 +12,10 @@ Material:
     type: 3}
   m_ValidKeywords: []
   m_InvalidKeywords: []
-  m_LightmapFlags: 2
-  m_EnableInstancingVariants: 0
-  m_DoubleSidedGI: 0
-  m_CustomRenderQueue: -1
+  m_LightmapFlags: 1
+  m_EnableInstancingVariants: 1
+  m_DoubleSidedGI: 1
+  m_CustomRenderQueue: 2003
   stringTagMap: {}
   disabledShaderPasses: []
   m_SavedProperties:
@@ -40,9 +40,13 @@ Material:
     m_Ints: []
     m_Floats:
     - _Float: 1
+    - _Float_1: 0.56
+    - _Float_2: 6.42
     - _QueueControl: 0
-    - _QueueOffset: 0
-    m_Colors: []
+    - _QueueOffset: 3
+    m_Colors:
+    - _bottom_color: {r: 0.18867922, g: 0.022249905, b: 0.16166216, a: 0}
+    - _top_color: {r: 0.8962264, g: 0.04650232, b: 0.87270695, a: 0}
   m_BuildTextureStacks: []
 --- !u!114 &5991354523881382039
 MonoBehaviour:
