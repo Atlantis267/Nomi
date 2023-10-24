@@ -12,7 +12,7 @@ public class Arrow : MonoBehaviour
     {
         if (Input.GetMouseButton(0))
         {
-            LockCamera();
+            //LockCamera();
             float mouseX = Input.GetAxisRaw("Mouse X") * Mathf.Deg2Rad * speed;
             float mouseY = Input.GetAxisRaw("Mouse Y") * Mathf.Deg2Rad * speed;
 
@@ -20,18 +20,18 @@ public class Arrow : MonoBehaviour
         }
         if (Input.GetMouseButtonUp(0))
         {
-            UnLockCamera();
+            //UnLockCamera();
         }      
     }
-    void LockCamera()
-    {
-        if (cinemachineInput != null)
-            cinemachineInput.enabled = false;
+    //void LockCamera()
+    //{
+    //    if (cinemachineInput != null)
+    //        cinemachineInput.enabled = false;
 
-    }
-    void UnLockCamera()
-    {
-        if (cinemachineInput != null)
-            cinemachineInput.enabled = true;
-    }
+    //}
+    //void UnLockCamera()
+    //{
+    //    if (cinemachineInput != null)
+    //        cinemachineInput.enabled = true;
+    //}
 }

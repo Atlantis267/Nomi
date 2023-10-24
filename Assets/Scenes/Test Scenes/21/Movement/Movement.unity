@@ -7110,8 +7110,8 @@ MonoBehaviour:
   m_StreamingVersion: 20170927
   m_Priority: 10
   m_StandbyUpdate: 2
-  m_LookAt: {fileID: 1823308091}
-  m_Follow: {fileID: 1823308091}
+  m_LookAt: {fileID: 1623225822}
+  m_Follow: {fileID: 1623225822}
   m_CommonLens: 1
   m_Lens:
     FieldOfView: 50
@@ -7157,7 +7157,7 @@ MonoBehaviour:
   m_XAxis:
     Value: 0
     m_SpeedMode: 0
-    m_MaxSpeed: 300
+    m_MaxSpeed: 100
     m_AccelTime: 0.1
     m_DecelTime: 0.1
     m_InputAxisName: Mouse X
@@ -7204,7 +7204,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 305923319}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: -25.16, y: 5.46, z: -4.9700003}
+  m_LocalPosition: {x: 2, y: 4, z: 13}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children:
@@ -8587,7 +8587,7 @@ Mesh:
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_Name: pb_Mesh32076
+  m_Name: pb_Mesh29554
   serializedVersion: 10
   m_SubMeshes:
   - serializedVersion: 2
@@ -11545,7 +11545,7 @@ Transform:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 627375681}
-  m_LocalRotation: {x: 0.06399382, y: -0.000000003627039, z: 2.3258476e-10, w: 0.9979503}
+  m_LocalRotation: {x: 0.06399382, y: 0.000000004292778, z: -2.752755e-10, w: 0.9979503}
   m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
@@ -14121,7 +14121,7 @@ GameObject:
   - component: {fileID: 835544179}
   m_Layer: 0
   m_Name: Sphere (1)
-  m_TagString: Untagged
+  m_TagString: Star
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -14134,10 +14134,10 @@ SphereCollider:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 835544178}
   m_Material: {fileID: 0}
-  m_IsTrigger: 0
+  m_IsTrigger: 1
   m_Enabled: 1
   serializedVersion: 2
-  m_Radius: 0.5
+  m_Radius: 5
   m_Center: {x: 0, y: 0, z: 0}
 --- !u!23 &835544180
 MeshRenderer:
@@ -15600,8 +15600,8 @@ Transform:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 963194225}
-  m_LocalRotation: {x: 0.06399382, y: 0.00008255339, z: -0.000005293757, w: 0.9979503}
-  m_LocalPosition: {x: 19.620926, y: -59.239998, z: -115.273254}
+  m_LocalRotation: {x: 0.06399382, y: 0.00008257025, z: -0.0000052948385, w: 0.9979503}
+  m_LocalPosition: {x: 46.7839, y: -60.699997, z: -97.30775}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
@@ -18116,7 +18116,7 @@ PrefabInstance:
     - target: {fileID: 919132149155446097, guid: f27838b4bad53f347b611e3c15b8de78,
         type: 3}
       propertyPath: m_IsActive
-      value: 1
+      value: 0
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: f27838b4bad53f347b611e3c15b8de78, type: 3}
@@ -25144,7 +25144,7 @@ Transform:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1515021407}
-  m_LocalRotation: {x: 0.087225154, y: -0.0000000020188522, z: 1.7676853e-10, w: 0.99618864}
+  m_LocalRotation: {x: 0.08722511, y: -0, z: -0, w: 0.99618864}
   m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
@@ -26636,13 +26636,14 @@ GameObject:
   - component: {fileID: 1623225831}
   - component: {fileID: 1623225830}
   - component: {fileID: 1623225832}
+  - component: {fileID: 1623225833}
   m_Layer: 6
   m_Name: Player
   m_TagString: Player
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 0
+  m_IsActive: 1
 --- !u!4 &1623225822
 Transform:
   m_ObjectHideFlags: 0
@@ -26651,7 +26652,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1623225821}
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: 2, y: 2, z: 30}
+  m_LocalPosition: {x: 2, y: 1, z: 30}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children:
@@ -26741,11 +26742,16 @@ MonoBehaviour:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1623225821}
-  m_Enabled: 0
+  m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 892f8a62929508141a32433b087d8bed, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  cinemachineInput: {fileID: 305923324}
+  Arrow: {fileID: 1823308086}
+  timeManager: {fileID: 0}
+  cam: {fileID: 963194228}
+  turnSmoothTime: 0.1
 --- !u!143 &1623225831
 CharacterController:
   m_ObjectHideFlags: 0
@@ -26772,12 +26778,25 @@ CapsuleCollider:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1623225821}
   m_Material: {fileID: 0}
-  m_IsTrigger: 1
+  m_IsTrigger: 0
   m_Enabled: 1
   m_Radius: 0.5
   m_Height: 2
   m_Direction: 1
   m_Center: {x: 0, y: 0, z: 0}
+--- !u!114 &1623225833
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1623225821}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 4d40544b9e6391c489c77ffea9853d98, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  slowdownFactor: 0.05
 --- !u!1 &1630942307
 GameObject:
   m_ObjectHideFlags: 0
@@ -29218,7 +29237,7 @@ Transform:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1725593614}
-  m_LocalRotation: {x: 0.040828448, y: -0.000000001117978, z: 4.5683377e-11, w: 0.9991662}
+  m_LocalRotation: {x: 0.040828448, y: -0.000000004298009, z: 1.7562744e-10, w: 0.9991662}
   m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
@@ -30353,12 +30372,6 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   speed: 2
   cinemachineInput: {fileID: 305923324}
---- !u!4 &1823308091 stripped
-Transform:
-  m_CorrespondingSourceObject: {fileID: -8679921383154817045, guid: f27838b4bad53f347b611e3c15b8de78,
-    type: 3}
-  m_PrefabInstance: {fileID: 1060359919}
-  m_PrefabAsset: {fileID: 0}
 --- !u!43 &1824341894
 Mesh:
   m_ObjectHideFlags: 0
@@ -34009,6 +34022,7 @@ GameObject:
   m_Component:
   - component: {fileID: 2087337102}
   - component: {fileID: 2087337103}
+  - component: {fileID: 2087337104}
   m_Layer: 0
   m_Name: GameObject
   m_TagString: Untagged
@@ -34038,7 +34052,7 @@ MonoBehaviour:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 2087337101}
-  m_Enabled: 0
+  m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: f619b4585b639c2449c4e6eef70653bc, type: 3}
   m_Name: 
@@ -34046,9 +34060,23 @@ MonoBehaviour:
   ball: {fileID: 570999660}
   rotatespeed: 5
   line: {fileID: 1312940531}
+  timeManager: {fileID: 0}
   shootpower: 30
   maxpower: 50
   cinemachineInput: {fileID: 305923324}
+--- !u!114 &2087337104
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2087337101}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 4d40544b9e6391c489c77ffea9853d98, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  slowdownFactor: 0.05
 --- !u!43 &2093287637
 Mesh:
   m_ObjectHideFlags: 0

@@ -10,10 +10,14 @@ public class Pull : MonoBehaviour
     public Rigidbody ball;
     public float rotatespeed = 5f;
     public LineRenderer line;
+    public TimeManager timeManager;
     public float shootpower = 30f;
     public float maxpower = 50f;
     [SerializeField] private CinemachineInputProvider cinemachineInput;
-
+    private void Start()
+    {
+        timeManager = GetComponent<TimeManager>();
+    }
     // Update is called once per frame
     void Update()
     {
@@ -22,6 +26,7 @@ public class Pull : MonoBehaviour
         if (Input.GetMouseButton(0))
         {
             LockCamera();
+            timeManager.DoSlowmotion();
             xroat += Input.GetAxis("Mouse X") * rotatespeed;
             //yroat += Input.GetAxis("Mouse Y") * rotatespeed;         
             transform.rotation = Quaternion.Euler(yroat, xroat, 0f);

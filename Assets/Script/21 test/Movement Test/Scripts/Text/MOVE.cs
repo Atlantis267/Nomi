@@ -1,17 +1,25 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using Cinemachine;
 
 public class MOVE : MonoBehaviour
 {
     public CharacterController characterController { get; private set; }
-    float speed = 5f;
-    float Jump = 20f;
-    Vector3 move;
-    Vector3 rotate;
+    [SerializeField] private CinemachineInputProvider cinemachineInput;
+    [SerializeField] private GameObject Arrow;
+    public TimeManager timeManager;
+    float speed = 10f;
+    float jumpSpeed = 5f;
+    private float ySpeed;
+    public Transform cam;
+    Vector3 moveDir;
+    public float turnSmoothTime = 0.4f;
+    float turnSmoothVelocity;
     void Start()
     {
         characterController = GetComponent<CharacterController>();
+        timeManager = GetComponent<TimeManager>();
     }
 
     // Update is called once per frame
@@ -19,34 +27,58 @@ public class MOVE : MonoBehaviour
     {
         var vInput = Input.GetAxis("Vertical");
         var hInput = Input.GetAxis("Horizontal");
-
+        Vector3 movementDirection = new Vector3(hInput, 0f, vInput);
+        //movementDirection.Normalize();
+        //movementDirection.y = ySpeed;   
         if (characterController.isGrounded)
         {
-            move = new Vector3 (vInput * speed, move.y, hInput * speed);
-            rotate = transform.up * speed * hInput;
+            ySpeed = -0.5f;
+
             if (Input.GetKey(KeyCode.Space))
             {
-                move.y = Jump;
+                ySpeed = jumpSpeed;
             }
         }
-        move.y += Physics.gravity.y * Time.deltaTime;
-        characterController.Move(move * Time.deltaTime);
-        transform.Rotate(rotate * Time.deltaTime);
-    }
-    private void OnTriggerEnter(Collider other)
-    {
-        if(other.tag == "Sphere")
+        if (movementDirection != Vector3.zero)
         {
-            Vector3 difference = other.transform.position - transform.position;
-            float dist = difference.magnitude;
-            Vector3 gravityDirection = difference.normalized;
-            float gravity = 6.7f * (transform.localScale.x * other.transform.localScale.x * 60) / (dist * dist);
-            Vector3 gravityVector = (other.transform.position * gravity);
-            characterController.Move(gravityVector * Time.deltaTime);
+            float targetAngle = Mathf.Atan2(movementDirection.x, movementDirection.z) * Mathf.Rad2Deg + cam.eulerAngles.y;
+            float angle = Mathf.SmoothDampAngle(transform.eulerAngles.y, targetAngle, ref turnSmoothVelocity, turnSmoothTime);
+            transform.rotation = Quaternion.Euler(0f, angle, 0f);
+            moveDir = Quaternion.Euler(0f, targetAngle, 0f) * Vector3.forward;
+            moveDir.Normalize();
+            moveDir.y = ySpeed;
+            ySpeed += Physics.gravity.y * Time.deltaTime;
+            characterController.Move(moveDir * Time.deltaTime * speed);
+        }
+        if (Input.GetMouseButtonUp(0))
+        {
+            UnLockCamera();
+            Arrow.SetActive(false);
         }
     }
-    private void OnTriggerExit(Collider other)
+
+    private void OnTriggerStay(Collider other)
     {
-        characterController.enabled = true;
+        if (other.tag == "Star")
+        {
+            Debug.Log("Hello: " + other.name);
+            if (Input.GetMouseButton(0))
+            {
+                LockCamera();
+                timeManager.DoSlowmotion();
+                Arrow.SetActive(true);
+                Arrow.transform.position = other.transform.position;
+            }
+        }
+    }
+    void LockCamera()
+    {
+        if (cinemachineInput != null)
+            cinemachineInput.enabled = false;
+    }
+    void UnLockCamera()
+    {
+        if (cinemachineInput != null)
+            cinemachineInput.enabled = true;
     }
 }
