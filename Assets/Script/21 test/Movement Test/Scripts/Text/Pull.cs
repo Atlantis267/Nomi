@@ -6,28 +6,34 @@ using Cinemachine;
 
 public class Pull : MonoBehaviour
 {
+    public float slowdownFactor = 0.05f;
+    private float starttime;
+    private float startfix;
     float xroat, yroat = 0f;
     public Rigidbody ball;
     public float rotatespeed = 5f;
     public LineRenderer line;
-    public TimeManager timeManager;
     public float shootpower = 30f;
     public float maxpower = 50f;
     [SerializeField] private CinemachineInputProvider cinemachineInput;
-    private void Start()
+
+    private void Awake()
     {
-        timeManager = GetComponent<TimeManager>();
+        starttime = Time.timeScale;
+        startfix = Time.fixedDeltaTime;
     }
     void Update()
     {
+        Time.timeScale = starttime;
+        Time.fixedDeltaTime = startfix;
         transform.position = ball.position;
         Vector3 inputPos = new Vector3(xroat, yroat, xroat);
         if (Input.GetMouseButton(0))
         {
             LockCamera();
-            timeManager.DoSlowmotion();
+            DoSlowmotion();
             xroat += Input.GetAxis("Mouse X") * rotatespeed;
-            yroat += Input.GetAxis("Mouse Y") * rotatespeed;         
+            //yroat += Input.GetAxis("Mouse Y") * rotatespeed;         
             transform.rotation = Quaternion.Euler(yroat, xroat, 0f);
             line.gameObject.SetActive(true);
             line.SetPosition(0, transform.position);
@@ -54,5 +60,10 @@ public class Pull : MonoBehaviour
     {
         if (cinemachineInput != null)
             cinemachineInput.enabled = true;
+    }
+    void DoSlowmotion()
+    {
+        Time.timeScale = slowdownFactor;
+        Time.fixedDeltaTime = Time.timeScale * .02f;
     }
 }
