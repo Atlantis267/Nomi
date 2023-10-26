@@ -7,7 +7,6 @@ public class MOVE : MonoBehaviour
 {
     public CharacterController characterController { get; private set; }
     [SerializeField] private CinemachineInputProvider cinemachineInput;
-    [SerializeField] private GameObject Arrow;
     public TimeManager timeManager;
     float speed = 10f;
     float jumpSpeed = 5f;
@@ -53,7 +52,7 @@ public class MOVE : MonoBehaviour
         if (Input.GetMouseButtonUp(0))
         {
             UnLockCamera();
-            Arrow.SetActive(false);
+
         }
     }
 
@@ -66,8 +65,7 @@ public class MOVE : MonoBehaviour
             {
                 LockCamera();
                 timeManager.DoSlowmotion();
-                Arrow.SetActive(true);
-                Arrow.transform.position = other.transform.position;
+
             }
         }
     }
