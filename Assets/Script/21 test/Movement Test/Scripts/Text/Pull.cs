@@ -31,7 +31,7 @@ public class Pull : MonoBehaviour
         if (Input.GetMouseButton(0))
         {
             LockCamera();
-            DoSlowmotion();
+            DoSlowmotion();          
             xroat += Input.GetAxis("Mouse X") * rotatespeed;
             //yroat += Input.GetAxis("Mouse Y") * rotatespeed;         
             transform.rotation = Quaternion.Euler(yroat, xroat, 0f);
