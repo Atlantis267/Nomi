@@ -8,7 +8,7 @@ using System;
 public class Arrow : MonoBehaviour
 {
     public float speed;
-    float mouseX, mouseY = 0f;
+    float mouseX /*mouseY*/ = 0f;
     private float starttime;
     private float startfix;
     public float slowdownFactor = 0.05f;
