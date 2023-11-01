@@ -66,7 +66,7 @@ public class Arrow : MonoBehaviour
             }else if (!slow && should)
             {
                 Rigidbody otherRigidbody = other.GetComponent<Rigidbody>();
-                otherRigidbody.AddForce(transform.forward * -shootpower, ForceMode.Impulse);
+                otherRigidbody.AddForce(transform.forward * shootpower, ForceMode.Impulse);
                 Debug.Log("3");
                 Time.timeScale = starttime;
                 Time.fixedDeltaTime = startfix;
