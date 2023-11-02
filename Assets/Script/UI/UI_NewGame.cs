@@ -34,6 +34,7 @@ public class UI_NewGame : MonoBehaviour,IPointerEnterHandler,IPointerExitHandler
             isPointerIn = false;
         }
     }
+
     void Update()
     {
         //counter += Time.deltaTime;
