@@ -7,20 +7,33 @@ using UnityEngine.EventSystems;
 
 public class UITest : MonoBehaviour
 {
-    public Button button;
-    [SerializeField] private bool isMouesEnter;
-    private CanvasGroup buttonTransition;
+    [SerializeField] private bool isPointerIn;
+    [SerializeField] private float movement = 25.0f;
+    private CanvasGroup buttonTransition; //控制UI發光
+    private Vector3 startPosition;
+    private Vector3 endPosition;
+    //[SerializeField] private float time = 0.5f;
+    [SerializeField] private float speed = 3.0f;
+    //private float counter;
     void Start()
     {
-        isMouesEnter = false;
-        buttonTransition = button.GetComponent<CanvasGroup>();
+        isPointerIn = false;
+        //buttonTransition = button.GetComponent<CanvasGroup>();
+        startPosition = transform.position;
+        endPosition = startPosition + new Vector3(movement, 0, 0);
     }
     void Update()
     {
-        isMouesEnter = EventSystem.current.IsPointerOverGameObject();
-        if (isMouesEnter) 
+        //counter += Time.deltaTime;
+        //float timesUp = counter / time;
+        isPointerIn = EventSystem.current.IsPointerOverGameObject();
+        if (isPointerIn) 
         {
-            Debug.Log("12345");
+            transform.position = Vector3.Lerp(transform.position, endPosition, Time.deltaTime * speed);
+        }
+        else
+        {
+            transform.position = startPosition;
         }
     }
 }
