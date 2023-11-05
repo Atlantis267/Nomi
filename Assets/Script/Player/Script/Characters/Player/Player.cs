@@ -33,7 +33,7 @@ public class Player : MonoBehaviour
         //CharacterController = GetComponent<CharacterController>();
         Rigidbody = GetComponent<Rigidbody>();
         Animator = GetComponent<Animator>();
-        Inputs = GetComponent<PlayerInputs>();
+        
 
         AnimationsData.Intialoze();
 
@@ -48,6 +48,7 @@ public class Player : MonoBehaviour
 
     private void Start()
     {
+        Inputs = GetComponent<PlayerInputs>();
         Cursor.lockState = CursorLockMode.Locked;
         Cursor.visible = false;
         playerTransform = transform;
