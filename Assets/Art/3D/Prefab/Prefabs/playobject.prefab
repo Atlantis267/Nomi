@@ -102,9 +102,18 @@ MonoBehaviour:
   slowdownFactor: 0.05
   cinemachineInput: {fileID: 0}
   Arrows: {fileID: 4302713374624247167}
-  shootpower: 10
+  shootpower: 3
   slow: 0
   should: 0
+  dashCd: 0.5
+  dashForce: 80
+  dashUpwardForce: 0
+  maxDashYSpeed: 15
+  dashDuration: 0.25
+  useCameraForward: 0
+  allowAllDirections: 1
+  disableGravity: 1
+  resetVel: 1
 --- !u!65 &3996705893966012130
 BoxCollider:
   m_ObjectHideFlags: 0

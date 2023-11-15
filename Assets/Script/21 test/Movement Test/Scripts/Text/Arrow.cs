@@ -19,7 +19,23 @@ public class Arrow : MonoBehaviour
     public bool slow;
     public bool should;
 
+    [Header("Cooldown")]
+    public float dashCd;
+    private float dashCdTimer;
 
+    [Header("Dashing")]
+    public float dashForce;
+    public float dashUpwardForce;
+    public float maxDashYSpeed;
+    public float dashDuration;
+
+    [Header("Settings")]
+    public bool useCameraForward = true;
+    public bool allowAllDirections = true;
+    public bool disableGravity = false;
+    public bool resetVel = true;
+
+    private Vector3 delayedForceToApply;
     private void Awake()
     {
         input = new TestInput();
@@ -39,7 +55,10 @@ public class Arrow : MonoBehaviour
         if (Input.GetMouseButtonUp(0))
         {
             UnLockCamera();
-        }      
+        }
+
+        if (dashCdTimer > 0)
+            dashCdTimer -= Time.deltaTime;
     }
     void LockCamera()
     {
@@ -53,29 +72,57 @@ public class Arrow : MonoBehaviour
             cinemachineInput.enabled = true;
     }
     private void OnTriggerStay(Collider other)
-    {      
+    {
+        Rigidbody otherRigidbody = other.GetComponent<Rigidbody>();
+        PlayerMovementDashing pm = other.GetComponent<PlayerMovementDashing>();
+
         if (other.tag == "Player")
         {
             if (slow)
             {
                 should = true;
-                other.transform.rotation = Quaternion.Euler(0f, mouseX, 0f);
+                other.transform.rotation = transform.rotation;
                 Debug.Log("1");
                 DoSlowmotion();
                 Arrows.SetActive(true);
             }else if (!slow && should)
             {
-                Rigidbody otherRigidbody = other.GetComponent<Rigidbody>();
-                otherRigidbody.AddForce(transform.forward * shootpower, ForceMode.Impulse);
+               
+                if (dashCdTimer > 0) return;
+                else dashCdTimer = dashCd;
+
+                pm.dashing = true;
+                pm.maxYSpeed = maxDashYSpeed;
+
+                Vector3 forceToApply = transform.forward * dashForce + transform.up * dashUpwardForce;
+
+                if (disableGravity)
+                    otherRigidbody.useGravity = false;
+                delayedForceToApply = forceToApply;
+
+                if (resetVel)
+                    otherRigidbody.velocity = Vector3.zero;
+
+                otherRigidbody.AddForce(delayedForceToApply, ForceMode.Impulse);
                 Debug.Log("3");
                 Time.timeScale = starttime;
                 Time.fixedDeltaTime = startfix;
                 Arrows.SetActive(false);
+                should = false;
             }
         }
     }
     private void OnTriggerExit(Collider other)
     {
+        Rigidbody otherRigidbody = other.GetComponent<Rigidbody>();
+        PlayerMovementDashing pm = other.GetComponent<PlayerMovementDashing>();
+
+        pm.dashing = false;
+        pm.maxYSpeed = 0;
+
+        if (disableGravity)
+            otherRigidbody.useGravity = true;
+
         Debug.Log("2");
         if (other.tag == "Player")
         {
