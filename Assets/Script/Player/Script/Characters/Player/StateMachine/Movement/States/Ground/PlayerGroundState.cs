@@ -31,13 +31,13 @@ public class PlayerGroundState : PlayerMovementState
     {
         base.PhysicsUpdate();
         Float();
-        OnSliding();
+        //OnSliding();
     }
     public override void Update()
     {
         base.Update();
 
-        SetSlopeSlideVelocity();
+        //SetSlopeSlideVelocity();
 
         AnimationFloat(stateMachine.Player.AnimationsData.MoveSpeedHash, stateMachine.ReusableData.CurrentMovementInput.magnitude * stateMachine.ReusableData.SpeedMultiplier, 0.1f, Time.deltaTime);
         AnimationFloat(stateMachine.Player.AnimationsData.stoptransformHash, 0.0f, 0.2f, Time.deltaTime);
