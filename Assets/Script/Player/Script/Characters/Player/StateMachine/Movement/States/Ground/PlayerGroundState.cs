@@ -10,6 +10,7 @@ public class PlayerGroundState : PlayerMovementState
     public PlayerGroundState(PlayerMovementStateMachine playerMovementStateMachine) : base(playerMovementStateMachine)
     {
     }
+    #region IState Math
     public override void Enter()
     {
         base.Enter();
@@ -41,6 +42,7 @@ public class PlayerGroundState : PlayerMovementState
         AnimationFloat(stateMachine.Player.AnimationsData.MoveSpeedHash, stateMachine.ReusableData.CurrentMovementInput.magnitude * stateMachine.ReusableData.SpeedMultiplier, 0.1f, Time.deltaTime);
         AnimationFloat(stateMachine.Player.AnimationsData.stoptransformHash, 0.0f, 0.2f, Time.deltaTime);
     }
+    #endregion
     #region Main Methods
     private void Float()
     {
