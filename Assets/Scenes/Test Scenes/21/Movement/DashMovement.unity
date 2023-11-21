@@ -9830,7 +9830,7 @@ Transform:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 627375681}
-  m_LocalRotation: {x: 0.06399382, y: 0.0000000044179553, z: -2.8330252e-10, w: 0.9979503}
+  m_LocalRotation: {x: 0.06399382, y: 0.0000000042819814, z: -2.7458316e-10, w: 0.9979503}
   m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
@@ -13816,7 +13816,7 @@ Transform:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 963194225}
-  m_LocalRotation: {x: 0.06399382, y: 0.00008257032, z: -0.0000052948426, w: 0.9979503}
+  m_LocalRotation: {x: 0.06399382, y: 0.000082570245, z: -0.000005294838, w: 0.9979503}
   m_LocalPosition: {x: 46.7839, y: -59.699997, z: -97.30775}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
@@ -22722,7 +22722,7 @@ Transform:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1515021407}
-  m_LocalRotation: {x: 0.08722511, y: 1.2418641e-17, z: 3.1565044e-19, w: 0.99618864}
+  m_LocalRotation: {x: 0.08722511, y: -3.0055207e-16, z: 3.2668142e-17, w: 0.99618864}
   m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
@@ -24067,6 +24067,7 @@ GameObject:
   - component: {fileID: 1623225831}
   - component: {fileID: 1623225833}
   - component: {fileID: 1623225834}
+  - component: {fileID: 1623225835}
   m_Layer: 6
   m_Name: Player
   m_TagString: Player
@@ -24115,7 +24116,7 @@ CapsuleCollider:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1623225821}
-  m_Material: {fileID: 0}
+  m_Material: {fileID: 13400000, guid: 2be13e73fc92abf4c9c054b8633672bf, type: 2}
   m_IsTrigger: 0
   m_Enabled: 1
   m_Radius: 0.5
@@ -24141,7 +24142,7 @@ MonoBehaviour:
   dashSpeedChangeFactor: 80
   maxYSpeed: 0
   groundDrag: 4
-  jumpForce: 12
+  jumpForce: 15
   jumpCooldown: 0.25
   airMultiplier: 0.4
   crouchSpeed: 3.5
@@ -24153,6 +24154,7 @@ MonoBehaviour:
   whatIsGround:
     serializedVersion: 2
     m_Bits: 1
+  grounded: 0
   maxSlopeAngle: 45
   orientation: {fileID: 1231071163}
   state: 0
@@ -24170,7 +24172,36 @@ MonoBehaviour:
   m_GameObject: {fileID: 1623225821}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 7efc00770021fa648b0178c38b6c6273, type: 3}
+  m_Script: {fileID: 11500000, guid: 8184c2d9adc7c6247b442008658a8d03, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  orientation: {fileID: 1231071163}
+  rb: {fileID: 1623225823}
+  whatIsWall:
+    serializedVersion: 2
+    m_Bits: 1024
+  climbSpeed: 0
+  maxClimbTime: 0
+  climbJumpUpForce: 14
+  climbJumpBackForce: 12
+  jumpKey: 32
+  climbJumps: 1
+  detectionLength: 0.7
+  sphereCastRadius: 0.25
+  maxWallLookAngle: 30
+  minWallNormalAngleChange: 5
+  exitingWall: 1
+  exitWallTime: 0.2
+--- !u!114 &1623225835
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1623225821}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: bf884b8f418f8e24bae2ba8957576a33, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
   whatIsWall:
@@ -24178,12 +24209,20 @@ MonoBehaviour:
     m_Bits: 1024
   whatIsGround:
     serializedVersion: 2
-    m_Bits: 256
-  wallRunForce: 200
-  wallClimbSpeed: 0
-  maxWallRunTime: 1.5
+    m_Bits: 1
+  wallRunForce: 100
+  wallJumpUpForce: 10
+  wallJumpSideForce: 30
+  wallClimbSpeed: 3
+  maxWallRunTime: 0.7
+  jumpKey: 32
+  upwardsRunKey: 304
+  downwardsRunKey: 306
   wallCheckDistance: 0.7
   minJumpHeight: 2
+  exitWallTime: 0.2
+  useGravity: 1
+  gravityCounterForce: 10
   orientation: {fileID: 1231071163}
 --- !u!1 &1630942307
 GameObject:
@@ -26495,7 +26534,7 @@ Transform:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1725593614}
-  m_LocalRotation: {x: 0.040828448, y: 0.0000000040552006, z: -1.657057e-10, w: 0.9991662}
+  m_LocalRotation: {x: 0.040828448, y: 0.0000000044149777, z: -1.8040709e-10, w: 0.9991662}
   m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0

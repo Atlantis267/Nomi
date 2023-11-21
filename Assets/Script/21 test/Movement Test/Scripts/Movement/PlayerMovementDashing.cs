@@ -24,6 +24,8 @@ public class PlayerMovementDashing : MonoBehaviour
     public float jumpCooldown;
     public float airMultiplier;
     bool readyToJump;
+    int maxjump = 1;
+    int currentjump = 0;
 
     [Header("Crouching")]
     public float crouchSpeed;
@@ -38,7 +40,7 @@ public class PlayerMovementDashing : MonoBehaviour
     [Header("Ground Check")]
     public float playerHeight;
     public LayerMask whatIsGround;
-    bool grounded;
+    public bool grounded;
 
     [Header("Slope Handling")]
     public float maxSlopeAngle;
@@ -83,6 +85,10 @@ public class PlayerMovementDashing : MonoBehaviour
     {
         // ground check
         grounded = Physics.Raycast(transform.position, Vector3.down, playerHeight * 0.5f + 0.2f, whatIsGround);
+        if (grounded)
+        {
+            currentjump = 0;
+        }
 
         MyInput();
         SpeedControl();
@@ -108,12 +114,12 @@ public class PlayerMovementDashing : MonoBehaviour
         verticalInput = Input.GetAxisRaw("Vertical");
 
         // when to jump
-        if (Input.GetKey(jumpKey) && readyToJump && grounded)
+        if (Input.GetKeyDown(jumpKey) && readyToJump && (grounded || maxjump > currentjump))
         {
             readyToJump = false;
 
             Jump();
-
+            currentjump++;
             Invoke(nameof(ResetJump), jumpCooldown);
         }
 
