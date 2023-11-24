@@ -10,7 +10,7 @@ public class PlayerMovement : MonoBehaviour
     PlayerInput1 _input;
     //private InputAction move;
     private CharacterController ch;
-    private CapsuleCollider collider;
+    private CapsuleCollider Capsule;
     public LayerMask layerMask;
     Animator animator;
     public Rigidbody rb;
@@ -127,7 +127,7 @@ public class PlayerMovement : MonoBehaviour
     {
         ch = GetComponent<CharacterController>();
         rb = GetComponent<Rigidbody>();
-        collider = GetComponent<CapsuleCollider>();
+        Capsule = GetComponent<CapsuleCollider>();
         animator = GetComponent<Animator>();
         _input = new PlayerInput1();
         _input.CharacterControl.Movement.started += onMovementInput;
@@ -373,7 +373,7 @@ public class PlayerMovement : MonoBehaviour
     }
     void CheckGround()
     {
-        if (Physics.SphereCast(playerTransform.position + (Vector3.up * groundCheckOffset), collider.radius, Vector3.down, out RaycastHit hit, groundCheckOffset - collider.radius + 2 * 0.02f))
+        if (Physics.SphereCast(playerTransform.position + (Vector3.up * groundCheckOffset), Capsule.radius, Vector3.down, out RaycastHit hit, groundCheckOffset - Capsule.radius + 2 * 0.02f))
         {
             isGrounded = true;
         }
