@@ -397,6 +397,7 @@ GameObject:
   - component: {fileID: 2028698993}
   - component: {fileID: 2028698992}
   - component: {fileID: 2028698996}
+  - component: {fileID: 2028698997}
   m_Layer: 0
   m_Name: Platform
   m_TagString: Untagged
@@ -496,6 +497,19 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   _wayPointPath: {fileID: 2110594020}
   _speed: 3
+--- !u!65 &2028698997
+BoxCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2028698991}
+  m_Material: {fileID: 0}
+  m_IsTrigger: 1
+  m_Enabled: 1
+  serializedVersion: 2
+  m_Size: {x: 1, y: 1.6832447, z: 1}
+  m_Center: {x: 0, y: 0.34162235, z: 0}
 --- !u!1 &2110594019
 GameObject:
   m_ObjectHideFlags: 0
