@@ -1,6 +1,7 @@
 using UnityEngine;
 
 [RequireComponent(typeof(PlayerInputs))]
+[RequireComponent(typeof(PlayerResizableCapsuleCollider))]
 public class Player : MonoBehaviour
 {
     [field: Header("References")]
@@ -8,7 +9,7 @@ public class Player : MonoBehaviour
 
 
     [field: Header("Collisions")]
-    [field: SerializeField] public PlayerCapsuleColliderUtility ColliderUtilitiy { get; private set; }
+    public PlayerResizableCapsuleCollider ResizableCapsuleCollider { get; private set; }
     [field: SerializeField] public PlayerLayerData LayerData { get; private set; }
     [field: Header("Cameras")]
     [field: SerializeField] public PlayerCameraRecenteringUtility CameraRecenteringUtility { get; private set; }
@@ -33,17 +34,12 @@ public class Player : MonoBehaviour
         //CharacterController = GetComponent<CharacterController>();
         Rigidbody = GetComponent<Rigidbody>();
         Animator = GetComponent<Animator>();
-        
+        ResizableCapsuleCollider = GetComponent<PlayerResizableCapsuleCollider>();
 
         AnimationsData.Intialoze();
 
         playerCamera = Camera.main.transform;
         movementStateMachine = new PlayerMovementStateMachine(this);
-    }
-    private void OnValidate()
-    {
-        ColliderUtilitiy.Initialize(gameObject);
-        ColliderUtilitiy.CalculateCapsuleColliderDimensions();
     }
 
     private void Start()

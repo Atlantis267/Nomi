@@ -48,7 +48,7 @@ public class PlayerFallingState : PlayerAirborneState
     {
         if (CheckGround())
         {
-            Debug.Log("isGround");
+            //Debug.Log("isGround");
             float fallDistance = Mathf.Abs(playerPositionOnEnter.y - stateMachine.Player.transform.position.y);
             if (fallDistance < airborneData.FallData.MinimumDistanceToBeConsideredHardFall)
             {

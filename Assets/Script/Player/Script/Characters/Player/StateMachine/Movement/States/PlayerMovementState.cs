@@ -139,7 +139,7 @@ public class PlayerMovementState : IState
 
     private void OnAnimatonMove()
     {
-        if (stateMachine.ReusableData.CurrentMovementInput == Vector2.zero || stateMachine.ReusableData.SpeedMultiplier == 0.0f || stateMachine.ReusableData.IsSliding || !CheckGround())
+        if (stateMachine.ReusableData.CurrentMovementInput == Vector2.zero || stateMachine.ReusableData.SpeedMultiplier == 0.0f || stateMachine.ReusableData.IsSliding)
         {
             return;
         }
@@ -389,8 +389,8 @@ public class PlayerMovementState : IState
     protected bool CheckGround()
     {
         if (Physics.SphereCast(stateMachine.Player.playerTransform.position + (Vector3.up * stateMachine.ReusableData.GroundCheckOffset)
-            , stateMachine.Player.ColliderUtilitiy.CapsuleColliderData.Collider.radius, Vector3.down, out RaycastHit hit
-            , stateMachine.ReusableData.GroundCheckOffset - stateMachine.Player.ColliderUtilitiy.CapsuleColliderData.Collider.radius + 2 * stateMachine.Player.ColliderUtilitiy.CapsuleColliderData.skinWidth
+            , stateMachine.Player.ResizableCapsuleCollider.CapsuleColliderData.Collider.radius, Vector3.down, out RaycastHit hit
+            , stateMachine.ReusableData.GroundCheckOffset - stateMachine.Player.ResizableCapsuleCollider.CapsuleColliderData.Collider.radius + 2 * stateMachine.Player.ResizableCapsuleCollider.CapsuleColliderData.skinWidth
             , stateMachine.Player.LayerData.GroundLayer, QueryTriggerInteraction.Ignore))
         {
             stateMachine.ReusableData.IsGrounded = true;

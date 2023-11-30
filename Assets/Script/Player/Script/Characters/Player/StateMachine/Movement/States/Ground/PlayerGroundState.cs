@@ -47,9 +47,9 @@ public class PlayerGroundState : PlayerMovementState
     private void Float()
     {
 
-        Vector3 capsuleColliderCenterInWorldSpace = stateMachine.Player.ColliderUtilitiy.CapsuleColliderData.Collider.bounds.center;
+        Vector3 capsuleColliderCenterInWorldSpace = stateMachine.Player.ResizableCapsuleCollider.CapsuleColliderData.Collider.bounds.center;
         Ray downwardsRayFromCapsuleCenter = new Ray(capsuleColliderCenterInWorldSpace, Vector3.down);
-        if (Physics.Raycast(downwardsRayFromCapsuleCenter, out RaycastHit hit, stateMachine.Player.ColliderUtilitiy.SlopeData.FloatRayDistance, stateMachine.Player.LayerData.GroundLayer, QueryTriggerInteraction.Ignore))
+        if (Physics.Raycast(downwardsRayFromCapsuleCenter, out RaycastHit hit, stateMachine.Player.ResizableCapsuleCollider.SlopeData.FloatRayDistance, stateMachine.Player.LayerData.GroundLayer, QueryTriggerInteraction.Ignore))
         {
             float groundAngle = Vector3.Angle(hit.normal, -downwardsRayFromCapsuleCenter.direction);
 
@@ -60,12 +60,12 @@ public class PlayerGroundState : PlayerMovementState
                 return;
             }
 
-            float distanceToFloatingPoint = stateMachine.Player.ColliderUtilitiy.CapsuleColliderData.ColliderCenterInLocalSpace.y * stateMachine.Player.transform.localScale.y - hit.distance;
+            float distanceToFloatingPoint = stateMachine.Player.ResizableCapsuleCollider.CapsuleColliderData.ColliderCenterInLocalSpace.y * stateMachine.Player.transform.localScale.y - hit.distance;
             if (distanceToFloatingPoint == 0f)
             {
                 return;
             }
-            float amountToLift = distanceToFloatingPoint * stateMachine.Player.ColliderUtilitiy.SlopeData.StepReachForce - GetPlayerVerticalVelocity().y;
+            float amountToLift = distanceToFloatingPoint * stateMachine.Player.ResizableCapsuleCollider.SlopeData.StepReachForce - GetPlayerVerticalVelocity().y;
             Vector3 liftForce = new Vector3(0f, amountToLift, 0f);
 
             stateMachine.Player.Rigidbody.AddForce(liftForce, ForceMode.VelocityChange);
@@ -90,8 +90,8 @@ public class PlayerGroundState : PlayerMovementState
             Debug.Log("return");
             return;
         }
-        Vector3 capsuleColliderCenterInWorldSpace = stateMachine.Player.ColliderUtilitiy.CapsuleColliderData.Collider.bounds.center;
-        Ray downwardsRayFromCapsuleBottom = new Ray(capsuleColliderCenterInWorldSpace - stateMachine.Player.ColliderUtilitiy.CapsuleColliderData.ColliderVerticalEvtents, Vector3.down);
+        Vector3 capsuleColliderCenterInWorldSpace = stateMachine.Player.ResizableCapsuleCollider.CapsuleColliderData.Collider.bounds.center;
+        Ray downwardsRayFromCapsuleBottom = new Ray(capsuleColliderCenterInWorldSpace - stateMachine.Player.ResizableCapsuleCollider.CapsuleColliderData.ColliderVerticalEvtents, Vector3.down);
         if (!Physics.Raycast(downwardsRayFromCapsuleBottom, out _, movementData.GroundFallRayDistance, stateMachine.Player.LayerData.GroundLayer, QueryTriggerInteraction.Ignore))
         {
             OnFalling();
@@ -99,7 +99,7 @@ public class PlayerGroundState : PlayerMovementState
     }
     private bool IsThereGroundUnderneath()
     {
-        PlayerTriggerColliderData triggerColliderData = stateMachine.Player.ColliderUtilitiy.TriggerColliderData;
+        PlayerTriggerColliderData triggerColliderData = stateMachine.Player.ResizableCapsuleCollider.TriggerColliderData;
 
         Vector3 groundColliderCenterInWorldSpace = triggerColliderData.GroundCheckCollider.bounds.center;
 
@@ -110,46 +110,6 @@ public class PlayerGroundState : PlayerMovementState
     protected virtual void OnFalling()
     {
         stateMachine.ChangeState(stateMachine.FallingState);
-    }
-    private void OnSliding()
-    {
-        if (slopSlideVelocity == Vector3.zero)
-        {
-            stateMachine.ReusableData.IsSliding = false;
-        }
-        if (slopSlideVelocity != Vector3.zero)
-        {
-            Debug.Log("sliding");
-            stateMachine.ReusableData.IsSliding = true;
-        }
-        if (stateMachine.ReusableData.IsSliding)
-        {
-            //ResetVelocity();
-
-        }
-    }
-    private void SetSlopeSlideVelocity()
-    {
-        if (Physics.Raycast(stateMachine.Player.playerTransform.position + Vector3.up, Vector3.down, out RaycastHit hit, 5))
-        {
-            float angle = Vector3.Angle(hit.normal, Vector3.up);
-
-            if (angle >= stateMachine.Player.ColliderUtilitiy.CapsuleColliderData.slopeLimit)
-            {
-                slopSlideVelocity = Vector3.ProjectOnPlane(new Vector3(0, stateMachine.Player.Rigidbody.velocity.y, 0), hit.normal);
-                return;
-            }
-        }
-        //if (stateMachine.ReusableData.IsSliding)
-        //{
-        //    //slopSlideVelocity -= slopSlideVelocity * Time.deltaTime *3;
-        //    if (slopSlideVelocity.magnitude > 1)
-        //    {
-        //        return;
-        //    }
-        //}
-
-        slopSlideVelocity = Vector3.zero;
     }
     private void UpdateShouldSprintState()
     {

@@ -78,7 +78,7 @@ public class PlayerJumpDashState : PlayerAirborneState
     }
     private Vector3 GetJumpForceOnSlope(Vector3 jumpForce)
     {
-        Vector3 capsuleColliderCenterInWorldSpace = stateMachine.Player.ColliderUtilitiy.CapsuleColliderData.Collider.bounds.center;
+        Vector3 capsuleColliderCenterInWorldSpace = stateMachine.Player.ResizableCapsuleCollider.CapsuleColliderData.Collider.bounds.center;
 
         Ray downwardsRayFromCapsuleCenter = new Ray(capsuleColliderCenterInWorldSpace, Vector3.down);
 
