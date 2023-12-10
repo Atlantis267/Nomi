@@ -9830,7 +9830,7 @@ Transform:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 627375681}
-  m_LocalRotation: {x: 0.06399382, y: 0.0000000042819814, z: -2.7458316e-10, w: 0.9979503}
+  m_LocalRotation: {x: 0.06399382, y: 0.000000004968114, z: -3.1858158e-10, w: 0.9979503}
   m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
@@ -13816,7 +13816,7 @@ Transform:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 963194225}
-  m_LocalRotation: {x: 0.06399382, y: 0.000082570245, z: -0.000005294838, w: 0.9979503}
+  m_LocalRotation: {x: 0.06399382, y: 0.00008257061, z: -0.0000052948612, w: 0.9979503}
   m_LocalPosition: {x: 46.7839, y: -59.699997, z: -97.30775}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
@@ -22722,7 +22722,8 @@ Transform:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1515021407}
-  m_LocalRotation: {x: 0.08722511, y: -3.0055207e-16, z: 3.2668142e-17, w: 0.99618864}
+  m_LocalRotation: {x: 0.087225124, y: 0.000000023404466, z: -0.0000000020492679,
+    w: 0.99618864}
   m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
@@ -24066,7 +24067,6 @@ GameObject:
   - component: {fileID: 1623225823}
   - component: {fileID: 1623225831}
   - component: {fileID: 1623225833}
-  - component: {fileID: 1623225834}
   - component: {fileID: 1623225835}
   m_Layer: 6
   m_Name: Player
@@ -24163,35 +24163,6 @@ MonoBehaviour:
   text_speed: {fileID: 1423719934}
   text_ySpeed: {fileID: 0}
   text_mode: {fileID: 2135966163}
---- !u!114 &1623225834
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1623225821}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 8184c2d9adc7c6247b442008658a8d03, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  orientation: {fileID: 1231071163}
-  rb: {fileID: 1623225823}
-  whatIsWall:
-    serializedVersion: 2
-    m_Bits: 1024
-  climbSpeed: 0
-  maxClimbTime: 0
-  climbJumpUpForce: 14
-  climbJumpBackForce: 12
-  jumpKey: 32
-  climbJumps: 1
-  detectionLength: 0.7
-  sphereCastRadius: 0.25
-  maxWallLookAngle: 30
-  minWallNormalAngleChange: 5
-  exitingWall: 1
-  exitWallTime: 0.2
 --- !u!114 &1623225835
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -24211,9 +24182,9 @@ MonoBehaviour:
     serializedVersion: 2
     m_Bits: 1
   wallRunForce: 100
-  wallJumpUpForce: 10
-  wallJumpSideForce: 30
-  wallClimbSpeed: 3
+  wallJumpUpForce: 0
+  wallJumpSideForce: 40
+  wallClimbSpeed: 2
   maxWallRunTime: 0.7
   jumpKey: 32
   upwardsRunKey: 304
@@ -26534,7 +26505,8 @@ Transform:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1725593614}
-  m_LocalRotation: {x: 0.040828448, y: 0.0000000044149777, z: -1.8040709e-10, w: 0.9991662}
+  m_LocalRotation: {x: 0.040828448, y: -0.000000026516984, z: 0.0000000010835508,
+    w: 0.9991662}
   m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
