@@ -1,10 +1,15 @@
 using System;
 using System.Collections.Generic;
 using UnityEngine;
-[Serializable]
 
-public class PlayerParticalData
+namespace Nomimovment
 {
-    [field: SerializeField] public ParticleSystem FlashBarrier { get; private set; }
-    [field: SerializeField] public ParticleSystem SmokeParticle { get; private set; }
+    [Serializable]
+
+    public class PlayerParticalData
+    {
+        [field: SerializeField] public ParticleSystem FlashBarrier { get; private set; }
+        [field: SerializeField] public ParticleSystem SmokeParticle { get; private set; }
+    }
 }
+

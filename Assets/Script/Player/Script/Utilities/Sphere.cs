@@ -2,16 +2,20 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class Sphere : MonoBehaviour
+namespace Nomimovment
 {
-    private void OnTriggerEnter(Collider other)
+    public class Sphere : MonoBehaviour
     {
-        BoostSystem playerboostsystem = other.GetComponent<BoostSystem>();
-
-        if(playerboostsystem != null)
+        private void OnTriggerEnter(Collider other)
         {
-            playerboostsystem.AddToBoost();
-            gameObject.SetActive(false);
+            BoostSystem playerboostsystem = other.GetComponent<BoostSystem>();
+
+            if (playerboostsystem != null)
+            {
+                playerboostsystem.AddToBoost();
+                gameObject.SetActive(false);
+            }
         }
     }
 }
+

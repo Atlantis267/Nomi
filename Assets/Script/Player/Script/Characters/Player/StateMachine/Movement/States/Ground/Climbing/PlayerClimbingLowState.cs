@@ -2,9 +2,14 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class PlayerClimbingLowState : PlayerClimbingState
+namespace Nomimovment
 {
-    public PlayerClimbingLowState(PlayerMovementStateMachine playerMovementStateMachine) : base(playerMovementStateMachine)
+    public class PlayerClimbingLowState : PlayerClimbingState
     {
+        public PlayerClimbingLowState(PlayerMovementStateMachine playerMovementStateMachine) : base(playerMovementStateMachine)
+        {
+        }
     }
 }
+
+

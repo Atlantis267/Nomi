@@ -4,108 +4,113 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.InputSystem;
 
-public class PlayerSprintingState : PlayerMovingState
+
+namespace Nomimovment
 {
-    private PlayerSprintData sprintData;
-    private float startTime;
-    private bool shouldResetSprintState;
-
-    public PlayerSprintingState(PlayerMovementStateMachine playerMovementStateMachine) : base(playerMovementStateMachine)
+    public class PlayerSprintingState : PlayerMovingState
     {
-        sprintData = movementData.SprintData;
-    }
-    #region IState Methods
-    public override void Enter()
-    {
+        private PlayerSprintData sprintData;
+        private float startTime;
+        private bool shouldResetSprintState;
 
-        stateMachine.ReusableData.SpeedMultiplier = sprintData.SpeedModifier;
-
-        base.Enter();
-
-        stateMachine.ReusableData.IsSprinting = true;
-        stateMachine.ReusableData.CurrentJumpForce = airborneData.JumpData.StrongForce;
-
-        startTime = Time.time;
-        shouldResetSprintState = true;
-        if (!stateMachine.ReusableData.ShouldSprint)
+        public PlayerSprintingState(PlayerMovementStateMachine playerMovementStateMachine) : base(playerMovementStateMachine)
         {
-            stateMachine.ReusableData.KeepSprint = false;
+            sprintData = movementData.SprintData;
+        }
+        #region IState Methods
+        public override void Enter()
+        {
+
+            stateMachine.ReusableData.SpeedMultiplier = sprintData.SpeedModifier;
+
+            base.Enter();
+
+            stateMachine.ReusableData.IsSprinting = true;
+            stateMachine.ReusableData.CurrentJumpForce = airborneData.JumpData.StrongForce;
+
+            startTime = Time.time;
+            shouldResetSprintState = true;
+            if (!stateMachine.ReusableData.ShouldSprint)
+            {
+                stateMachine.ReusableData.KeepSprint = false;
+            }
+
+        }
+        public override void Exit()
+        {
+            base.Exit();
+            stateMachine.ReusableData.IsSprinting = false;
+
+            if (shouldResetSprintState)
+            {
+                stateMachine.ReusableData.KeepSprint = false;
+
+                stateMachine.ReusableData.ShouldSprint = false;
+            }
+        }
+        public override void Update()
+        {
+            base.Update();
+            if (stateMachine.ReusableData.KeepSprint)
+            {
+                return;
+            }
+            if (Time.time < startTime + sprintData.SprintToRunTime)
+            {
+                return;
+            }
+
+            AnimationFloat(stateMachine.Player.AnimationsData.MoveSpeedHash, stateMachine.ReusableData.CurrentMovementInput.magnitude * stateMachine.ReusableData.SpeedMultiplier, 0.1f, Time.deltaTime);
+            StopSprinting();
         }
 
-    }
-    public override void Exit()
-    {
-        base.Exit();
-        stateMachine.ReusableData.IsSprinting = false;
+        #endregion
+        #region Main Methods
 
-        if (shouldResetSprintState)
+        private void StopSprinting()
         {
-            stateMachine.ReusableData.KeepSprint = false;
+            if (stateMachine.ReusableData.CurrentMovementInput == Vector2.zero)
+            {
+                stateMachine.ChangeState(stateMachine.HardStoppingState);
 
-            stateMachine.ReusableData.ShouldSprint = false;
+                return;
+            }
+            stateMachine.ChangeState(stateMachine.RunningState);
         }
-    }
-    public override void Update()
-    {
-        base.Update();
-        if (stateMachine.ReusableData.KeepSprint)
+
+        #endregion
+        #region Reusable Methods
+        protected override void AddInputActionCallback()
         {
-            return;
+            base.AddInputActionCallback();
+
+            stateMachine.Player.Inputs.PlayerActions.Sprint.performed += OnSprintPerformed;
         }
-        if (Time.time < startTime + sprintData.SprintToRunTime)
+        protected override void RemoveInputActionCallback()
         {
-            return;
+            base.RemoveInputActionCallback();
+
+            stateMachine.Player.Inputs.PlayerActions.Sprint.performed -= OnSprintPerformed;
         }
-        
-        AnimationFloat(stateMachine.Player.AnimationsData.MoveSpeedHash, stateMachine.ReusableData.CurrentMovementInput.magnitude * stateMachine.ReusableData.SpeedMultiplier, 0.1f, Time.deltaTime);
-        StopSprinting();
-    }
-
-    #endregion
-    #region Main Methods
-
-    private void StopSprinting()
-    {
-        if (stateMachine.ReusableData.CurrentMovementInput == Vector2.zero )
+        protected override void OnFalling()
+        {
+            shouldResetSprintState = false;
+            base.OnFalling();
+        }
+        #endregion
+        #region Input Methods
+        protected override void OnMovementCanceled(InputAction.CallbackContext context)
         {
             stateMachine.ChangeState(stateMachine.HardStoppingState);
-
-            return;
+            base.OnMovementCanceled(context);
         }
-        stateMachine.ChangeState(stateMachine.RunningState);
-    }
+        private void OnSprintPerformed(InputAction.CallbackContext context)
+        {
+            stateMachine.ReusableData.KeepSprint = true;
+            stateMachine.ReusableData.ShouldSprint = true;
+        }
 
-    #endregion
-    #region Reusable Methods
-    protected override void AddInputActionCallback()
-    {
-        base.AddInputActionCallback();
-
-        stateMachine.Player.Inputs.PlayerActions.Sprint.performed += OnSprintPerformed;
+        #endregion
     }
-    protected override void RemoveInputActionCallback()
-    {
-        base.RemoveInputActionCallback();
-
-        stateMachine.Player.Inputs.PlayerActions.Sprint.performed -= OnSprintPerformed;
-    }
-    protected override void OnFalling()
-    {
-        shouldResetSprintState = false;
-        base.OnFalling();
-    }
-    #endregion
-    #region Input Methods
-    protected override void OnMovementCanceled(InputAction.CallbackContext context)
-    {
-        stateMachine.ChangeState(stateMachine.HardStoppingState);
-        base.OnMovementCanceled(context);
-    }
-    private void OnSprintPerformed(InputAction.CallbackContext context)
-    {
-        stateMachine.ReusableData.KeepSprint = true;
-        stateMachine.ReusableData.ShouldSprint = true;
-    }
-
-    #endregion
 }
+

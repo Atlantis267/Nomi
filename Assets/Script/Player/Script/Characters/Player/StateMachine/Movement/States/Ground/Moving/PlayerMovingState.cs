@@ -1,23 +1,28 @@
 using UnityEngine;
 
-public class PlayerMovingState : PlayerGroundState
+namespace Nomimovment
 {
-    public PlayerMovingState(PlayerMovementStateMachine playerMovementStateMachine) : base(playerMovementStateMachine)
+    public class PlayerMovingState : PlayerGroundState
     {
-    }
-    public override void Enter()
-    {
-        base.Enter();
-        if (stateMachine.ReusableData.IsSliding)
+        public PlayerMovingState(PlayerMovementStateMachine playerMovementStateMachine) : base(playerMovementStateMachine)
         {
-            return;
         }
-        StartAnimation(stateMachine.Player.AnimationsData.IsMoveHash);
-    }
-    public override void Exit()
-    {
-        base.Exit();
+        public override void Enter()
+        {
+            base.Enter();
+            if (stateMachine.ReusableData.IsSliding)
+            {
+                return;
+            }
+            StartAnimation(stateMachine.Player.AnimationsData.IsMoveHash);
+        }
+        public override void Exit()
+        {
+            base.Exit();
 
-        StopAnimation(stateMachine.Player.AnimationsData.IsMoveHash);
+            StopAnimation(stateMachine.Player.AnimationsData.IsMoveHash);
+        }
     }
 }
+
+

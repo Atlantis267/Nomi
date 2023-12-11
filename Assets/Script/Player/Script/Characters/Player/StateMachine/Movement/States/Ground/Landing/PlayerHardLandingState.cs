@@ -1,73 +1,79 @@
 using UnityEngine.InputSystem;
 
-public class PlayerHardLandingState : PlayerLandingState
+
+namespace Nomimovment
 {
-    public PlayerHardLandingState(PlayerMovementStateMachine playerMovementStateMachine) : base(playerMovementStateMachine)
+    public class PlayerHardLandingState : PlayerLandingState
     {
-    }
-    #region IState Methods
-    public override void Enter()
-    {
-        stateMachine.ReusableData.SpeedMultiplier = 0.0f;
-        base.Enter();
-        stateMachine.Player.Inputs.PlayerActions.Movement.Disable();
-
-        ResetVelocity();
-
-        StartAnimation(stateMachine.Player.AnimationsData.HardLandHash);
-    }
-    public override void Exit()
-    {
-        base.Exit();
-        stateMachine.Player.Inputs.PlayerActions.Movement.Enable();
-        StopAnimation(stateMachine.Player.AnimationsData.HardLandHash);
-    }
-    public override void PhysicsUpdate()
-    {
-        base.PhysicsUpdate();
-        if (!IsMovingHorizontally())
+        public PlayerHardLandingState(PlayerMovementStateMachine playerMovementStateMachine) : base(playerMovementStateMachine)
         {
-            return;
         }
-        ResetVelocity();
-    }
-    public override void OnAnimationExitEvent()
-    {
-        stateMachine.Player.Inputs.PlayerActions.Movement.Enable();
-    }
-    public override void OnAnimationTransitionEvent()
-    {
-        stateMachine.ChangeState(stateMachine.IdleingState);
-    }
-    #endregion
-    #region Reusable Methods
-    protected override void AddInputActionCallback()
-    {
-        base.AddInputActionCallback();
-        stateMachine.Player.Inputs.PlayerActions.Movement.started += OnMoventStarted;
-    }
-
-    protected override void RemoveInputActionCallback()
-    {
-        base.RemoveInputActionCallback();
-        stateMachine.Player.Inputs.PlayerActions.Movement.started -= OnMoventStarted;
-    }
-    protected override void OnMove()
-    {
-        if (stateMachine.ReusableData.ShouldWalk)
+        #region IState Methods
+        public override void Enter()
         {
-            return;
+            stateMachine.ReusableData.SpeedMultiplier = 0.0f;
+            base.Enter();
+            stateMachine.Player.Inputs.PlayerActions.Movement.Disable();
+
+            ResetVelocity();
+
+            StartAnimation(stateMachine.Player.AnimationsData.HardLandHash);
         }
-        stateMachine.ChangeState(stateMachine.RunningState);
+        public override void Exit()
+        {
+            base.Exit();
+            stateMachine.Player.Inputs.PlayerActions.Movement.Enable();
+            StopAnimation(stateMachine.Player.AnimationsData.HardLandHash);
+        }
+        public override void PhysicsUpdate()
+        {
+            base.PhysicsUpdate();
+            if (!IsMovingHorizontally())
+            {
+                return;
+            }
+            ResetVelocity();
+        }
+        public override void OnAnimationExitEvent()
+        {
+            stateMachine.Player.Inputs.PlayerActions.Movement.Enable();
+        }
+        public override void OnAnimationTransitionEvent()
+        {
+            stateMachine.ChangeState(stateMachine.IdleingState);
+        }
+        #endregion
+        #region Reusable Methods
+        protected override void AddInputActionCallback()
+        {
+            base.AddInputActionCallback();
+            stateMachine.Player.Inputs.PlayerActions.Movement.started += OnMoventStarted;
+        }
+
+        protected override void RemoveInputActionCallback()
+        {
+            base.RemoveInputActionCallback();
+            stateMachine.Player.Inputs.PlayerActions.Movement.started -= OnMoventStarted;
+        }
+        protected override void OnMove()
+        {
+            if (stateMachine.ReusableData.ShouldWalk)
+            {
+                return;
+            }
+            stateMachine.ChangeState(stateMachine.RunningState);
+        }
+        #endregion
+        #region Input Methods
+        private void OnMoventStarted(InputAction.CallbackContext context)
+        {
+            OnMove();
+        }
+        protected override void OnJumpStarted(InputAction.CallbackContext context)
+        {
+        }
+        #endregion
     }
-    #endregion
-    #region Input Methods
-    private void OnMoventStarted(InputAction.CallbackContext context)
-    {
-        OnMove();
-    }
-    protected override void OnJumpStarted(InputAction.CallbackContext context)
-    {
-    }
-    #endregion
 }
+
+

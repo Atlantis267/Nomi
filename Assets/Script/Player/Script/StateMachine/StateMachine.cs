@@ -2,56 +2,61 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public abstract class StateMachine
+namespace Nomimovment
 {
-    protected IState currentState;
-    public void ChangeState(IState newState)
+    public abstract class StateMachine
     {
-        currentState?.Exit();
+        protected IState currentState;
+        public void ChangeState(IState newState)
+        {
+            currentState?.Exit();
 
-        currentState = newState;
+            currentState = newState;
 
-        currentState.Enter();
-    }
-    public void HandleInput()
-    {
-        currentState?.HandleInput();
-    }
+            currentState.Enter();
+        }
+        public void HandleInput()
+        {
+            currentState?.HandleInput();
+        }
 
-    public void Update()
-    {
-        currentState?.Update();
-    }
+        public void Update()
+        {
+            currentState?.Update();
+        }
 
-    public void PhysicsUpdate()
-    {
-        currentState?.PhysicsUpdate();
-    }
-    public void OnAnimationMove()
-    {
-        currentState?.OnAnimationMove();
-    }
-    public void OnAnimationEnterEvent()
-    {
-        currentState?.OnAnimationEnterEvent();
-    }
-    public void OnAnimationExitEvent()
-    {
-        currentState?.OnAnimationExitEvent();
-    }
-    public void OnAnimationTransitionEvent()
-    {
-        currentState?.OnAnimationTransitionEvent();
-    }
+        public void PhysicsUpdate()
+        {
+            currentState?.PhysicsUpdate();
+        }
+        public void OnAnimationMove()
+        {
+            currentState?.OnAnimationMove();
+        }
+        public void OnAnimationEnterEvent()
+        {
+            currentState?.OnAnimationEnterEvent();
+        }
+        public void OnAnimationExitEvent()
+        {
+            currentState?.OnAnimationExitEvent();
+        }
+        public void OnAnimationTransitionEvent()
+        {
+            currentState?.OnAnimationTransitionEvent();
+        }
 
-    public void OnTriggerEnter(Collider collider)
-    {
-        currentState?.OnTriggerEnter(collider);
-    }
-    public void OnTriggerExit(Collider collider)
-    {
-        currentState?.OnTriggerExit(collider);
+        public void OnTriggerEnter(Collider collider)
+        {
+            currentState?.OnTriggerEnter(collider);
+        }
+        public void OnTriggerExit(Collider collider)
+        {
+            currentState?.OnTriggerExit(collider);
+        }
     }
 }
+
+
 
 

@@ -1,46 +1,49 @@
 using UnityEngine;
-
-public class PlayerAnimationEventTrigger : MonoBehaviour
+namespace Nomimovment
 {
-    private Player player;
-
-    private void Awake()
+    public class PlayerAnimationEventTrigger : MonoBehaviour
     {
-        player = GetComponent<Player>();
-    }
+        private Player player;
 
-    public void TriggerOnMovementStateAnimationEnterEvent()
-    {
-        if (IsInAnimationTransition())
+        private void Awake()
         {
-            return;
+            player = GetComponent<Player>();
         }
 
-        player.OnMovementStateAnimationEnterEvent();
-    }
-
-    public void TriggerOnMovementStateAnimationExitEvent()
-    {
-        if (IsInAnimationTransition())
+        public void TriggerOnMovementStateAnimationEnterEvent()
         {
-            return;
+            if (IsInAnimationTransition())
+            {
+                return;
+            }
+
+            player.OnMovementStateAnimationEnterEvent();
         }
 
-        player.OnMovementStateAnimationExitEvent();
-    }
-
-    public void TriggerOnMovementStateAnimationTransitionEvent()
-    {
-        if (IsInAnimationTransition())
+        public void TriggerOnMovementStateAnimationExitEvent()
         {
-            return;
+            if (IsInAnimationTransition())
+            {
+                return;
+            }
+
+            player.OnMovementStateAnimationExitEvent();
         }
 
-        player.OnMovementStateAnimationTransitionEvent();
+        public void TriggerOnMovementStateAnimationTransitionEvent()
+        {
+            if (IsInAnimationTransition())
+            {
+                return;
+            }
+
+            player.OnMovementStateAnimationTransitionEvent();
+        }
+
+        private bool IsInAnimationTransition(int layerIndex = 0)
+        {
+            return player.Animator.IsInTransition(layerIndex);
+        }
     }
 
-    private bool IsInAnimationTransition(int layerIndex = 0)
-    {
-        return player.Animator.IsInTransition(layerIndex);
-    }
 }

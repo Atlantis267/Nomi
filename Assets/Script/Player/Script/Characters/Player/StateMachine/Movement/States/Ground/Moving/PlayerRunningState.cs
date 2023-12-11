@@ -4,70 +4,75 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.InputSystem;
 
-public class PlayerRunningState : PlayerMovingState
+namespace Nomimovment
 {
-    private PlayerSprintData sprintData;
-    private float startTime;
-    public PlayerRunningState(PlayerMovementStateMachine playerMovementStateMachine) : base(playerMovementStateMachine)
+    public class PlayerRunningState : PlayerMovingState
     {
-        sprintData = movementData.SprintData;
-    }
-    #region IState Methods
-    public override void Enter()
-    {
-        stateMachine.ReusableData.SpeedMultiplier = movementData.RunData.SpeedModifier;
-
-        base.Enter();
-
-        stateMachine.ReusableData.CurrentJumpForce = airborneData.JumpData.MediumForce;
-
-        startTime = Time.time;
-    }
-    public override void Exit()
-    {
-        base.Exit();
-    }
-    public override void Update()
-    {
-        base.Update();
-        if (!stateMachine.ReusableData.ShouldWalk)
+        private PlayerSprintData sprintData;
+        private float startTime;
+        public PlayerRunningState(PlayerMovementStateMachine playerMovementStateMachine) : base(playerMovementStateMachine)
         {
-            return;
+            sprintData = movementData.SprintData;
         }
-        if (Time.time < startTime + sprintData.RunToWalkTime)
+        #region IState Methods
+        public override void Enter()
         {
-            return;
+            stateMachine.ReusableData.SpeedMultiplier = movementData.RunData.SpeedModifier;
+
+            base.Enter();
+
+            stateMachine.ReusableData.CurrentJumpForce = airborneData.JumpData.MediumForce;
+
+            startTime = Time.time;
+        }
+        public override void Exit()
+        {
+            base.Exit();
+        }
+        public override void Update()
+        {
+            base.Update();
+            if (!stateMachine.ReusableData.ShouldWalk)
+            {
+                return;
+            }
+            if (Time.time < startTime + sprintData.RunToWalkTime)
+            {
+                return;
+            }
+
+            AnimationFloat(stateMachine.Player.AnimationsData.MoveSpeedHash, stateMachine.ReusableData.CurrentMovementInput.magnitude * stateMachine.ReusableData.SpeedMultiplier, 0.1f, Time.deltaTime);
+            StopRunning();
         }
 
-        AnimationFloat(stateMachine.Player.AnimationsData.MoveSpeedHash, stateMachine.ReusableData.CurrentMovementInput.magnitude * stateMachine.ReusableData.SpeedMultiplier, 0.1f, Time.deltaTime);
-        StopRunning();
-    }
+        #endregion
+        #region Main Methods
+        private void StopRunning()
+        {
+            if (stateMachine.ReusableData.CurrentMovementInput == Vector2.zero)
+            {
+                stateMachine.ChangeState(stateMachine.MediumStoppingState);
 
-    #endregion
-    #region Main Methods
-    private void StopRunning()
-    {
-        if (stateMachine.ReusableData.CurrentMovementInput == Vector2.zero)
+                return;
+            }
+
+            stateMachine.ChangeState(stateMachine.WalkingState);
+        }
+        #endregion
+        #region Input Methods
+        protected override void OnMovementCanceled(InputAction.CallbackContext context)
         {
             stateMachine.ChangeState(stateMachine.MediumStoppingState);
-
-            return;
+            base.OnMovementCanceled(context);
         }
+        protected override void OnWalkToggleStarted(InputAction.CallbackContext context)
+        {
+            base.OnWalkToggleStarted(context);
 
-        stateMachine.ChangeState(stateMachine.WalkingState);
+            stateMachine.ChangeState(stateMachine.WalkingState);
+        }
+        #endregion
     }
-    #endregion
-    #region Input Methods
-    protected override void OnMovementCanceled(InputAction.CallbackContext context)
-    {
-        stateMachine.ChangeState(stateMachine.MediumStoppingState);
-        base.OnMovementCanceled(context);
-    }
-    protected override void OnWalkToggleStarted(InputAction.CallbackContext context)
-    {
-        base.OnWalkToggleStarted(context);
-
-        stateMachine.ChangeState(stateMachine.WalkingState);
-    }
-    #endregion
 }
+
+

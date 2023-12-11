@@ -2,18 +2,23 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class PlayerLightStoppingState : PlayerStoppingState
+namespace Nomimovment
 {
-    public PlayerLightStoppingState(PlayerMovementStateMachine playerMovementStateMachine) : base(playerMovementStateMachine)
+    public class PlayerLightStoppingState : PlayerStoppingState
     {
-    }
-    #region IState Methods
-    public override void Enter()
-    {
-        base.Enter();
+        public PlayerLightStoppingState(PlayerMovementStateMachine playerMovementStateMachine) : base(playerMovementStateMachine)
+        {
+        }
+        #region IState Methods
+        public override void Enter()
+        {
+            base.Enter();
 
-        stateMachine.ReusableData.MovementDelcelerationForce = movementData.StopData.LightDecelerationForce;
-        stateMachine.ReusableData.CurrentJumpForce = airborneData.JumpData.WeakForce;
+            stateMachine.ReusableData.MovementDelcelerationForce = movementData.StopData.LightDecelerationForce;
+            stateMachine.ReusableData.CurrentJumpForce = airborneData.JumpData.WeakForce;
+        }
+        #endregion
     }
-    #endregion
 }
+
+
