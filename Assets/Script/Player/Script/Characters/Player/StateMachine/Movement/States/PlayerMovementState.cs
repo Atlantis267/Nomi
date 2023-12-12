@@ -80,12 +80,23 @@ namespace Nomimovment
                 OnContactWithGround(collider);
                 return;
             }
+            if (stateMachine.Player.LayerData.IsLedgeLayer(collider.gameObject.layer))
+            {
+                OnContactWithLedge(collider);
+                return;
+            }
         }
+
         public void OnTriggerExit(Collider collider)
         {
             if (stateMachine.Player.LayerData.IsGroundLayer(collider.gameObject.layer))
             {
                 OnContactWithGroundExit(collider);
+                return;
+            }
+            if (stateMachine.Player.LayerData.IsLedgeLayer(collider.gameObject.layer))
+            {
+                OnContactWithLedgeExit(collider);
                 return;
             }
         }
@@ -381,7 +392,13 @@ namespace Nomimovment
         protected virtual void OnContactWithGround(Collider collider)
         {
         }
+        protected virtual void OnContactWithLedge(Collider collider)
+        {
+        }
         protected virtual void OnContactWithGroundExit(Collider collider)
+        {
+        }
+        protected virtual void OnContactWithLedgeExit(Collider collider)
         {
         }
         protected virtual void CurrentMovement()

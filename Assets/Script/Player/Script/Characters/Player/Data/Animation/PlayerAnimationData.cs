@@ -10,6 +10,7 @@ namespace Nomimovment
         [Header("State Group Parmeter Names")]
         [SerializeField] private string GroundParmeterNames = "Ground";
         [SerializeField] private string AirParmeterNames = "Air";
+        [SerializeField] private string ClimbParmeterNames = "Climb";
         [SerializeField] private string MovingstateParmeterNames = "Moving";
         [SerializeField] private string StopstateParmeterNames = "Stop";
         [SerializeField] private string LandingstateParmeterNames = "Landing";
@@ -42,6 +43,7 @@ namespace Nomimovment
 
         public int GroundstateHash { get; private set; }
         public int AirstateHash { get; private set; }
+        public int ClimbstateHash { get; private set; }
         public int IsStopHash { get; private set; }
         public int IsMoveHash { get; private set; }
         public int IsLandHash { get; private set; }
@@ -78,6 +80,7 @@ namespace Nomimovment
         {
             GroundstateHash = Animator.StringToHash(GroundParmeterNames);
             AirstateHash = Animator.StringToHash(AirParmeterNames);
+            ClimbstateHash = Animator.StringToHash(ClimbParmeterNames);
             MoveSpeedHash = Animator.StringToHash(MovestateParmeterNames);
             IsMoveHash = Animator.StringToHash(MovingstateParmeterNames);
             IsStopHash = Animator.StringToHash(StopstateParmeterNames);
