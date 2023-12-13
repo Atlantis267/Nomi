@@ -52,7 +52,6 @@ namespace Nomimovment
         #endregion
 
         #region Main Methods
-
         private void Jump()
         {
             Vector3 jumpDirection = stateMachine.Player.transform.forward;

@@ -15,6 +15,8 @@ namespace Nomimovment
 
 
         public float GroundCheckOffset { get; set; } = 0.5f;
+        public bool FaceWall { get; set; }
+        public bool OnLedge { get; set; }
         public bool ShouldWalk { get; set; }
         public bool ShouldSprint { get; set; }
         public bool KeepSprint { get; set; }

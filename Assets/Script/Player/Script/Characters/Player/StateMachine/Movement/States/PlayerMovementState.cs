@@ -58,8 +58,10 @@ namespace Nomimovment
         public virtual void PhysicsUpdate()
         {
             LookAt();
+            FaceingWall();
             OnAnimatonMove();
         }
+
         public virtual void OnAnimationMove()
         {
         }
@@ -108,7 +110,7 @@ namespace Nomimovment
         }
         private void Move()
         {
-            if (stateMachine.ReusableData.CurrentMovementInput == Vector2.zero || stateMachine.ReusableData.SpeedMultiplier == 0.0f || !stateMachine.ReusableData.IsGrounded || stateMachine.ReusableData.IsSliding)
+            if (stateMachine.ReusableData.CurrentMovementInput == Vector2.zero || stateMachine.ReusableData.SpeedMultiplier == 0.0f || !stateMachine.ReusableData.IsGrounded || stateMachine.ReusableData.IsSliding || stateMachine.ReusableData.OnLedge)
             {
                 return;
             }
@@ -388,6 +390,24 @@ namespace Nomimovment
         protected bool IsMovingDown(float minimumVelocity = 0.1f)
         {
             return GetPlayerVerticalVelocity().y < -minimumVelocity;
+        }
+        protected void FaceingWall()
+        {
+            RaycastHit hit;
+            if (Physics.Raycast(stateMachine.Player.wallTransform.position, stateMachine.Player.transform.forward, out hit, 1.0f/*, stateMachine.Player.LayerData.LedgeLayer, QueryTriggerInteraction.Ignore*/))
+            {
+                if (stateMachine.ReusableData.OnLedge)
+                {
+                    stateMachine.Player.transform.forward = -hit.normal;
+                }
+                stateMachine.ReusableData.FaceWall = true;
+            }
+            else
+            {
+                stateMachine.ReusableData.FaceWall = false;
+            }
+            Vector3 _forward = stateMachine.Player.playerTransform.TransformDirection(Vector3.forward) * 1.0f;
+            Debug.DrawRay(stateMachine.Player.wallTransform.position, _forward, Color.green, 1.0f);
         }
         protected virtual void OnContactWithGround(Collider collider)
         {

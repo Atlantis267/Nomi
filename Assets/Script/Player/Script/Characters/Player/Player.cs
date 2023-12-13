@@ -22,8 +22,9 @@ namespace Nomimovment
         [field: SerializeField] public PlayerAnimationData AnimationsData { get; private set; }
         [field: SerializeField] public PlayerParticalData ParticalData { get; private set; }
 
-
+        [field: SerializeField] public Transform wallTransform { get; private set; }
         public Transform playerTransform { get; private set; }
+
         //public CharacterController CharacterController { get; private set; }
         public Rigidbody Rigidbody { get; private set; }
         public Animator Animator { get; private set; }

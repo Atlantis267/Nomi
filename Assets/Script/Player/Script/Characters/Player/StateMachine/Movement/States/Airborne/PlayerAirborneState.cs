@@ -39,10 +39,14 @@ namespace Nomimovment
         {
             stateMachine.ChangeState(stateMachine.LightLandingState);
         }
-        protected override void OnContactWithLedge(Collider collider)
-        {
-            stateMachine.ChangeState(stateMachine.ClimbingHighState);
-        }
+        //protected override void OnContactWithLedge(Collider collider)
+        //{
+        //    stateMachine.ReusableData.OnLedge = true;
+        //    if (stateMachine.ReusableData.OnLedge)
+        //    {
+        //        stateMachine.ChangeState(stateMachine.ClimbingHighState);
+        //    }
+        //}
         protected virtual void ResetSprintState()
         {
             stateMachine.ReusableData.ShouldSprint = false;

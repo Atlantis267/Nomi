@@ -89,7 +89,6 @@ namespace Nomimovment
         {
             if (IsThereGroundUnderneath())
             {
-                Debug.Log("return");
                 return;
             }
             Vector3 capsuleColliderCenterInWorldSpace = stateMachine.Player.ResizableCapsuleCollider.CapsuleColliderData.Collider.bounds.center;
