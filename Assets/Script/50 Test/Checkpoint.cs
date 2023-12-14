@@ -30,5 +30,9 @@ public class Checkpoint : MonoBehaviour
             spawnPoint = flag.transform.position;
             Destroy(flag);
         }
+        if (other.gameObject.CompareTag("Water"))
+        {
+            gameObject.transform.position = spawnPoint; //respawn to spawnPoint
+        }
     }
 }
