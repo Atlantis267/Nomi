@@ -1,16 +1,15 @@
 using System;
-using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.InputSystem;
 
-
-namespace Nomimovment
+namespace Movement
 {
     public class PlayerMovementState : IState
     {
         protected PlayerMovementStateMachine stateMachine;
         protected PlayerGroundData movementData;
         protected PlayerAirborneData airborneData;
+
         #region 
         static readonly int CACHE_SIZE = 3;
         Vector3[] velCache = new Vector3[CACHE_SIZE];
@@ -23,16 +22,14 @@ namespace Nomimovment
             movementData = stateMachine.Player.Data.GroundedData;
             airborneData = stateMachine.Player.Data.AirborneData;
 
-            SetBaseCameraRecenteringData();
-
             InitializedData();
         }
-
 
         private void InitializedData()
         {
             SetBaseRotationData();
         }
+
 
         #region IState Methods
         public virtual void Enter()
@@ -52,18 +49,21 @@ namespace Nomimovment
         public virtual void Update()
         {
             CurrentMovement();
-            CheckGround();
+            //CheckGround();
+            RaycastFallDown();
+            FaceingWall();
+            LedgeRaycast();
             Move();
         }
         public virtual void PhysicsUpdate()
         {
             LookAt();
-            FaceingWall();
-            OnAnimatonMove();
         }
+
 
         public virtual void OnAnimationMove()
         {
+            OnAnimatonMove();
         }
         public virtual void OnAnimationEnterEvent()
         {
@@ -74,14 +74,8 @@ namespace Nomimovment
         public virtual void OnAnimationTransitionEvent()
         {
         }
-
         public virtual void OnTriggerEnter(Collider collider)
         {
-            if (stateMachine.Player.LayerData.IsGroundLayer(collider.gameObject.layer))
-            {
-                OnContactWithGround(collider);
-                return;
-            }
             if (stateMachine.Player.LayerData.IsLedgeLayer(collider.gameObject.layer))
             {
                 OnContactWithLedge(collider);
@@ -89,16 +83,11 @@ namespace Nomimovment
             }
         }
 
-        public void OnTriggerExit(Collider collider)
+        public virtual void OnTriggerExit(Collider collider)
         {
-            if (stateMachine.Player.LayerData.IsGroundLayer(collider.gameObject.layer))
-            {
-                OnContactWithGroundExit(collider);
-                return;
-            }
             if (stateMachine.Player.LayerData.IsLedgeLayer(collider.gameObject.layer))
             {
-                OnContactWithLedgeExit(collider);
+                OnContactExitWithLedge(collider);
                 return;
             }
         }
@@ -110,7 +99,7 @@ namespace Nomimovment
         }
         private void Move()
         {
-            if (stateMachine.ReusableData.CurrentMovementInput == Vector2.zero || stateMachine.ReusableData.SpeedMultiplier == 0.0f || !stateMachine.ReusableData.IsGrounded || stateMachine.ReusableData.IsSliding || stateMachine.ReusableData.OnLedge)
+            if (stateMachine.ReusableData.CurrentMovementInput == Vector2.zero || stateMachine.ReusableData.SpeedMultiplier == 0.0f || !IsGround() || stateMachine.ReusableData.IsSliding || stateMachine.ReusableData.OnLedge && stateMachine.ReusableData.FaceWall)
             {
                 return;
             }
@@ -155,24 +144,18 @@ namespace Nomimovment
 
         private void OnAnimatonMove()
         {
-            if (stateMachine.ReusableData.CurrentMovementInput == Vector2.zero || stateMachine.ReusableData.SpeedMultiplier == 0.0f || stateMachine.ReusableData.IsSliding)
+            if (stateMachine.ReusableData.CurrentMovementInput == Vector2.zero || stateMachine.ReusableData.SpeedMultiplier == 0.0f || stateMachine.ReusableData.IsSliding || !IsGround() || stateMachine.ReusableData.OnLedge && stateMachine.ReusableData.FaceWall)
             {
                 return;
             }
             float movementSpeed = GetMovementSpeed();
             Vector3 movementDirection = stateMachine.Player.Animator.deltaPosition;
             movementDirection.y = 0.0f;
-            stateMachine.Player.Rigidbody.velocity = movementDirection / Time.deltaTime * movementSpeed;
-            //stateMachine.Player.CharacterController.Move(movementDirection * movementSpeed);
-            averageVel = AverageVel(stateMachine.Player.Rigidbody.velocity);
+            stateMachine.Player.CharacterController.Move(movementDirection * movementSpeed);
+            averageVel = AverageVel(stateMachine.Player.Animator.velocity);
         }
         #endregion
         #region Reusable Methods
-        protected void SetBaseCameraRecenteringData()
-        {
-            stateMachine.ReusableData.BackwardsCameraRecenteringData = movementData.BackwardsCameraRecenteringData;
-            stateMachine.ReusableData.SidewaysCameraRecenteringData = movementData.SidewaysCameraRecenteringData;
-        }
         protected void SetBaseRotationData()
         {
             stateMachine.ReusableData.RotatonData = movementData.BaseRotationData;
@@ -195,26 +178,13 @@ namespace Nomimovment
             return new Vector3(stateMachine.ReusableData.CurrentMovementInput.x, 0.0f, stateMachine.ReusableData.CurrentMovementInput.y);
 
         }
-        protected float GetMovementSpeed(bool shouldConsiderSlopes = true)
+        protected float GetMovementSpeed()
         {
-            float movementspeed = movementData.BaseSpeed * stateMachine.ReusableData.SpeedMultiplier;
-            if (shouldConsiderSlopes)
-            {
-                movementspeed *= stateMachine.ReusableData.SlopeSpeedMultiplier;
-            }
-            return movementspeed;
-        }
-        protected Vector3 GetPlayerHorizontalVelocity()
-        {
-            Vector3 playerHorizontalVelocity = stateMachine.Player.Rigidbody.velocity;
-
-            playerHorizontalVelocity.y = 0f;
-
-            return playerHorizontalVelocity;
+            return movementData.BaseSpeed * stateMachine.ReusableData.SpeedMultiplier;
         }
         protected Vector3 GetPlayerVerticalVelocity()
         {
-            return new Vector3(0f, stateMachine.Player.Rigidbody.velocity.y, 0);
+            return new Vector3(0f, stateMachine.ReusableData.VerticalVelocity, 0);
         }
         protected Vector3 GetAverageVel()
         {
@@ -264,205 +234,149 @@ namespace Nomimovment
             }
             return average / CACHE_SIZE;
         }
-        protected void UpdateCameraRecenteringState(Vector2 movementInput)
-        {
-            if (movementInput == Vector2.zero)
-            {
-                return;
-            }
-
-            if (movementInput == Vector2.up)
-            {
-                DisableCameraRecentering();
-
-                return;
-            }
-
-            float cameraVerticalAngle = stateMachine.Player.playerCamera.eulerAngles.x;
-
-            if (cameraVerticalAngle >= 270f)
-            {
-                cameraVerticalAngle -= 360f;
-            }
-
-            cameraVerticalAngle = Mathf.Abs(cameraVerticalAngle);
-
-            if (movementInput == Vector2.down)
-            {
-                SetCameraRecenteringState(cameraVerticalAngle, stateMachine.ReusableData.BackwardsCameraRecenteringData);
-
-                return;
-            }
-
-            SetCameraRecenteringState(cameraVerticalAngle, stateMachine.ReusableData.SidewaysCameraRecenteringData);
-        }
-        protected void SetCameraRecenteringState(float cameraVerticalAngle, List<PlayerCameraRecenteringData> cameraRecenteringData)
-        {
-
-            foreach (PlayerCameraRecenteringData recenteringData in cameraRecenteringData)
-            {
-                if (!recenteringData.IsWithinRange(cameraVerticalAngle))
-                {
-                    continue;
-                }
-
-                EnableCameraRecentering(recenteringData.WaitTime, recenteringData.RecenteringTime);
-
-                return;
-            }
-
-            DisableCameraRecentering();
-        }
-        protected void EnableCameraRecentering(float waitTime = -1f, float recenteringTime = -1f)
-        {
-            float movementSpeed = GetMovementSpeed();
-
-            if (movementSpeed == 0f)
-            {
-                movementSpeed = movementData.BaseSpeed;
-            }
-
-            stateMachine.Player.CameraRecenteringUtility.EnableRecentering(waitTime, recenteringTime, movementData.BaseSpeed, movementSpeed);
-        }
-        protected void DisableCameraRecentering()
-        {
-            stateMachine.Player.CameraRecenteringUtility.DisableRecentering();
-        }
         protected void ResetVelocity()
         {
             stateMachine.ReusableData.SpeedMultiplier = 0.0f;
-            stateMachine.Player.Rigidbody.velocity = Vector3.zero;
-            //Vector3 movementDirection = Vector3.zero;
-            //stateMachine.Player.CharacterController.Move(movementDirection);
+            Vector3 movementDirection = Vector3.zero;
+            stateMachine.Player.CharacterController.Move(movementDirection);
         }
-        protected void ResetVerticalVelocity()
-        {
-            Vector3 playerHorizontalVelocity = GetPlayerHorizontalVelocity();
-
-            stateMachine.Player.Rigidbody.velocity = playerHorizontalVelocity;
-        }
-
         protected virtual void AddInputActionCallback()
         {
             stateMachine.Player.Inputs.PlayerActions.WalkToggle.started += OnWalkToggleStarted;
-
-            stateMachine.Player.Inputs.PlayerActions.Look.started += OnMouseMovementStarted;
-
-            stateMachine.Player.Inputs.PlayerActions.Movement.performed += OnMovementPerformed;
-
-            stateMachine.Player.Inputs.PlayerActions.Movement.canceled += OnMovementCanceled;
         }
-
         protected virtual void RemoveInputActionCallback()
         {
             stateMachine.Player.Inputs.PlayerActions.WalkToggle.started -= OnWalkToggleStarted;
-
-            stateMachine.Player.Inputs.PlayerActions.Look.started -= OnMouseMovementStarted;
-
-            stateMachine.Player.Inputs.PlayerActions.Movement.performed -= OnMovementPerformed;
-
-            stateMachine.Player.Inputs.PlayerActions.Movement.canceled -= OnMovementCanceled;
         }
         protected void DelcelerateHorizontally()
         {
-            Vector3 StopHorizontallyVelocity = stateMachine.Player.Animator.deltaPosition;
-            stateMachine.Player.Rigidbody.velocity = StopHorizontallyVelocity / Time.deltaTime;
-            //stateMachine.Player.CharacterController.Move(movementDirection);
-        }
-        protected void DelcelerateVertically()
-        {
-            Vector3 playerVerticalVelocity = GetPlayerVerticalVelocity();
-            stateMachine.Player.Rigidbody.AddForce(-playerVerticalVelocity * stateMachine.ReusableData.MovementDelcelerationForce, ForceMode.Acceleration);
-            //stateMachine.Player.CharacterController.Move(movementDirection);
+            Vector3 movementDirection = stateMachine.Player.Animator.deltaPosition;
+            movementDirection.y = 0.0f * Time.deltaTime;
+            stateMachine.Player.CharacterController.Move(movementDirection);
         }
         protected bool IsMovingHorizontally(float minimumMagnitude = 0.1f)
         {
-            Vector3 playerHorizontaVelocity = GetPlayerHorizontalVelocity();
+            Vector3 playerHorizontaVelocity = stateMachine.Player.CharacterController.velocity;
 
             Vector2 playerHorizontalMovement = new Vector2(playerHorizontaVelocity.x, playerHorizontaVelocity.z);
 
             return playerHorizontalMovement.magnitude > minimumMagnitude;
-        }
-        protected bool IsMovingUp(float minimumVelocity = 0.1f)
-        {
-            return GetPlayerVerticalVelocity().y > minimumVelocity;
-        }
-        protected bool IsMovingDown(float minimumVelocity = 0.1f)
-        {
-            return GetPlayerVerticalVelocity().y < -minimumVelocity;
-        }
-        protected void FaceingWall()
-        {
-            RaycastHit hit;
-            if (Physics.Raycast(stateMachine.Player.wallTransform.position, stateMachine.Player.transform.forward, out hit, 1.0f/*, stateMachine.Player.LayerData.LedgeLayer, QueryTriggerInteraction.Ignore*/))
-            {
-                if (stateMachine.ReusableData.OnLedge)
-                {
-                    stateMachine.Player.transform.forward = -hit.normal;
-                }
-                stateMachine.ReusableData.FaceWall = true;
-            }
-            else
-            {
-                stateMachine.ReusableData.FaceWall = false;
-            }
-            Vector3 _forward = stateMachine.Player.playerTransform.TransformDirection(Vector3.forward) * 1.0f;
-            Debug.DrawRay(stateMachine.Player.wallTransform.position, _forward, Color.green, 1.0f);
-        }
-        protected virtual void OnContactWithGround(Collider collider)
-        {
-        }
-        protected virtual void OnContactWithLedge(Collider collider)
-        {
-        }
-        protected virtual void OnContactWithGroundExit(Collider collider)
-        {
-        }
-        protected virtual void OnContactWithLedgeExit(Collider collider)
-        {
         }
         protected virtual void CurrentMovement()
         {
             stateMachine.ReusableData.CurrentMovement.x = stateMachine.ReusableData.CurrentMovementInput.x;
             stateMachine.ReusableData.CurrentMovement.z = stateMachine.ReusableData.CurrentMovementInput.y;
         }
-        protected bool CheckGround()
+        protected virtual void OnContactWithLedge(Collider collider)
         {
-            if (Physics.SphereCast(stateMachine.Player.playerTransform.position + (Vector3.up * stateMachine.ReusableData.GroundCheckOffset)
-                , stateMachine.Player.ResizableCapsuleCollider.CapsuleColliderData.Collider.radius, Vector3.down, out RaycastHit hit
-                , stateMachine.ReusableData.GroundCheckOffset - stateMachine.Player.ResizableCapsuleCollider.CapsuleColliderData.Collider.radius + 2 * stateMachine.Player.ResizableCapsuleCollider.CapsuleColliderData.skinWidth
-                , stateMachine.Player.LayerData.GroundLayer, QueryTriggerInteraction.Ignore))
+        }
+        protected virtual void OnContactExitWithLedge(Collider collider)
+        {
+        }
+        protected void FaceingWall()
+        {
+            Vector3 rayStrat;
+            RaycastHit hit;
+
+            if (Physics.Raycast(stateMachine.Player.TestingData.wallTransform.position, stateMachine.Player.playerTransform.forward, out hit, 2f))
             {
-                stateMachine.ReusableData.IsGrounded = true;
-                return stateMachine.ReusableData.IsGrounded;
+                rayStrat = hit.point;
+                rayStrat.y -= 1.0f;
+                stateMachine.ReusableData.FaceWall = true;
+                if (Physics.Raycast(rayStrat, stateMachine.Player.playerTransform.forward, out RaycastHit wallhit, 2f, stateMachine.Player.LayerData.WallLayer))
+                {
+                    if (stateMachine.ReusableData.OnLedge)
+                    {
+                        stateMachine.Player.playerTransform.forward = -wallhit.normal;
+                    }
+                }
+                Vector3 _forward = stateMachine.Player.playerTransform.TransformDirection(Vector3.forward) * 1.0f;
+                Debug.DrawRay(rayStrat, _forward, Color.green, 2f);
             }
             else
             {
-                stateMachine.ReusableData.IsGrounded = false;
-                return stateMachine.ReusableData.IsGrounded;
+                stateMachine.ReusableData.FaceWall = false;
+            }
+            //Vector3 _forward2 = stateMachine.Player.playerTransform.TransformDirection(Vector3.forward) * 1.0f;
+            //Debug.DrawRay(stateMachine.Player.TestingData.wallTransform.position, _forward2, Color.green, 2f);
+        }
+
+        protected void LedgeRaycast()
+        {
+            int numberOfRays = 10;
+            for( int i = 0; i < numberOfRays; i++)
+            {
+                var climbOrign = stateMachine.Player.playerTransform.position + Vector3.up * 1.2f;
+                var climbOffect = new Vector3(0, 0.3f, 0);
+                Vector3 rayStart;
+                RaycastHit rayhitwall;
+                if (Physics.Raycast(climbOrign + climbOffect * i, stateMachine.Player.playerTransform.forward, out rayhitwall, 2f, stateMachine.Player.LayerData.WallLayer))
+                {
+                    Debug.DrawRay(climbOrign + climbOffect * i, stateMachine.Player.playerTransform.forward , Color.white, 2f);
+                    rayStart = rayhitwall.point + stateMachine.Player.playerTransform.forward * 0.03f;
+                    rayStart.y += 3.0f;
+                    if (Physics.Raycast(rayStart, Vector3.down, out stateMachine.ReusableData.rayFindLedge, 4f))
+                    {
+                        Vector3 ledgemarker;
+                        ledgemarker = new Vector3(rayhitwall.transform.position.x, stateMachine.ReusableData.rayFindLedge.transform.position.y, rayhitwall.transform.position.z);
+                        GameObject TemporayMark;
+                        TemporayMark = Player.Instantiate(stateMachine.Player.TestingData.rayhitmark, stateMachine.ReusableData.rayFindLedge.point, Quaternion.LookRotation(stateMachine.ReusableData.rayFindLedge.normal)) as GameObject;
+                        Player.Destroy(TemporayMark, 0.03f);
+                    }
+                    Vector3 _down = stateMachine.Player.transform.TransformDirection(Vector3.down) * 5;
+                    Debug.DrawRay(rayStart, _down, Color.red, 4f);
+                }
             }
         }
+
+        protected bool RaycastFallDown()
+        {
+            int numberOfRays = 3;
+            for (int i = 0; i < numberOfRays; i++)
+            {
+                var origin = stateMachine.Player.playerTransform.position + Vector3.down * 0.15f + stateMachine.Player.transform.forward * 1f;
+                var originOffect = new Vector3(0, -0.15f, 0);
+
+                if (Physics.Raycast(origin + originOffect * i, -stateMachine.Player.transform.forward, out RaycastHit hit, 3))
+                {
+                    Debug.DrawRay(origin + originOffect * i, -stateMachine.Player.transform.forward, Color.blue, 3f);
+                    return true;
+                }
+            }
+            return false;
+        }
+        protected bool IsGround()
+        {
+            return Physics.CheckSphere(stateMachine.Player.playerTransform.position, .1f, stateMachine.Player.LayerData.GroundLayer);
+        }
+
+
+        //protected virtual void CheckGround()
+        //{
+        //    if (Physics.SphereCast(stateMachine.Player.playerTransform.position + (Vector3.up * stateMachine.ReusableData.GroundCheckOffset)
+        //        , stateMachine.Player.CharacterController.radius, Vector3.down, out RaycastHit hit
+        //        , stateMachine.ReusableData.GroundCheckOffset - stateMachine.Player.CharacterController.radius + 2 * stateMachine.Player.CharacterController.skinWidth
+        //        , stateMachine.Player.LayerData.GroundLayer, QueryTriggerInteraction.Ignore))
+        //    {
+        //        stateMachine.ReusableData.IsGrounded = true;
+        //        Debug.Log("isGround");
+        //    }
+        //    else
+        //    {
+        //        stateMachine.ReusableData.IsGrounded = false;
+        //        Debug.Log("is NOT Ground");
+        //    }
+        //}
         #endregion
         #region Input Methods
         protected virtual void OnWalkToggleStarted(InputAction.CallbackContext context)
         {
             stateMachine.ReusableData.ShouldWalk = !stateMachine.ReusableData.ShouldWalk;
         }
-        private void OnMouseMovementStarted(InputAction.CallbackContext context)
-        {
-            UpdateCameraRecenteringState(stateMachine.ReusableData.CurrentMovementInput);
-        }
-        private void OnMovementPerformed(InputAction.CallbackContext context)
-        {
-            UpdateCameraRecenteringState(context.ReadValue<Vector2>());
-        }
-        protected virtual void OnMovementCanceled(InputAction.CallbackContext context)
-        {
-            DisableCameraRecentering();
-
-        }
         #endregion
+
     }
 }
+
 
 

@@ -1,7 +1,7 @@
 using UnityEngine;
 using UnityEngine.InputSystem;
 
-namespace Nomimovment
+namespace Movement
 {
     public class PlayerRollingState : PlayerLandingState
     {
@@ -13,8 +13,8 @@ namespace Nomimovment
         #region IState Methods
         public override void Enter()
         {
-            stateMachine.ReusableData.SpeedMultiplier = rollData.SpeedModifier;
             base.Enter();
+            stateMachine.ReusableData.SpeedMultiplier = rollData.SpeedModifier;
             stateMachine.ReusableData.ShouldSprint = false;
             StartAnimation(stateMachine.Player.AnimationsData.RollLandHash);
         }

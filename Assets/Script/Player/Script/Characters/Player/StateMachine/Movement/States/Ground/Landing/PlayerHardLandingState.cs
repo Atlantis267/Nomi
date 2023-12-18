@@ -1,7 +1,6 @@
 using UnityEngine.InputSystem;
 
-
-namespace Nomimovment
+namespace Movement
 {
     public class PlayerHardLandingState : PlayerLandingState
     {
@@ -11,9 +10,9 @@ namespace Nomimovment
         #region IState Methods
         public override void Enter()
         {
-            stateMachine.ReusableData.SpeedMultiplier = 0.0f;
             base.Enter();
             stateMachine.Player.Inputs.PlayerActions.Movement.Disable();
+            stateMachine.ReusableData.SpeedMultiplier = 0.0f;
 
             ResetVelocity();
 

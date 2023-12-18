@@ -1,8 +1,6 @@
 using UnityEngine;
 
-
-
-namespace Nomimovment
+namespace Movement
 {
     public class PlayerLightLandingState : PlayerLandingState
     {
@@ -12,9 +10,9 @@ namespace Nomimovment
         #region IState Methods
         public override void Enter()
         {
-            stateMachine.ReusableData.SpeedMultiplier = 0.0f;
-            base.Enter();
             stateMachine.ReusableData.CurrentJumpForce = airborneData.JumpData.StationaryForce;
+            base.Enter();
+            stateMachine.ReusableData.SpeedMultiplier = 0.0f;
 
             ResetVelocity();
         }

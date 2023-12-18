@@ -2,7 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-namespace Nomimovment
+namespace Movement
 {
     public class PlayerMediumStoppingState : PlayerStoppingState
     {
@@ -12,9 +12,11 @@ namespace Nomimovment
         #region IState Methods
         public override void Enter()
         {
+            stateMachine.ReusableData.CurrentJumpForce = airborneData.JumpData.MediumForce;
+
             base.Enter();
 
-            stateMachine.ReusableData.CurrentJumpForce = airborneData.JumpData.MediumForce;
+            stateMachine.ReusableData.MovementDelcelerationForce = movementData.StopData.MediumDecelerationForce;
             StartAnimation(stateMachine.Player.AnimationsData.MediumStopHash);
             stateMachine.Player.Animator.SetFloat(stateMachine.Player.AnimationsData.stoptransformHash, 1f, 0.5f, Time.deltaTime);
         }

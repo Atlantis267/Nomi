@@ -1,6 +1,6 @@
 using UnityEngine;
 
-namespace Nomimovment
+namespace Movement
 {
     public class PlayerMovingState : PlayerGroundState
     {
@@ -24,5 +24,4 @@ namespace Nomimovment
         }
     }
 }
-
 

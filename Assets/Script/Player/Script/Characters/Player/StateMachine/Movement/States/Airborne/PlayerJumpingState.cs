@@ -3,12 +3,10 @@ using System.Collections;
 using UnityEngine;
 using UnityEngine.InputSystem;
 
-namespace Nomimovment
+namespace Movement
 {
     public class PlayerJumpingState : PlayerAirborneState
     {
-        private bool canStartFalling;
-
         public PlayerJumpingState(PlayerMovementStateMachine playerMovementStateMachine) : base(playerMovementStateMachine)
         {
         }
@@ -16,105 +14,64 @@ namespace Nomimovment
         public override void Enter()
         {
             base.Enter();
-            stateMachine.ReusableData.SpeedMultiplier = 0.0f;
-            stateMachine.ReusableData.MovementDelcelerationForce = airborneData.JumpData.DecelerationForce;
-            Jump();
+            Velocity();
+            stateMachine.ReusableData.VerticalVelocity = airborneData.JumpData.JumpForce;
         }
         public override void PhysicsUpdate()
         {
             base.PhysicsUpdate();
-            if (IsMovingUp())
-            {
-                DelcelerateVertically();
-            }
+            stateMachine.ReusableData.VerticalVelocity += stateMachine.ReusableData.Gravity * Time.deltaTime;
+            if (stateMachine.ReusableData.CurrentMovementInput != Vector2.zero)
+                Move();
         }
         public override void Update()
         {
             base.Update();
-            if (!canStartFalling && IsMovingUp(0f))
-            {
-                canStartFalling = true;
-            }
-
-            if (!canStartFalling || IsMovingUp(0f))
+            if (GetPlayerVerticalVelocity().y > 0)
             {
                 return;
             }
-
-            stateMachine.ChangeState(stateMachine.FallingState);
-        }
-        public override void Exit()
-        {
-            base.Exit();
-            canStartFalling = false;
-            stateMachine.ReusableData.ShouldAirDash = true;
+            stateMachine.ChangeState(stateMachine.FallingingState);
         }
         #endregion
 
         #region Main Methods
-        private void Jump()
+        private void Move()
         {
-            Vector3 jumpDirection = stateMachine.Player.transform.forward;
-            Vector3 jumpForce = stateMachine.ReusableData.CurrentJumpForce;
-            jumpForce.x *= jumpDirection.x;
-            jumpForce.z *= jumpDirection.z;
-            jumpForce = GetJumpForceOnSlope(jumpForce);
-            ResetVelocity();
-            stateMachine.Player.Rigidbody.AddForce(jumpForce, ForceMode.VelocityChange);
+            Vector3 movementDirection = GetMovementDirection();
+            Rotate(movementDirection);
+            movementDirection.Normalize();
         }
-        private Vector3 GetJumpForceOnSlope(Vector3 jumpForce)
+        private float Rotate(Vector3 direction)
         {
-            Vector3 capsuleColliderCenterInWorldSpace = stateMachine.Player.ResizableCapsuleCollider.CapsuleColliderData.Collider.bounds.center;
+            float directionAngle = UpdateTargetRotation(direction);
 
-            Ray downwardsRayFromCapsuleCenter = new Ray(capsuleColliderCenterInWorldSpace, Vector3.down);
+            LookAt();
 
-            if (Physics.Raycast(downwardsRayFromCapsuleCenter, out RaycastHit hit, airborneData.JumpData.JumpToGroundRayDistance, stateMachine.Player.LayerData.GroundLayer, QueryTriggerInteraction.Ignore))
-            {
-                float groundAngle = Vector3.Angle(hit.normal, -downwardsRayFromCapsuleCenter.direction);
-
-                if (IsMovingUp())
-                {
-                    float forceModifier = airborneData.JumpData.JumpForceModifierOnSlopeUpwards.Evaluate(groundAngle);
-
-                    jumpForce.x *= forceModifier;
-                    jumpForce.z *= forceModifier;
-                }
-
-                if (IsMovingDown())
-                {
-                    float forceModifier = airborneData.JumpData.JumpForceModifierOnSlopeDownwards.Evaluate(groundAngle);
-
-                    jumpForce.y *= forceModifier;
-                }
-            }
-
-            return jumpForce;
+            return directionAngle;
         }
         #endregion
 
         #region Reusable Methods
-        protected override void AddInputActionCallback()
-        {
-            base.AddInputActionCallback();
-            stateMachine.Player.Inputs.PlayerActions.Jump.canceled += OnJumpCanceled;
-        }
+        //protected override void AddInputActionCallback()
+        //{
+        //    base.AddInputActionCallback();
+        //    stateMachine.Player.Inputs.PlayerActions.Jump.canceled += OnJumpCanceled;
+        //}
 
-        protected override void RemoveInputActionCallback()
-        {
-            base.RemoveInputActionCallback();
-            stateMachine.Player.Inputs.PlayerActions.Jump.canceled -= OnJumpCanceled;
-        }
+        //protected override void RemoveInputActionCallback()
+        //{
+        //    base.RemoveInputActionCallback();
+        //    stateMachine.Player.Inputs.PlayerActions.Jump.canceled -= OnJumpCanceled;
+        //}
         #endregion
         #region Input Methods
-        private void OnJumpCanceled(InputAction.CallbackContext context)
-        {
-            stateMachine.ChangeState(stateMachine.FallingState);
-        }
-        protected override void OnMovementCanceled(InputAction.CallbackContext context)
-        {
-        }
+        //private void OnJumpCanceled(InputAction.CallbackContext context)
+        //{
+        //    stateMachine.ChangeState(stateMachine.FallingingState);
+        //}
         #endregion
     }
-}
 
+}
 

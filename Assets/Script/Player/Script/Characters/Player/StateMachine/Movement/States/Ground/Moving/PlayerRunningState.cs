@@ -4,7 +4,7 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.InputSystem;
 
-namespace Nomimovment
+namespace Movement
 {
     public class PlayerRunningState : PlayerMovingState
     {
@@ -17,11 +17,11 @@ namespace Nomimovment
         #region IState Methods
         public override void Enter()
         {
-            stateMachine.ReusableData.SpeedMultiplier = movementData.RunData.SpeedModifier;
+            stateMachine.ReusableData.CurrentJumpForce = airborneData.JumpData.MediumForce;
 
             base.Enter();
 
-            stateMachine.ReusableData.CurrentJumpForce = airborneData.JumpData.MediumForce;
+            stateMachine.ReusableData.SpeedMultiplier = movementData.RunData.SpeedModifier;
 
             startTime = Time.time;
         }
@@ -63,7 +63,6 @@ namespace Nomimovment
         protected override void OnMovementCanceled(InputAction.CallbackContext context)
         {
             stateMachine.ChangeState(stateMachine.MediumStoppingState);
-            base.OnMovementCanceled(context);
         }
         protected override void OnWalkToggleStarted(InputAction.CallbackContext context)
         {

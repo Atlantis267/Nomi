@@ -1,30 +1,15 @@
 using System;
 using UnityEngine;
 
-namespace Nomimovment
+namespace Movement
 {
     [Serializable]
-    public class ResizableCapsuleCollider : MonoBehaviour
+    public class CapsuleColliderUtilitiy
     {
         public CapsuleColliderData CapsuleColliderData { get; private set; }
         [field: SerializeField] public DefaultColliderData DefaultColliderData { get; private set; }
         [field: SerializeField] public SlopeData SlopeData { get; private set; }
-        private void Awake()
-        {
-            Resize();
-        }
 
-        private void OnValidate()
-        {
-            Resize();
-        }
-
-        public void Resize()
-        {
-            Initialize(gameObject);
-
-            CalculateCapsuleColliderDimensions();
-        }
         public void Initialize(GameObject gameObject)
         {
             if (CapsuleColliderData != null)
@@ -35,11 +20,7 @@ namespace Nomimovment
             CapsuleColliderData = new CapsuleColliderData();
 
             CapsuleColliderData.Initialize(gameObject);
-            OnInitialize();
 
-        }
-        protected virtual void OnInitialize()
-        {
         }
         public void CalculateCapsuleColliderDimensions()
         {
@@ -52,25 +33,25 @@ namespace Nomimovment
         }
         public void SetCapsuleColliderRadius(float radius)
         {
-            CapsuleColliderData.Collider.radius = radius;
+            CapsuleColliderData.characterController.radius = radius;
         }
         public void SetCapsuleColliderHeight(float height)
         {
-            CapsuleColliderData.Collider.height = height;
+            CapsuleColliderData.characterController.height = height;
         }
         public void RecalculateCapsuleColliderCenter()
         {
-            float colliderHeightDifference = DefaultColliderData.Height - CapsuleColliderData.Collider.height;
+            float colliderHeightDifference = DefaultColliderData.Height - CapsuleColliderData.characterController.height;
 
             Vector3 newColliderCenter = new Vector3(0f, DefaultColliderData.CenterY + (colliderHeightDifference / 2f), 0f);
 
-            CapsuleColliderData.Collider.center = newColliderCenter;
+            CapsuleColliderData.characterController.center = newColliderCenter;
         }
         public void RecalculateColliderRadius()
         {
-            float halfColliderHeight = CapsuleColliderData.Collider.height / 2f;
+            float halfColliderHeight = CapsuleColliderData.characterController.height / 2f;
 
-            if (halfColliderHeight >= CapsuleColliderData.Collider.radius)
+            if (halfColliderHeight >= CapsuleColliderData.characterController.radius)
             {
                 return;
             }
@@ -79,6 +60,6 @@ namespace Nomimovment
         }
 
     }
-}
 
+}
 

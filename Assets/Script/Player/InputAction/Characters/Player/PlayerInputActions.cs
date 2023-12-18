@@ -91,9 +91,9 @@ public partial class @PlayerInputActions: IInputActionCollection2, IDisposable
                     ""initialStateCheck"": false
                 },
                 {
-                    ""name"": ""TestButton"",
+                    ""name"": ""Down"",
                     ""type"": ""Button"",
-                    ""id"": ""d0115a6e-9cc5-473c-9a66-b18b1e49d6e5"",
+                    ""id"": ""0f830239-03a5-473a-8331-abbae455d1a2"",
                     ""expectedControlType"": ""Button"",
                     ""processors"": """",
                     ""interactions"": """",
@@ -224,12 +224,12 @@ public partial class @PlayerInputActions: IInputActionCollection2, IDisposable
                 },
                 {
                     ""name"": """",
-                    ""id"": ""98e23948-f6dd-413e-aba3-b39a15973a6d"",
-                    ""path"": ""<Keyboard>/numpad0"",
+                    ""id"": ""ec3a25f2-4087-4d9b-b1d1-7656253cb60b"",
+                    ""path"": ""<Keyboard>/s"",
                     ""interactions"": """",
                     ""processors"": """",
                     ""groups"": """",
-                    ""action"": ""TestButton"",
+                    ""action"": ""Down"",
                     ""isComposite"": false,
                     ""isPartOfComposite"": false
                 }
@@ -247,7 +247,7 @@ public partial class @PlayerInputActions: IInputActionCollection2, IDisposable
         m_Player_Dash = m_Player.FindAction("Dash", throwIfNotFound: true);
         m_Player_Sprint = m_Player.FindAction("Sprint", throwIfNotFound: true);
         m_Player_Jump = m_Player.FindAction("Jump", throwIfNotFound: true);
-        m_Player_TestButton = m_Player.FindAction("TestButton", throwIfNotFound: true);
+        m_Player_Down = m_Player.FindAction("Down", throwIfNotFound: true);
     }
 
     public void Dispose()
@@ -316,7 +316,7 @@ public partial class @PlayerInputActions: IInputActionCollection2, IDisposable
     private readonly InputAction m_Player_Dash;
     private readonly InputAction m_Player_Sprint;
     private readonly InputAction m_Player_Jump;
-    private readonly InputAction m_Player_TestButton;
+    private readonly InputAction m_Player_Down;
     public struct PlayerActions
     {
         private @PlayerInputActions m_Wrapper;
@@ -328,7 +328,7 @@ public partial class @PlayerInputActions: IInputActionCollection2, IDisposable
         public InputAction @Dash => m_Wrapper.m_Player_Dash;
         public InputAction @Sprint => m_Wrapper.m_Player_Sprint;
         public InputAction @Jump => m_Wrapper.m_Player_Jump;
-        public InputAction @TestButton => m_Wrapper.m_Player_TestButton;
+        public InputAction @Down => m_Wrapper.m_Player_Down;
         public InputActionMap Get() { return m_Wrapper.m_Player; }
         public void Enable() { Get().Enable(); }
         public void Disable() { Get().Disable(); }
@@ -359,9 +359,9 @@ public partial class @PlayerInputActions: IInputActionCollection2, IDisposable
             @Jump.started += instance.OnJump;
             @Jump.performed += instance.OnJump;
             @Jump.canceled += instance.OnJump;
-            @TestButton.started += instance.OnTestButton;
-            @TestButton.performed += instance.OnTestButton;
-            @TestButton.canceled += instance.OnTestButton;
+            @Down.started += instance.OnDown;
+            @Down.performed += instance.OnDown;
+            @Down.canceled += instance.OnDown;
         }
 
         private void UnregisterCallbacks(IPlayerActions instance)
@@ -387,9 +387,9 @@ public partial class @PlayerInputActions: IInputActionCollection2, IDisposable
             @Jump.started -= instance.OnJump;
             @Jump.performed -= instance.OnJump;
             @Jump.canceled -= instance.OnJump;
-            @TestButton.started -= instance.OnTestButton;
-            @TestButton.performed -= instance.OnTestButton;
-            @TestButton.canceled -= instance.OnTestButton;
+            @Down.started -= instance.OnDown;
+            @Down.performed -= instance.OnDown;
+            @Down.canceled -= instance.OnDown;
         }
 
         public void RemoveCallbacks(IPlayerActions instance)
@@ -416,6 +416,6 @@ public partial class @PlayerInputActions: IInputActionCollection2, IDisposable
         void OnDash(InputAction.CallbackContext context);
         void OnSprint(InputAction.CallbackContext context);
         void OnJump(InputAction.CallbackContext context);
-        void OnTestButton(InputAction.CallbackContext context);
+        void OnDown(InputAction.CallbackContext context);
     }
 }

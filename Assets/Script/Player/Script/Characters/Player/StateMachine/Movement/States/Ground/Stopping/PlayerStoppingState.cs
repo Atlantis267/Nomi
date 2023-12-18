@@ -1,7 +1,6 @@
 using UnityEngine.InputSystem;
 
-
-namespace Nomimovment
+namespace Movement
 {
     public class PlayerStoppingState : PlayerGroundState
     {
@@ -11,15 +10,10 @@ namespace Nomimovment
         #region IState Methods
         public override void Enter()
         {
-
-            stateMachine.ReusableData.SpeedMultiplier = 0.0f;
-
-            SetBaseCameraRecenteringData();
-
             base.Enter();
 
+            stateMachine.ReusableData.SpeedMultiplier = 0.0f;
             StartAnimation(stateMachine.Player.AnimationsData.IsStopHash);
-            ResetVelocity();
         }
         public override void Exit()
         {
@@ -29,11 +23,17 @@ namespace Nomimovment
         public override void PhysicsUpdate()
         {
             base.PhysicsUpdate();
+
             LookAt();
+
             if (!IsMovingHorizontally())
             {
                 return;
             }
+        }
+        public override void OnAnimationMove()
+        {
+            base.OnAnimationMove();
             DelcelerateHorizontally();
         }
         public override void OnAnimationTransitionEvent()
@@ -54,6 +54,9 @@ namespace Nomimovment
         }
         #endregion
         #region Input Methods
+        protected override void OnMovementCanceled(InputAction.CallbackContext context)
+        {
+        }
 
         private void OnMovementStarted(InputAction.CallbackContext context)
         {
