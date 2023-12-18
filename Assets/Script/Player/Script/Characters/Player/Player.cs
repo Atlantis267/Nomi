@@ -1,10 +1,9 @@
 using UnityEngine;
 
 
-namespace Nomimovment
+namespace Movement
 {
     [RequireComponent(typeof(PlayerInputs))]
-    [RequireComponent(typeof(PlayerResizableCapsuleCollider))]
     public class Player : MonoBehaviour
     {
         [field: Header("References")]
@@ -12,21 +11,19 @@ namespace Nomimovment
 
 
         [field: Header("Collisions")]
-        public PlayerResizableCapsuleCollider ResizableCapsuleCollider { get; private set; }
+        [field: SerializeField] public CapsuleColliderUtilitiy ColliderUtilitiy { get; private set; }
         [field: SerializeField] public PlayerLayerData LayerData { get; private set; }
-        [field: Header("Cameras")]
-        [field: SerializeField] public PlayerCameraRecenteringUtility CameraRecenteringUtility { get; private set; }
-
-
-
         [field: SerializeField] public PlayerAnimationData AnimationsData { get; private set; }
         [field: SerializeField] public PlayerParticalData ParticalData { get; private set; }
+        [field: SerializeField] public PlayerUIData UIData { get; private set; }
+        [field: SerializeField] public PlayerTestingData TestingData { get; private set; }
 
-        [field: SerializeField] public Transform wallTransform { get; private set; }
+
+
+
+
         public Transform playerTransform { get; private set; }
-
-        //public CharacterController CharacterController { get; private set; }
-        public Rigidbody Rigidbody { get; private set; }
+        public CharacterController CharacterController { get; private set; }
         public Animator Animator { get; private set; }
 
         public PlayerInputs Inputs { get; private set; }
@@ -35,24 +32,35 @@ namespace Nomimovment
 
         private void Awake()
         {
-            //CharacterController = GetComponent<CharacterController>();
-            Rigidbody = GetComponent<Rigidbody>();
+            CharacterController = GetComponent<CharacterController>();
             Animator = GetComponent<Animator>();
-            ResizableCapsuleCollider = GetComponent<PlayerResizableCapsuleCollider>();
+            Inputs = GetComponent<PlayerInputs>();
 
             AnimationsData.Intialoze();
 
             playerCamera = Camera.main.transform;
             movementStateMachine = new PlayerMovementStateMachine(this);
         }
+        private void OnValidate()
+        {
+            ColliderUtilitiy.Initialize(gameObject);
+            ColliderUtilitiy.CalculateCapsuleColliderDimensions();
+        }
 
         private void Start()
         {
-            Inputs = GetComponent<PlayerInputs>();
             Cursor.lockState = CursorLockMode.Locked;
             Cursor.visible = false;
             playerTransform = transform;
             movementStateMachine.ChangeState(movementStateMachine.IdleingState);
+        }
+        private void OnTriggerEnter(Collider collider)
+        {
+            movementStateMachine.OnTriggerEnter(collider);
+        }
+        private void OnTriggerExit(Collider collider)
+        {
+            movementStateMachine.OnTriggerExit(collider);
         }
 
         private void Update()
@@ -64,14 +72,13 @@ namespace Nomimovment
         {
             movementStateMachine.PhysicsUpdate();
         }
-        private void OnTriggerEnter(Collider collider)
+        private void LerpToLedge()
         {
-            movementStateMachine.OnTriggerEnter(collider);
+            Vector3 hitpostion = movementStateMachine.ReusableData.rayFindLedge.point;
+            playerTransform.position = Vector3.Slerp(movementStateMachine.Player.playerTransform.position, hitpostion, 1);
+            playerTransform.position = playerTransform.TransformPoint(movementStateMachine.ReusableData.playerOffect);
         }
-        private void OnTriggerExit(Collider collider)
-        {
-            movementStateMachine.OnTriggerExit(collider);
-        }
+
         private void OnAnimatorMove()
         {
             movementStateMachine.OnAnimationMove();
@@ -91,5 +98,5 @@ namespace Nomimovment
             movementStateMachine.OnAnimationTransitionEvent();
         }
     }
-
 }
+

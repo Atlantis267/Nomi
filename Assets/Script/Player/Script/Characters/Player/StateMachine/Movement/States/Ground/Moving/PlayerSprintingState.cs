@@ -4,8 +4,7 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.InputSystem;
 
-
-namespace Nomimovment
+namespace Movement
 {
     public class PlayerSprintingState : PlayerMovingState
     {
@@ -20,13 +19,12 @@ namespace Nomimovment
         #region IState Methods
         public override void Enter()
         {
-
-            stateMachine.ReusableData.SpeedMultiplier = sprintData.SpeedModifier;
+            stateMachine.ReusableData.CurrentJumpForce = airborneData.JumpData.StrongForce;
 
             base.Enter();
-
             stateMachine.ReusableData.IsSprinting = true;
-            stateMachine.ReusableData.CurrentJumpForce = airborneData.JumpData.StrongForce;
+
+            stateMachine.ReusableData.SpeedMultiplier = sprintData.SpeedModifier;
 
             startTime = Time.time;
             shouldResetSprintState = true;
@@ -92,17 +90,11 @@ namespace Nomimovment
 
             stateMachine.Player.Inputs.PlayerActions.Sprint.performed -= OnSprintPerformed;
         }
-        protected override void OnFalling()
-        {
-            shouldResetSprintState = false;
-            base.OnFalling();
-        }
         #endregion
         #region Input Methods
         protected override void OnMovementCanceled(InputAction.CallbackContext context)
         {
             stateMachine.ChangeState(stateMachine.HardStoppingState);
-            base.OnMovementCanceled(context);
         }
         private void OnSprintPerformed(InputAction.CallbackContext context)
         {
@@ -113,4 +105,5 @@ namespace Nomimovment
         #endregion
     }
 }
+
 

@@ -2,7 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-namespace Nomimovment
+namespace Movement
 {
     public abstract class StateMachine
     {
@@ -45,7 +45,6 @@ namespace Nomimovment
         {
             currentState?.OnAnimationTransitionEvent();
         }
-
         public void OnTriggerEnter(Collider collider)
         {
             currentState?.OnTriggerEnter(collider);

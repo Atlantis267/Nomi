@@ -2,7 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-namespace Nomimovment
+namespace Movement
 {
     public class PlayerHardStoppingState : PlayerStoppingState
     {
@@ -12,9 +12,11 @@ namespace Nomimovment
         #region IState Methods
         public override void Enter()
         {
+            stateMachine.ReusableData.CurrentJumpForce = airborneData.JumpData.StrongForce;
+
             base.Enter();
 
-            stateMachine.ReusableData.CurrentJumpForce = airborneData.JumpData.StrongForce;
+            stateMachine.ReusableData.MovementDelcelerationForce = movementData.StopData.HardDecelerationForce;
             StartAnimation(stateMachine.Player.AnimationsData.HardStopHash);
         }
         public override void Exit()

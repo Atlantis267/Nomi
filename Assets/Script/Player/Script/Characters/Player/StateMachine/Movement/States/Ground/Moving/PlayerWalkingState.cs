@@ -4,32 +4,26 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.InputSystem;
 
-namespace Nomimovment
+namespace Movement
 {
     public class PlayerWalkingState : PlayerMovingState
     {
-        private PlayerWalkData walkData;
         public PlayerWalkingState(PlayerMovementStateMachine playerMovementStateMachine) : base(playerMovementStateMachine)
         {
-            walkData = movementData.WalkData;
         }
         #region IState Methods
         public override void Enter()
         {
-
-            stateMachine.ReusableData.SpeedMultiplier = walkData.SpeedModifier;
-
-            stateMachine.ReusableData.BackwardsCameraRecenteringData = walkData.BackwardsCameraRecenteringData;
+            stateMachine.ReusableData.CurrentJumpForce = airborneData.JumpData.WeekForce;
 
             base.Enter();
 
-            stateMachine.ReusableData.CurrentJumpForce = airborneData.JumpData.WeakForce;
+            stateMachine.ReusableData.SpeedMultiplier = movementData.WalkData.SpeedModifier;
 
         }
         public override void Exit()
         {
             base.Exit();
-            SetBaseCameraRecenteringData();
         }
         public override void Update()
         {
@@ -44,8 +38,6 @@ namespace Nomimovment
         protected override void OnMovementCanceled(InputAction.CallbackContext context)
         {
             stateMachine.ChangeState(stateMachine.LightStoppingState);
-
-            base.OnMovementCanceled(context);
         }
         protected override void OnWalkToggleStarted(InputAction.CallbackContext context)
         {

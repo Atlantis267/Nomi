@@ -1,7 +1,6 @@
 using UnityEngine;
 
-
-namespace Nomimovment
+namespace Movement
 {
     [CreateAssetMenu(fileName = "Player", menuName = "Movement System/Characters/Player")]
     public class PlayerSO : ScriptableObject

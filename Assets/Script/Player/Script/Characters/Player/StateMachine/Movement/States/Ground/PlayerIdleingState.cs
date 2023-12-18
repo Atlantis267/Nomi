@@ -3,25 +3,21 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-namespace Nomimovment
+namespace Movement
 {
     public class PlayerIdleingState : PlayerGroundState
     {
-        private PlayerIdleData idleData;
         public PlayerIdleingState(PlayerMovementStateMachine playerMovementStateMachine) : base(playerMovementStateMachine)
         {
-            idleData = movementData.IdleData;
         }
         #region IState Methods
         public override void Enter()
         {
-            stateMachine.ReusableData.SpeedMultiplier = 0f;
-
-            stateMachine.ReusableData.BackwardsCameraRecenteringData = idleData.BackwardsCameraRecenteringData;
+            stateMachine.ReusableData.CurrentJumpForce = airborneData.JumpData.StationaryForce;
 
             base.Enter();
 
-            stateMachine.ReusableData.CurrentJumpForce = airborneData.JumpData.StationaryForce;
+            stateMachine.ReusableData.SpeedMultiplier = 0f;
 
             StartAnimation(stateMachine.Player.AnimationsData.IsIdleHash);
 
@@ -37,7 +33,7 @@ namespace Nomimovment
         public override void Update()
         {
             base.Update();
-            if (stateMachine.ReusableData.CurrentMovementInput == Vector2.zero)
+            if (stateMachine.ReusableData.CurrentMovementInput == Vector2.zero || !stateMachine.Player.CharacterController.enabled)
             {
                 return;
             }

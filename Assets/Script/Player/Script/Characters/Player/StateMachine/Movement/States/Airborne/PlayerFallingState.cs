@@ -2,7 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-namespace Nomimovment
+namespace Movement
 {
     public class PlayerFallingState : PlayerAirborneState
     {
@@ -14,45 +14,27 @@ namespace Nomimovment
         public override void Enter()
         {
             base.Enter();
-
-            stateMachine.ReusableData.SpeedMultiplier = 0.0f;
-
-            ResetVerticalVelocity();
-
             playerPositionOnEnter = stateMachine.Player.transform.position;
         }
-        public override void PhysicsUpdate()
+        public override void Update()
         {
-            base.PhysicsUpdate();
-            LimitVerticalVelocity();
-            ContactWithGroundCheck();
-        }
-        public override void Exit()
-        {
-            base.Exit();
+            base.Update();
+            Velocity();
+            stateMachine.ReusableData.VerticalVelocity += stateMachine.ReusableData.Gravity * airborneData.FallData.FallMultiplier * Time.deltaTime;
+            Ground();
         }
         #endregion
         #region Main Methods
-        private void LimitVerticalVelocity()
+        private void Ground()
         {
-            Vector3 playerVerticalVelocity = GetPlayerVerticalVelocity();
-
-            if (playerVerticalVelocity.y >= -airborneData.FallData.FallSpeedLimit)
+            if (/*Physics.SphereCast(stateMachine.Player.playerTransform.position + (Vector3.up * stateMachine.ReusableData.GroundCheckOffset)
+                , stateMachine.Player.CharacterController.radius, Vector3.down, out RaycastHit hit
+                , stateMachine.ReusableData.GroundCheckOffset - stateMachine.Player.CharacterController.radius + 2 * stateMachine.Player.CharacterController.skinWidth
+                , stateMachine.Player.LayerData.GroundLayer, QueryTriggerInteraction.Ignore)*/IsGround())
             {
-                return;
-            }
-
-            Vector3 limitedVelocityForce = new Vector3(0f, -airborneData.FallData.FallSpeedLimit - playerVerticalVelocity.y, 0f);
-
-            stateMachine.Player.Rigidbody.AddForce(limitedVelocityForce, ForceMode.VelocityChange);
-        }
-        private void ContactWithGroundCheck()
-        {
-            if (CheckGround())
-            {
-                //Debug.Log("isGround");
-                float fallDistance = Mathf.Abs(playerPositionOnEnter.y - stateMachine.Player.transform.position.y);
-                if (fallDistance < airborneData.FallData.MinimumDistanceToBeConsideredHardFall)
+                Debug.Log("isGround");
+                float fallDistance = playerPositionOnEnter.y - stateMachine.Player.transform.position.y;
+                if (fallDistance < airborneData.FallData.MinimumDistanceHardFall)
                 {
                     stateMachine.ChangeState(stateMachine.LightLandingState);
 
@@ -64,34 +46,16 @@ namespace Nomimovment
 
                     return;
                 }
+
                 stateMachine.ChangeState(stateMachine.RollingState);
             }
-        }
-
-        #endregion
-        #region Reusable Methods
-        protected override void OnContactWithGround(Collider collider)
-        {
-            float fallDistance = playerPositionOnEnter.y - stateMachine.Player.transform.position.y;
-            if (fallDistance < airborneData.FallData.MinimumDistanceToBeConsideredHardFall)
+            else
             {
-                stateMachine.ChangeState(stateMachine.LightLandingState);
-
                 return;
             }
-            if (stateMachine.ReusableData.ShouldWalk && !stateMachine.ReusableData.ShouldSprint || stateMachine.ReusableData.CurrentMovementInput == Vector2.zero)
-            {
-                stateMachine.ChangeState(stateMachine.HardLandingState);
-
-                return;
-            }
-            stateMachine.ChangeState(stateMachine.RollingState);
-        }
-        protected override void ResetSprintState()
-        {
         }
         #endregion
     }
-
 }
+
 
