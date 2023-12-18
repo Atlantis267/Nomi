@@ -22,8 +22,7 @@ namespace Nomimovment
         public PlayerLightLandingState LightLandingState { get; }
         public PlayerRollingState RollingState { get; }
         public PlayerHardLandingState HardLandingState { get; }
-        public PlayerClimbingLowState ClimbingLowState { get; }
-        public PlayerClimbingHighState ClimbingHighState { get; }
+
 
         public PlayerMovementStateMachine(Player player)
         {
@@ -48,8 +47,7 @@ namespace Nomimovment
             JumpDashState = new PlayerJumpDashState(this);
             FallingState = new PlayerFallingState(this);
 
-            ClimbingLowState = new PlayerClimbingLowState(this);
-            ClimbingHighState = new PlayerClimbingHighState(this);
+
         }
     }
 }
