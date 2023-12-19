@@ -2,7 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-namespace Movement
+namespace Nomimovment
 {
     public class Sphere : MonoBehaviour
     {
@@ -18,5 +18,4 @@ namespace Movement
         }
     }
 }
-
 

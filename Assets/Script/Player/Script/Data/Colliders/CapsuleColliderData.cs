@@ -2,31 +2,32 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-namespace Movement
+namespace Nomimovment
 {
     public class CapsuleColliderData
     {
-        public CharacterController characterController { get; private set; }
+        public CapsuleCollider Collider { get; private set; }
         public Vector3 ColliderCenterInLocalSpace { get; private set; }
         public Vector3 ColliderVerticalEvtents { get; private set; }
+        public float skinWidth { get; private set; } = 0.08f;
+        public float slopeLimit { get; private set; } = 50f;
         public void Initialize(GameObject gameObject)
         {
-            if (characterController != null)
+            if (Collider != null)
             {
                 return;
             }
 
-            characterController = gameObject.GetComponent<CharacterController>();
+            Collider = gameObject.GetComponent<CapsuleCollider>();
 
             UpdateColliderData();
         }
         public void UpdateColliderData()
         {
-            ColliderCenterInLocalSpace = characterController.center;
+            ColliderCenterInLocalSpace = Collider.center;
 
-            ColliderVerticalEvtents = new Vector3(0.0f, characterController.bounds.extents.y, 0.0f);
+            ColliderVerticalEvtents = new Vector3(0.0f, Collider.bounds.extents.y, 0.0f);
         }
     }
 }
-
 

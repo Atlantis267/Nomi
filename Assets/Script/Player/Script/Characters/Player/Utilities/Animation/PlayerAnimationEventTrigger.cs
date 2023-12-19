@@ -1,6 +1,5 @@
 using UnityEngine;
-
-namespace Movement
+namespace Nomimovment
 {
     public class PlayerAnimationEventTrigger : MonoBehaviour
     {
@@ -46,6 +45,5 @@ namespace Movement
             return player.Animator.IsInTransition(layerIndex);
         }
     }
+
 }
-
-
