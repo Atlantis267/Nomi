@@ -2,7 +2,7 @@ using System;
 using System.Collections.Generic;
 using UnityEngine;
 
-namespace Movement
+namespace Nomimovment
 {
     [Serializable]
     public class PlayerRotationData

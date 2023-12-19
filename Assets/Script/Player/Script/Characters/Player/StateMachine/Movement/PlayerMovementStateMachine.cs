@@ -2,7 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-namespace Movement
+namespace Nomimovment
 {
     public class PlayerMovementStateMachine : StateMachine
     {
@@ -18,12 +18,11 @@ namespace Movement
         public PlayerHardStoppingState HardStoppingState { get; }
         public PlayerJumpingState JumpingState { get; }
         public PlayerJumpDashState JumpDashState { get; }
-        public PlayerFallingState FallingingState { get; }
+        public PlayerFallingState FallingState { get; }
         public PlayerLightLandingState LightLandingState { get; }
         public PlayerRollingState RollingState { get; }
         public PlayerHardLandingState HardLandingState { get; }
-        public PlayerClimbingUpState ClimbingUpState { get; }
-        public PlayerClimbingIdleingState ClimbingHighState { get; }
+
 
         public PlayerMovementStateMachine(Player player)
         {
@@ -46,10 +45,9 @@ namespace Movement
 
             JumpingState = new PlayerJumpingState(this);
             JumpDashState = new PlayerJumpDashState(this);
-            FallingingState = new PlayerFallingState(this);
+            FallingState = new PlayerFallingState(this);
 
-            ClimbingUpState = new PlayerClimbingUpState(this);
-            ClimbingHighState = new PlayerClimbingIdleingState(this);
+
         }
     }
 }

@@ -2,7 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-namespace Movement
+namespace Nomimovment
 {
     public interface IState
     {
@@ -18,9 +18,8 @@ namespace Movement
         public void OnTriggerEnter(Collider collider);
         public void OnTriggerExit(Collider collider);
 
-
     }
-
 }
+
 
 

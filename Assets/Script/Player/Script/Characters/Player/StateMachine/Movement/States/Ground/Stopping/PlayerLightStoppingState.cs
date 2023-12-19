@@ -2,7 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-namespace Movement
+namespace Nomimovment
 {
     public class PlayerLightStoppingState : PlayerStoppingState
     {
@@ -12,11 +12,10 @@ namespace Movement
         #region IState Methods
         public override void Enter()
         {
-            stateMachine.ReusableData.CurrentJumpForce = airborneData.JumpData.WeekForce;
-
             base.Enter();
 
             stateMachine.ReusableData.MovementDelcelerationForce = movementData.StopData.LightDecelerationForce;
+            stateMachine.ReusableData.CurrentJumpForce = airborneData.JumpData.WeakForce;
         }
         #endregion
     }
