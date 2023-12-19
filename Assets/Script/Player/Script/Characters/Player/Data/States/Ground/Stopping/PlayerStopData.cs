@@ -2,7 +2,7 @@ using System;
 using System.Collections.Generic;
 using UnityEngine;
 
-namespace Movement
+namespace Nomimovment
 {
     [Serializable]
     public class PlayerStopData
@@ -12,5 +12,4 @@ namespace Movement
         [field: SerializeField] [field: Range(0f, 15f)] public float HardDecelerationForce { get; private set; } = 5f;
     }
 }
-
 

@@ -2,7 +2,8 @@ using System.Collections;
 using UnityEngine;
 using UnityEngine.InputSystem;
 
-namespace Movement
+
+namespace Nomimovment
 {
     public class PlayerInputs : MonoBehaviour
     {
@@ -37,5 +38,4 @@ namespace Movement
         }
     }
 }
-
 
