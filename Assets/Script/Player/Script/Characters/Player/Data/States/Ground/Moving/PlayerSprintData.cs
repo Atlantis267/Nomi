@@ -1,7 +1,7 @@
 using System;
 using UnityEngine;
 
-namespace Movement
+namespace Nomimovment
 {
     [Serializable]
     public class PlayerSprintData

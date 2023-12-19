@@ -2,7 +2,9 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
-namespace Movement
+
+
+namespace Nomimovment
 {
     public class BoostSystem : MonoBehaviour
     {

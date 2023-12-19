@@ -3,7 +3,7 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.InputSystem;
 
-namespace Movement
+namespace Nomimovment
 {
     public class PlayerLandingState : PlayerGroundState
     {
