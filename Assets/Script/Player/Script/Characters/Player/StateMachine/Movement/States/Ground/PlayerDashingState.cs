@@ -2,7 +2,7 @@ using System;
 using UnityEngine;
 using UnityEngine.InputSystem;
 
-namespace Movement
+namespace Nomimovment
 {
     public class PlayerDashingState : PlayerGroundState
     {
@@ -20,16 +20,16 @@ namespace Movement
         #region IState Methods
         public override void Enter()
         {
-            stateMachine.ReusableData.CurrentJumpForce = airborneData.JumpData.StrongForce;
+            stateMachine.ReusableData.SpeedMultiplier = dashData.SpeedModifier;
 
             base.Enter();
-            stateMachine.ReusableData.IsDashing = true;
 
-            stateMachine.ReusableData.SpeedMultiplier = dashData.SpeedModifier;
+            stateMachine.ReusableData.IsDashing = true;
             stateMachine.ReusableData.RotatonData = dashData.RotationData;
+            stateMachine.ReusableData.CurrentJumpForce = airborneData.JumpData.StrongForce;
             shouldKeepRotating = stateMachine.ReusableData.CurrentMovementInput != Vector2.zero;
 
-            AddForceState();
+            Dash();
             UpdateConsecutiveDashes();
             FeetTween();
 
@@ -76,7 +76,7 @@ namespace Movement
         }
         #endregion
         #region Main Methods
-        private void AddForceState()
+        private void Dash()
         {
             Vector3 dashDirection = stateMachine.Player.transform.forward;
 
@@ -88,8 +88,8 @@ namespace Movement
 
                 dashDirection = GetTargetRotationDirection(stateMachine.ReusableData.currenttargetRotation);
             }
-
-            stateMachine.Player.CharacterController.Move(dashDirection * GetMovementSpeed());
+            stateMachine.Player.Rigidbody.velocity = dashDirection * GetMovementSpeed(false);
+            //stateMachine.Player.CharacterController.Move(dashDirection * GetMovementSpeed());
         }
 
         private void UpdateConsecutiveDashes()
@@ -147,11 +147,6 @@ namespace Movement
 
         #endregion
         #region Input Methods
-        protected override void OnMovementCanceled(InputAction.CallbackContext context)
-        {
-            stateMachine.ChangeState(stateMachine.HardStoppingState);
-        }
-
         private void OnMoventPerformed(InputAction.CallbackContext context)
         {
             shouldKeepRotating = true;

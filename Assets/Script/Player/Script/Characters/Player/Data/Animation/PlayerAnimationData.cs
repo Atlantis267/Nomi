@@ -1,7 +1,8 @@
 using System;
 using System.Collections.Generic;
 using UnityEngine;
-namespace Movement 
+
+namespace Nomimovment
 {
     [Serializable]
     public class PlayerAnimationData
@@ -39,9 +40,6 @@ namespace Movement
         [SerializeField] private string HardLandstateParmeterNames = "HardLand";
         [SerializeField] private string RollstateParmeterNames = "Roll";
 
-        [Header("Climb Parmeter Names")]
-        [SerializeField] private string ClimbUpParmeterNames = "ClimbUp";
-
 
         public int GroundstateHash { get; private set; }
         public int AirstateHash { get; private set; }
@@ -68,8 +66,6 @@ namespace Movement
 
         public int HardLandHash { get; private set; }
         public int RollLandHash { get; private set; }
-
-        public int ClimbUpstateHash { get; private set; }
 
 
 
@@ -104,9 +100,7 @@ namespace Movement
 
             HardLandHash = Animator.StringToHash(HardLandstateParmeterNames);
             RollLandHash = Animator.StringToHash(RollstateParmeterNames);
-
-            ClimbUpstateHash = Animator.StringToHash(ClimbUpParmeterNames);
         }
     }
-}
 
+}
