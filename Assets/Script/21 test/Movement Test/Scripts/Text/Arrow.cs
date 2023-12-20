@@ -81,7 +81,7 @@ public class Arrow : MonoBehaviour
             if (slow)
             {
                 should = true;
-                other.transform.rotation = transform.rotation;
+                other.transform.forward = transform.forward;
                 Debug.Log("1");
                 DoSlowmotion();
                 Arrows.SetActive(true);
@@ -93,6 +93,7 @@ public class Arrow : MonoBehaviour
 
                 pm.dashing = true;
                 pm.maxYSpeed = maxDashYSpeed;
+                other.transform.position = transform.position;
 
                 Vector3 forceToApply = transform.forward * dashForce + transform.up * dashUpwardForce;
 

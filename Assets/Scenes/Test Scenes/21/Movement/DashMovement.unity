@@ -9830,7 +9830,7 @@ Transform:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 627375681}
-  m_LocalRotation: {x: 0.06399382, y: 0.000000004968114, z: -3.1858158e-10, w: 0.9979503}
+  m_LocalRotation: {x: 0.06399382, y: -0.000000004379651, z: 2.808462e-10, w: 0.9979503}
   m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
@@ -13816,7 +13816,7 @@ Transform:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 963194225}
-  m_LocalRotation: {x: 0.06399382, y: 0.00008257061, z: -0.0000052948612, w: 0.9979503}
+  m_LocalRotation: {x: 0.06399382, y: 0.00008255304, z: -0.0000052937344, w: 0.9979503}
   m_LocalPosition: {x: 46.7839, y: -59.699997, z: -97.30775}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
@@ -20281,7 +20281,7 @@ PrefabInstance:
     - target: {fileID: 3996705893966012130, guid: db092543def360f4d984fe4170638990,
         type: 3}
       propertyPath: m_Size.y
-      value: 3.36
+      value: 4
       objectReference: {fileID: 0}
     - target: {fileID: 3996705893966012130, guid: db092543def360f4d984fe4170638990,
         type: 3}
@@ -20293,6 +20293,11 @@ PrefabInstance:
       propertyPath: m_Center.y
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 3996705893966012131, guid: db092543def360f4d984fe4170638990,
+        type: 3}
+      propertyPath: cam
+      value: 
+      objectReference: {fileID: 963194228}
     - target: {fileID: 3996705893966012131, guid: db092543def360f4d984fe4170638990,
         type: 3}
       propertyPath: dashCd
@@ -20323,6 +20328,11 @@ PrefabInstance:
       propertyPath: disableGravity
       value: 1
       objectReference: {fileID: 0}
+    - target: {fileID: 3996705893966012131, guid: db092543def360f4d984fe4170638990,
+        type: 3}
+      propertyPath: cinemachineInput
+      value: 
+      objectReference: {fileID: 305923324}
     - target: {fileID: 3996705893966012131, guid: db092543def360f4d984fe4170638990,
         type: 3}
       propertyPath: useCameraForward
@@ -22722,8 +22732,7 @@ Transform:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1515021407}
-  m_LocalRotation: {x: 0.087225124, y: 0.000000023404466, z: -0.0000000020492679,
-    w: 0.99618864}
+  m_LocalRotation: {x: 0.08722511, y: -0.0000000056729985, z: 4.967211e-10, w: 0.99618864}
   m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
@@ -24107,7 +24116,7 @@ Rigidbody:
   m_UseGravity: 0
   m_IsKinematic: 0
   m_Interpolate: 1
-  m_Constraints: 112
+  m_Constraints: 0
   m_CollisionDetection: 1
 --- !u!136 &1623225831
 CapsuleCollider:
@@ -24142,7 +24151,7 @@ MonoBehaviour:
   dashSpeedChangeFactor: 80
   maxYSpeed: 0
   groundDrag: 4
-  jumpForce: 15
+  jumpForce: 20
   jumpCooldown: 0.25
   airMultiplier: 0.4
   crouchSpeed: 3.5
@@ -26505,8 +26514,7 @@ Transform:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1725593614}
-  m_LocalRotation: {x: 0.040828448, y: -0.000000026516984, z: 0.0000000010835508,
-    w: 0.9991662}
+  m_LocalRotation: {x: 0.040828448, y: -0.0000000047759725, z: 1.9515826e-10, w: 0.9991662}
   m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
