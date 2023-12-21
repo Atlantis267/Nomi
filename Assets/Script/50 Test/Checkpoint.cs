@@ -1,44 +1,42 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.SceneManagement;
 
 public class Checkpoint : MonoBehaviour
 {
+    [SerializeField] GameObject player;
 
-    public GameObject flag;
-    public GameObject flag2;
-    Vector3 spawnPoint;
+    [SerializeField] List<GameObject> CheckPoint;
+
+    [SerializeField] Vector3 vectorPoint;
 
     // Start is called before the first frame update
     void Start()
     {
-        spawnPoint = gameObject.transform.position;
+        vectorPoint = player.transform.position;
     }
 
     // Update is called once per frame
     void Update()
     {
-        if(gameObject.transform.position.y < -20f)  //if player die 
-        {
-            gameObject.transform.position = spawnPoint; //respawn to spawnPoint
-        }
+
     }
 
     private void OnTriggerEnter(Collider other)     //set spawnPoint
     {
         if(other.gameObject.CompareTag("CheckPoint"))
         {
-            spawnPoint = flag.transform.position;
-            Destroy(flag);
-        }
-        if (other.gameObject.CompareTag("CheckPoint2"))
-        {
-            spawnPoint = flag2.transform.position;
-            Destroy(flag2);
+            vectorPoint = player.transform.position;
+            Destroy(other.gameObject);
         }
         if (other.gameObject.CompareTag("Water"))
         {
-            gameObject.transform.position = spawnPoint; //respawn to spawnPoint
+            player.transform.position = vectorPoint; //respawn to spawnPoint
+        }
+        if (other.gameObject.CompareTag("EndPoint"))
+        {
+            SceneManager.LoadScene(SceneManager.GetActiveScene().buildIndex + 1);
         }
     }
 }
