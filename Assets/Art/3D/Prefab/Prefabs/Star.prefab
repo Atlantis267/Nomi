@@ -11,9 +11,9 @@ GameObject:
   - component: {fileID: 3996705893966012134}
   - component: {fileID: 3996705893966012133}
   - component: {fileID: 3996705893966012132}
-  - component: {fileID: 3996705893966012131}
-  - component: {fileID: 3996705893966012130}
-  m_Layer: 0
+  - component: {fileID: 3908336335431130957}
+  - component: {fileID: 2497546850783411316}
+  m_Layer: 9
   m_Name: Star
   m_TagString: Star
   m_Icon: {fileID: 0}
@@ -86,7 +86,7 @@ MeshRenderer:
   m_SortingLayer: 0
   m_SortingOrder: 0
   m_AdditionalVertexStreams: {fileID: 0}
---- !u!114 &3996705893966012131
+--- !u!114 &3908336335431130957
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -95,27 +95,13 @@ MonoBehaviour:
   m_GameObject: {fileID: 3996705893966012129}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 51d063f088e39fd47977e4fed3ba8291, type: 3}
+  m_Script: {fileID: 11500000, guid: c2737493297894b4aa21a49c04d3b01f, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  speed: 2
-  slowdownFactor: 0.05
-  cinemachineInput: {fileID: 0}
-  Arrows: {fileID: 4302713374624247167}
-  shootpower: 4
-  slow: 0
-  should: 0
-  dashCd: 0.5
-  dashForce: 80
-  dashUpwardForce: 0
-  maxDashYSpeed: 15
-  dashDuration: 0.25
-  useCameraForward: 0
-  allowAllDirections: 1
-  disableGravity: 1
-  resetVel: 1
---- !u!65 &3996705893966012130
-BoxCollider:
+  speed: 3
+  arrow: {fileID: 4302713374624247167}
+--- !u!135 &2497546850783411316
+SphereCollider:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
@@ -125,8 +111,8 @@ BoxCollider:
   m_IsTrigger: 1
   m_Enabled: 1
   serializedVersion: 2
-  m_Size: {x: 18, y: 10, z: 18}
-  m_Center: {x: 0, y: 3, z: 0}
+  m_Radius: 0.5
+  m_Center: {x: 0, y: 0, z: 0}
 --- !u!1001 &3996705893214441518
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -218,6 +204,11 @@ PrefabInstance:
         type: 3}
       propertyPath: m_Name
       value: arrow
+      objectReference: {fileID: 0}
+    - target: {fileID: 919132149155446097, guid: f27838b4bad53f347b611e3c15b8de78,
+        type: 3}
+      propertyPath: m_Layer
+      value: 9
       objectReference: {fileID: 0}
     - target: {fileID: 919132149155446097, guid: f27838b4bad53f347b611e3c15b8de78,
         type: 3}

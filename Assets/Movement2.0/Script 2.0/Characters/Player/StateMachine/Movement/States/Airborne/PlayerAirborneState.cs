@@ -47,8 +47,8 @@ namespace Movement
 
         protected void IsOnLedge()
         {
-            Vector3 DownStart = (stateMachine.Player.transform.position + Vector3.up * 2.2f) + stateMachine.Player.transform.forward * 0.5f;
-            Vector3 DownEnd = (stateMachine.Player.transform.position + Vector3.up * 0.7f) + stateMachine.Player.transform.forward * 0.5f;
+            Vector3 DownStart = (stateMachine.Player.transform.position + Vector3.up * 2.5f) + stateMachine.Player.transform.forward;
+            Vector3 DownEnd = (stateMachine.Player.transform.position + Vector3.up * 0.7f) + stateMachine.Player.transform.forward;
             Physics.Linecast(DownStart, DownEnd, out stateMachine.ReusableData.rayFindLedge, stateMachine.Player.LayerData.WallLayer);
             Debug.DrawLine(DownStart, DownEnd);
 
