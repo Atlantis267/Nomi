@@ -84,6 +84,11 @@ namespace Movement
         }
         public virtual void OnTriggerEnter(Collider collider)
         {
+            if (stateMachine.Player.LayerData.IsGroundLayer(collider.gameObject.layer))
+            {
+                OnContactWithGround(collider);
+                return;
+            }
             if (stateMachine.Player.LayerData.IsStarLayer(collider.gameObject.layer))
             {
                 OnContactWithStar(collider);
@@ -356,6 +361,9 @@ namespace Movement
         {
         }
         protected virtual void OnContactInStar(Collider collider)
+        {
+        }
+        protected virtual void OnContactWithGround(Collider collider)
         {
         }
         protected void LockCamera()
