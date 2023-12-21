@@ -8,6 +8,7 @@ namespace Movement
 {
     public class PlayerWalkingState : PlayerMovingState
     {
+        public int pos;
         public PlayerWalkingState(PlayerMovementStateMachine playerMovementStateMachine) : base(playerMovementStateMachine)
         {
         }
@@ -30,6 +31,12 @@ namespace Movement
             base.Update();
 
             AnimationFloat(stateMachine.Player.AnimationsData.MoveSpeedHash, stateMachine.ReusableData.CurrentMovementInput.magnitude * stateMachine.ReusableData.SpeedMultiplier, 0.1f, Time.deltaTime);
+        }
+        public override void OnAnimationEnterEvent()
+        {
+            base.OnAnimationEnterEvent();
+            pos = (int)Mathf.Floor(UnityEngine.Random.Range(0, stateMachine.Player.SoundData.WalkSound.Count));
+            stateMachine.Player.SoundData.audioSource.PlayOneShot(stateMachine.Player.SoundData.WalkSound[pos]);
         }
         #endregion
 

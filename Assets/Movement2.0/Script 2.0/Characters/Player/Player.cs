@@ -18,6 +18,7 @@ namespace Movement
         [field: SerializeField] public PlayerLayerData LayerData { get; private set; }
         [field: SerializeField] public PlayerAnimationData AnimationsData { get; private set; }
         [field: SerializeField] public PlayerParticalData ParticalData { get; private set; }
+        [field: SerializeField] public PlayerSoundData SoundData { get; private set; }
         [field: SerializeField] public PlayerUIData UIData { get; private set; }
         [field: SerializeField] public PlayerTestingData TestingData { get; private set; }
 
