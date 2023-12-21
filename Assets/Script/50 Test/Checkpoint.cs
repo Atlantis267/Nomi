@@ -6,6 +6,7 @@ public class Checkpoint : MonoBehaviour
 {
 
     public GameObject flag;
+    public GameObject flag2;
     Vector3 spawnPoint;
 
     // Start is called before the first frame update
@@ -29,6 +30,7 @@ public class Checkpoint : MonoBehaviour
         {
             spawnPoint = flag.transform.position;
             Destroy(flag);
+
         }
         if (other.gameObject.CompareTag("Water"))
         {
