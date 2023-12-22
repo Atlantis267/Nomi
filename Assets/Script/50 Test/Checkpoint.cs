@@ -24,23 +24,23 @@ public class Checkpoint : MonoBehaviour
 
     private void OnTriggerEnter(Collider other)     //set spawnPoint
     {
-        //if(other.gameObject.CompareTag("CheckPoint"))
-        //{
-        //    vectorPoint = transform.position;
-        //    Destroy(other.gameObject);
-        //}
+        if(other.gameObject.CompareTag("CheckPoint"))
+        {
+            vectorPoint = transform.position;
+            Destroy(other.gameObject);
+        }
         if (other.tag == "Water")
         {
-            transform.position = Vector3.zero; //respawn to spawnPoint
+            transform.position = vectorPoint; //respawn to spawnPoint
             Debug.Log("die");
         }
-        //if (other.gameObject.CompareTag("EndPoint"))
-        //{
-        //    SceneManager.LoadScene(SceneManager.GetActiveScene().buildIndex + 1);
-        //}
-        //if (other.gameObject.CompareTag("EndPoint2"))
-        //{
-        //    SceneManager.LoadScene("Test_UI");
-        //}
+        if (other.gameObject.CompareTag("EndPoint"))
+        {
+            SceneManager.LoadScene(SceneManager.GetActiveScene().buildIndex + 1);
+        }
+        if (other.gameObject.CompareTag("EndPoint2"))
+        {
+            SceneManager.LoadScene("Test_UI");
+        }
     }
 }

@@ -57,6 +57,10 @@ namespace Movement
         }
         private void OnTriggerEnter(Collider collider)
         {
+            if(collider.gameObject.tag == "Water")
+            {
+                transform.position = Vector3.zero;
+            }
             movementStateMachine.OnTriggerEnter(collider);
         }
         private void OnTriggerStay(Collider collider)

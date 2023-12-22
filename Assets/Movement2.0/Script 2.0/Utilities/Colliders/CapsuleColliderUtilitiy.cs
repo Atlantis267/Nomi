@@ -14,7 +14,6 @@ namespace Movement
         {
             Resize();
         }
-
         private void OnValidate()
         {
             Resize();

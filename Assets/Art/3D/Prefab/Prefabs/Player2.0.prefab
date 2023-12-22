@@ -608,7 +608,8 @@ Transform:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 6805148224596704075}
-  m_LocalRotation: {x: 0.09853762, y: -3.800031e-15, z: 2.2263385e-16, w: 0.99513334}
+  m_LocalRotation: {x: 0.098537646, y: -0.000000030570025, z: 0.0000000030270297,
+    w: 0.99513334}
   m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
@@ -1042,7 +1043,7 @@ Transform:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 6805148224917610336}
-  m_LocalRotation: {x: 0.029131344, y: 0.00000001723264, z: -5.022232e-10, w: 0.9995756}
+  m_LocalRotation: {x: 0.029131342, y: -0.00000001723264, z: 5.022232e-10, w: 0.9995756}
   m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
@@ -1246,7 +1247,7 @@ Transform:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 6805148225070563942}
-  m_LocalRotation: {x: 0.029131345, y: 0.00000003446528, z: -0.0000000010044463, w: 0.9995756}
+  m_LocalRotation: {x: 0.029131344, y: -0.00000003446528, z: 0.0000000010044463, w: 0.9995756}
   m_LocalPosition: {x: 576.92804, y: 32.476215, z: 482.09943}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
@@ -1528,6 +1529,7 @@ GameObject:
   - component: {fileID: 6805148225204251296}
   - component: {fileID: 6805148225204251297}
   - component: {fileID: 6805148225204251304}
+  - component: {fileID: 6805148223691053881}
   m_Layer: 0
   m_Name: PlayerGroup
   m_TagString: Player
@@ -1644,6 +1646,10 @@ MonoBehaviour:
   <ParticalData>k__BackingField:
     <FlashBarrier>k__BackingField: {fileID: 7270699618536005653}
     <SmokeParticle>k__BackingField: {fileID: 8776199479503633710}
+  <SoundData>k__BackingField:
+    <WalkSound>k__BackingField:
+    - {fileID: 0}
+    <audioSource>k__BackingField: {fileID: 6805148223691053881}
   <UIData>k__BackingField:
     <boostSlider>k__BackingField: {fileID: 0}
   <TestingData>k__BackingField:
@@ -1711,6 +1717,102 @@ MonoBehaviour:
     <StepHeightPercentage>k__BackingField: 0
     <FloatRayDistance>k__BackingField: 2
     <StepReachForce>k__BackingField: 25
+--- !u!82 &6805148223691053881
+AudioSource:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 6805148225204251299}
+  m_Enabled: 1
+  serializedVersion: 4
+  OutputAudioMixerGroup: {fileID: 0}
+  m_audioClip: {fileID: 0}
+  m_PlayOnAwake: 1
+  m_Volume: 1
+  m_Pitch: 1
+  Loop: 0
+  Mute: 0
+  Spatialize: 0
+  SpatializePostEffects: 0
+  Priority: 128
+  DopplerLevel: 1
+  MinDistance: 1
+  MaxDistance: 500
+  Pan2D: 0
+  rolloffMode: 0
+  BypassEffects: 0
+  BypassListenerEffects: 0
+  BypassReverbZones: 0
+  rolloffCustomCurve:
+    serializedVersion: 2
+    m_Curve:
+    - serializedVersion: 3
+      time: 0
+      value: 1
+      inSlope: 0
+      outSlope: 0
+      tangentMode: 0
+      weightedMode: 0
+      inWeight: 0.33333334
+      outWeight: 0.33333334
+    - serializedVersion: 3
+      time: 1
+      value: 0
+      inSlope: 0
+      outSlope: 0
+      tangentMode: 0
+      weightedMode: 0
+      inWeight: 0.33333334
+      outWeight: 0.33333334
+    m_PreInfinity: 2
+    m_PostInfinity: 2
+    m_RotationOrder: 4
+  panLevelCustomCurve:
+    serializedVersion: 2
+    m_Curve:
+    - serializedVersion: 3
+      time: 0
+      value: 0
+      inSlope: 0
+      outSlope: 0
+      tangentMode: 0
+      weightedMode: 0
+      inWeight: 0.33333334
+      outWeight: 0.33333334
+    m_PreInfinity: 2
+    m_PostInfinity: 2
+    m_RotationOrder: 4
+  spreadCustomCurve:
+    serializedVersion: 2
+    m_Curve:
+    - serializedVersion: 3
+      time: 0
+      value: 0
+      inSlope: 0
+      outSlope: 0
+      tangentMode: 0
+      weightedMode: 0
+      inWeight: 0.33333334
+      outWeight: 0.33333334
+    m_PreInfinity: 2
+    m_PostInfinity: 2
+    m_RotationOrder: 4
+  reverbZoneMixCustomCurve:
+    serializedVersion: 2
+    m_Curve:
+    - serializedVersion: 3
+      time: 0
+      value: 1
+      inSlope: 0
+      outSlope: 0
+      tangentMode: 0
+      weightedMode: 0
+      inWeight: 0.33333334
+      outWeight: 0.33333334
+    m_PreInfinity: 2
+    m_PostInfinity: 2
+    m_RotationOrder: 4
 --- !u!1 &6805148225251419983
 GameObject:
   m_ObjectHideFlags: 3
@@ -1735,7 +1837,7 @@ Transform:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 6805148225251419983}
-  m_LocalRotation: {x: 0.0573393, y: -0, z: -0, w: 0.9983548}
+  m_LocalRotation: {x: 0.0573393, y: -1e-45, z: -0, w: 0.9983548}
   m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0

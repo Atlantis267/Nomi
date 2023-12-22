@@ -277,7 +277,6 @@ namespace Movement
         protected virtual void RemoveInputActionCallback()
         {
             stateMachine.Player.Inputs.PlayerActions.WalkToggle.started -= OnWalkToggleStarted;
-
             stateMachine.Player.Inputs.PlayerActions.Suisei.started -= OnSuiseiStrated;
             stateMachine.Player.Inputs.PlayerActions.Suisei.started -= OnSuiseiStrated;
         }
@@ -323,14 +322,13 @@ namespace Movement
                     DoSlowmotion();
                     stateMachine.ReusableData.IscloseingDir = true;
                 }
-                else if (stateMachine.ReusableData.IscloseingDir && !mouseInput)
+                if (stateMachine.ReusableData.IscloseingDir && !mouseInput)
                 {
                     starobj.GetComponent<Arrow>().arrow.SetActive(false);
                     UnLockCamera();
                     StopSlowmotion();
                     stateMachine.ReusableData.IscloseingDir = false;
                     stateMachine.ReusableData.ShouldSuiseiJump = true;
-                    stateMachine.ReusableData.NearStar = false;
                     ResetVerticalVelocity();
                     stateMachine.Player.transform.position = starobj.transform.position;
                     stateMachine.ReusableData.SuiSeiJumpDir = starobj.transform.forward;
@@ -388,14 +386,17 @@ namespace Movement
         }
         protected void FaceingWall()
         {
-            RaycastHit fwdHit;
-            Vector3 FwdStart = new Vector3(stateMachine.Player.transform.position.x, stateMachine.ReusableData.rayFindLedge.point.y - 0.1f, stateMachine.Player.transform.position.z);
-            Vector3 FwdEnd = new Vector3(stateMachine.Player.transform.position.x, stateMachine.ReusableData.rayFindLedge.point.y - 0.1f, stateMachine.Player.transform.position.z) + stateMachine.Player.transform.forward;
-            Physics.Linecast(FwdStart, FwdEnd, out fwdHit, stateMachine.Player.LayerData.WallLayer);
-            Debug.DrawLine(FwdStart, FwdEnd, Color.black);
-            if (fwdHit.collider != null)
+            if (stateMachine.ReusableData.rayFindLedge.collider != null)
             {
-                stateMachine.Player.transform.forward = -fwdHit.normal;
+                RaycastHit fwdHit;
+                Vector3 FwdStart = new Vector3(stateMachine.Player.transform.position.x, stateMachine.ReusableData.rayFindLedge.point.y - 0.1f, stateMachine.Player.transform.position.z);
+                Vector3 FwdEnd = new Vector3(stateMachine.Player.transform.position.x, stateMachine.ReusableData.rayFindLedge.point.y - 0.1f, stateMachine.Player.transform.position.z) + stateMachine.Player.transform.forward;
+                Physics.Linecast(FwdStart, FwdEnd, out fwdHit, stateMachine.Player.LayerData.WallLayer);
+                Debug.DrawLine(FwdStart, FwdEnd, Color.black);
+                if (fwdHit.collider != null)
+                {
+                    stateMachine.Player.transform.forward = -fwdHit.normal;
+                }
             }
         }
 
