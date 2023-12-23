@@ -121,7 +121,7 @@ namespace Movement
         }
         private void Move()
         {
-            if (stateMachine.ReusableData.CurrentMovementInput == Vector2.zero || stateMachine.ReusableData.SpeedMultiplier == 0.0f || !IsGround() || stateMachine.ReusableData.IsSliding)
+            if (stateMachine.ReusableData.CurrentMovementInput == Vector2.zero || stateMachine.ReusableData.SpeedMultiplier == 0.0f || stateMachine.ReusableData.IsSliding)
             {
                 return;
             }
@@ -166,7 +166,7 @@ namespace Movement
 
         private void OnAnimatonMove()
         {
-            if (stateMachine.ReusableData.CurrentMovementInput == Vector2.zero || stateMachine.ReusableData.SpeedMultiplier == 0.0f || stateMachine.ReusableData.IsSliding || !IsGround())
+            if (stateMachine.ReusableData.CurrentMovementInput == Vector2.zero || stateMachine.ReusableData.SpeedMultiplier == 0.0f || stateMachine.ReusableData.IsSliding)
             {
                 return;
             }
