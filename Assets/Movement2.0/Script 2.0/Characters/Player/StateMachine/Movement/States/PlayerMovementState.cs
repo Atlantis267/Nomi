@@ -304,12 +304,15 @@ namespace Movement
             Collider[] Zones = Physics.OverlapSphere(stateMachine.Player.transform.position, 3f);
             foreach (Collider star in Zones)
             {
-                stateMachine.ReusableData.NearStar = false;
                 if (star.tag == "Star")
                 {
                     stateMachine.ReusableData.NearStar = true;
                     starobj = star.transform.gameObject;
                     break;
+                }
+                else
+                {
+                    stateMachine.ReusableData.NearStar = false;
                 }
             }
             if (stateMachine.ReusableData.NearStar)
@@ -344,7 +347,7 @@ namespace Movement
             }
             if (stateMachine.ReusableData.ShouldSuiseiJump)
             {
-                //if (stateMachine.Player.CoolDownData.IsSuiSeiJumpCoolingDown) return;
+                if (stateMachine.Player.CoolDownData.IsSuiSeiJumpCoolingDown) return;
                 SuiseiJump();
             }
         }

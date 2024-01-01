@@ -26,6 +26,7 @@ namespace Movement
         public bool IsGrounded { get; set; }
         public bool IsAirDashing { get; set; }
         public bool IsSliding { get; set; }
+        public bool IsFalling { get; set; }
         public bool IsDashing { get; set; }
         public bool IsSprinting { get; set; }
         public float currenttargetRotation { get; set; } = 0.0f;

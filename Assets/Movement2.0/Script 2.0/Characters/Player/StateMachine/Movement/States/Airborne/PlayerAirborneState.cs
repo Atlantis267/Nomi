@@ -27,6 +27,7 @@ namespace Movement
             StopSlowmotion();
             UnLockCamera();
             stateMachine.ReusableData.ShouldAirDash = false;
+            stateMachine.ReusableData.NearStar = false;
             StopAnimation(stateMachine.Player.AnimationsData.AirstateHash);
         }
         public override void PhysicsUpdate()

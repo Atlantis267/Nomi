@@ -37,6 +37,12 @@ namespace Movement
         {
             base.Update();
             Ground();
+            Velocity();
+            if (GetPlayerVerticalVelocity().y > 0)
+            {
+                return;
+            }
+            stateMachine.ChangeState(stateMachine.FallingingState);
         }
 
         #endregion
@@ -47,7 +53,7 @@ namespace Movement
             {
                 Vector3 playerHorizontalVelocity = stateMachine.ReusableData.CurrentJumpForce;
                 stateMachine.Player.transform.forward = stateMachine.ReusableData.SuiSeiJumpDir;
-                Vector3 playerForward = stateMachine.ReusableData.SuiSeiJumpDir;
+                Vector3 playerForward = stateMachine.Player.transform.forward;
 
                 playerHorizontalVelocity.x *= playerForward.x;
                 playerHorizontalVelocity.z *= playerForward.z;

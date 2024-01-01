@@ -14,6 +14,7 @@ namespace Movement
         public override void Enter()
         {
             base.Enter();
+            stateMachine.ReusableData.IsFalling = true;
             ResetVelocity();
             if (stateMachine.Player.CoolDownData.IsAirDashCoolingDown)
             {
@@ -32,6 +33,11 @@ namespace Movement
             VelocityFalling();
             stateMachine.ReusableData.VerticalVelocity += stateMachine.ReusableData.Gravity * airborneData.FallData.FallMultiplier * Time.deltaTime;
             Ground();
+        }
+        public override void Exit()
+        {
+            base.Exit();
+            stateMachine.ReusableData.IsFalling = false;
         }
         #endregion
         #region Main Methods
