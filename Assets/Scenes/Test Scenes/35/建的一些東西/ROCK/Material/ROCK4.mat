@@ -23,8 +23,8 @@ Material:
   m_Name: ROCK4
   m_Shader: {fileID: 4800000, guid: 933532a4fcc9baf4fa0491de14d08ed7, type: 3}
   m_ValidKeywords:
+  - _METALLICSPECGLOSSMAP
   - _NORMALMAP
-  - _PARALLAXMAP
   m_InvalidKeywords: []
   m_LightmapFlags: 4
   m_EnableInstancingVariants: 0
@@ -37,11 +37,11 @@ Material:
     serializedVersion: 3
     m_TexEnvs:
     - _BaseMap:
-        m_Texture: {fileID: 2800000, guid: 54b3bfd0edbf51f4196bf084206fc6c4, type: 3}
+        m_Texture: {fileID: 2800000, guid: 6979a60c878087f4bbe7724762c1b079, type: 3}
         m_Scale: {x: 1, y: 1}
         m_Offset: {x: 0, y: 0}
     - _BumpMap:
-        m_Texture: {fileID: 2800000, guid: 4e6fb9360ea2c2a45a0df6e2edf7f3f5, type: 3}
+        m_Texture: {fileID: 2800000, guid: 131e9ed3db4dc174f85369ce50764e0b, type: 3}
         m_Scale: {x: 1, y: 1}
         m_Offset: {x: 0, y: 0}
     - _DetailAlbedoMap:
@@ -61,11 +61,11 @@ Material:
         m_Scale: {x: 1, y: 1}
         m_Offset: {x: 0, y: 0}
     - _MainTex:
-        m_Texture: {fileID: 2800000, guid: 54b3bfd0edbf51f4196bf084206fc6c4, type: 3}
+        m_Texture: {fileID: 2800000, guid: 6979a60c878087f4bbe7724762c1b079, type: 3}
         m_Scale: {x: 1, y: 1}
         m_Offset: {x: 0, y: 0}
     - _MetallicGlossMap:
-        m_Texture: {fileID: 0}
+        m_Texture: {fileID: 2800000, guid: 8cdc93d23b9868144b542bd8ec34ecd7, type: 3}
         m_Scale: {x: 1, y: 1}
         m_Offset: {x: 0, y: 0}
     - _OcclusionMap:
