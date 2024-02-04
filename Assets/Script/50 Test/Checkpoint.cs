@@ -41,6 +41,8 @@ public class Checkpoint : MonoBehaviour
         if (other.gameObject.CompareTag("EndPoint2"))
         {
             SceneManager.LoadScene("Test_UI");
+
+
         }
     }
 }
