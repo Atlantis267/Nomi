@@ -3,10 +3,10 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.SceneManagement;
 
-public class ChangeScene_2 : MonoBehaviour
+public class ChangeScene_3 : MonoBehaviour
 {
     private Animator transAnime;
-    private float transWaitTime = 1.0f;
+    private float transWaitTime = 2.0f;
     void Start()
     {
         transAnime = gameObject.GetComponent<Animator>();
@@ -15,15 +15,14 @@ public class ChangeScene_2 : MonoBehaviour
     {
         PlayAnimation();
         yield return new WaitForSeconds(transWaitTime);
-        SceneManager.LoadScene("Test_UI");
+        SceneManager.LoadScene("Setting");
     }
     public void PlayAnimation()
     {
         transAnime.SetTrigger("Start");
     }
-    public void Menu()
+    public void Setting()
     {
-        Time.timeScale = 1f;
         StartCoroutine(WaitAnimation());
     }
 }

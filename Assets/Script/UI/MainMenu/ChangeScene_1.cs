@@ -5,7 +5,7 @@ using UnityEngine.SceneManagement;
 
 public class ChangeScene_1 : MonoBehaviour
 {
-    private float LoadingWiatTime = 6.0f;
+    private float LoadingWaitTime = 6.0f;
 
     private void Start()
     {
@@ -13,7 +13,7 @@ public class ChangeScene_1 : MonoBehaviour
     }
     IEnumerator ChangeToMain()
     {
-        yield return new WaitForSeconds(LoadingWiatTime);
+        yield return new WaitForSeconds(LoadingWaitTime);
         SceneManager.LoadScene("level001");
     }
 }

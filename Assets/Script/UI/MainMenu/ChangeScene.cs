@@ -7,7 +7,7 @@ using UnityEngine.UI;
 public class ChangeScene : MonoBehaviour
 {
     private Animator flowerAnime;
-    private float transWiatTime = 1.0f;
+    private float transWaitTime = 1.0f;
     void Start()
     {
         flowerAnime = gameObject.GetComponent<Animator>();
@@ -15,7 +15,7 @@ public class ChangeScene : MonoBehaviour
     IEnumerator WaitAnimation() 
     {
         PlayAnimation();
-        yield return new WaitForSeconds(transWiatTime);
+        yield return new WaitForSeconds(transWaitTime);
         SceneManager.LoadScene("Loading");
     }
     public void PlayAnimation() 
