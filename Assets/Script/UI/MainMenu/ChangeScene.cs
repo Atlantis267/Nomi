@@ -22,10 +22,6 @@ public class ChangeScene : MonoBehaviour
     {
         flowerAnime.SetTrigger("Start");
     }
-    public void LoadS() 
-    {
-        SceneManager.LoadScene("Loading");
-    }
     public void ButtonClick() 
     {
         StartCoroutine(WaitAnimation());
