@@ -6,7 +6,7 @@ using UnityEngine.SceneManagement;
 public class ChangeScene_2 : MonoBehaviour
 {
     private Animator transAnime;
-    private float transWaitTime = 1.0f;
+    private float transWaitTime = 1.8f;
     void Start()
     {
         transAnime = gameObject.GetComponent<Animator>();
