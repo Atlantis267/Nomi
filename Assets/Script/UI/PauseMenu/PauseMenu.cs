@@ -49,4 +49,8 @@ public class PauseMenu : MonoBehaviour
         Cursor.lockState = CursorLockMode.Confined;
         cinemachineInput.enabled = false;
     }
+    public void Quit() 
+    {
+        Application.Quit();
+    }
 }
