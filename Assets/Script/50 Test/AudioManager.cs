@@ -8,11 +8,12 @@ public class AudioManager : MonoBehaviour
     public AudioClip seWalk;
     public AudioClip seRun;
     public AudioClip seWind;
+    public AudioClip seWater;
 
     List<AudioSource> audios = new List<AudioSource>();
     private void Awake()
     {
-        for (int i = 0; i < 3; i++)
+        for (int i = 0; i < 5; i++)
         {
             var audio = this.gameObject.AddComponent<AudioSource>();
             audios.Add(audio);
@@ -44,6 +45,8 @@ public class AudioManager : MonoBehaviour
                 return seRun;
             case "seWind":
                 return seWind;
+            case "seWater":
+                return seWater;
         }
         return null;
     }

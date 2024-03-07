@@ -10,17 +10,23 @@ public class Level1_Audio : MonoBehaviour
     void Start()
     {
         Game_manager.instance.audioManager.Play(0, "Bgm", true);
-        Debug.Log("ho");
+        Game_manager.instance.audioManager.Play(1, "seWind", false);
+
     }
 
     // Update is called once per frame
     void Update()
     {
         Timer += Time.deltaTime;
-        if (Timer > 20)
+        if (Timer > 35)
         {
-            Game_manager.instance.audioManager.Play(1, "seWind", false);
+            Game_manager.instance.audioManager.Play(3, "seWind", false);
             Timer = 0;
+        }
+
+        if (Timer > 10)
+        {
+            Game_manager.instance.audioManager.Play(2, "seWater", false);
         }
 
     }
