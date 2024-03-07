@@ -3,13 +3,13 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.EventSystems;
 
-public class UI_Jump : MonoBehaviour, IPointerEnterHandler, IPointerExitHandler
+public class UI_Information: MonoBehaviour, IPointerEnterHandler, IPointerExitHandler
 {
     [SerializeField] private bool isPointerIn;
-    [SerializeField] private float movement = 30.0f;
+    [SerializeField] private float movement = 25.0f;
     private Vector3 startPosition;
     private Vector3 endPosition;
-    [SerializeField] private float speed = 4.5f;
+    [SerializeField] private float speed = 3.0f;
     void Start()
     {
         isPointerIn = false;
@@ -18,14 +18,14 @@ public class UI_Jump : MonoBehaviour, IPointerEnterHandler, IPointerExitHandler
     }
     public void OnPointerEnter(PointerEventData eventData)
     {
-        if (eventData.pointerEnter.CompareTag("Jump"))
+        if (eventData.pointerEnter.CompareTag("Setting"))
         {
             isPointerIn = true;
         }
     }
     public void OnPointerExit(PointerEventData eventData)
     {
-        if (eventData.pointerEnter.CompareTag("Jump"))
+        if (eventData.pointerEnter.CompareTag("Setting"))
         {
             isPointerIn = false;
         }
