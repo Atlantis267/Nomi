@@ -5,8 +5,12 @@ using UnityEngine.SceneManagement;
 
 public class ChangeScene_4 : MonoBehaviour
 {
-    public void Credit() 
+    public void Credit()
     {
         SceneManager.LoadScene("Credit");
+    }
+    public void BackToInfor() 
+    {
+        SceneManager.LoadScene("Information");
     }
 }
