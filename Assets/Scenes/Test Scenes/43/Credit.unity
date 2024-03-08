@@ -434,6 +434,8 @@ GameObject:
   - component: {fileID: 840225653}
   - component: {fileID: 840225655}
   - component: {fileID: 840225654}
+  - component: {fileID: 840225657}
+  - component: {fileID: 840225656}
   m_Layer: 5
   m_Name: Panel_1
   m_TagString: Untagged
@@ -475,7 +477,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   m_Material: {fileID: 0}
   m_Color: {r: 0, g: 0, b: 0, a: 0}
-  m_RaycastTarget: 1
+  m_RaycastTarget: 0
   m_RaycastPadding: {x: 0, y: 0, z: 0, w: 0}
   m_Maskable: 1
   m_OnCullStateChanged:
@@ -499,6 +501,39 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 840225652}
   m_CullTransparentMesh: 1
+--- !u!114 &840225656
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 840225652}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 82f063520180e23498ef8d848c6e024d, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+--- !u!95 &840225657
+Animator:
+  serializedVersion: 5
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 840225652}
+  m_Enabled: 1
+  m_Avatar: {fileID: 0}
+  m_Controller: {fileID: 9100000, guid: 4c82d46e7ec4d7a45ae736e1a0b555a9, type: 2}
+  m_CullingMode: 0
+  m_UpdateMode: 0
+  m_ApplyRootMotion: 0
+  m_LinearVelocityBlending: 0
+  m_StabilizeFeet: 0
+  m_WarningMessage: 
+  m_HasTransformHierarchy: 1
+  m_AllowConstantClipSamplingOptimization: 1
+  m_KeepAnimatorStateOnDisable: 0
+  m_WriteDefaultValuesOnDisable: 0
 --- !u!1 &1302848461
 GameObject:
   m_ObjectHideFlags: 0
@@ -848,7 +883,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
-  m_AnchoredPosition: {x: -859.3, y: -437.6}
+  m_AnchoredPosition: {x: -857, y: -361}
   m_SizeDelta: {x: 71.6707, y: 72.4221}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &1962381441
@@ -895,8 +930,8 @@ MonoBehaviour:
   m_OnClick:
     m_PersistentCalls:
       m_Calls:
-      - m_Target: {fileID: 39016888}
-        m_TargetAssemblyTypeName: ChangeScene_4, Assembly-CSharp
+      - m_Target: {fileID: 840225656}
+        m_TargetAssemblyTypeName: BackArrowAnime_1, Assembly-CSharp
         m_MethodName: BackToInfor
         m_Mode: 1
         m_Arguments:
