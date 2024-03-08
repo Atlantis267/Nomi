@@ -19,11 +19,10 @@ namespace Movement
         public IEnumerator Fade()
         {
             animator.SetBool("FadeOut", true);
+            animator.SetBool("FadeIn", false);
             yield return new WaitForSeconds(1);
             animator.SetBool("FadeIn", true);
-            yield return null;
             animator.SetBool("FadeOut", false);
-            animator.SetBool("FadeIn", false);
 
         }
     }
