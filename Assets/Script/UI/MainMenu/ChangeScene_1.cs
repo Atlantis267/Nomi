@@ -14,6 +14,6 @@ public class ChangeScene_1 : MonoBehaviour
     IEnumerator ChangeToMain()
     {
         yield return new WaitForSeconds(LoadingWaitTime);
-        SceneManager.LoadScene("level001");
+        SceneManager.LoadScene("Information");
     }
 }
