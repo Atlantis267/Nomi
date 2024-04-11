@@ -12,7 +12,6 @@ namespace Movement
         public override void Enter()
         {
             base.Enter();
-            stateMachine.ReusableData.IsRespawning = false;
             stateMachine.Player.StartCoroutine(RespawnRoutine());
         }
         public override void OnAnimationTransitionEvent()
@@ -23,7 +22,7 @@ namespace Movement
         public override void Update()
         {
             base.Update();
-            UpdateTargetRotation(Vector3.zero, false);
+            UpdateTargetRotation(stateMachine.Player.gm.lastCheckPointRotate, false);
         }
         public override void Exit()
         {

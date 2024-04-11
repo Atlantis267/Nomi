@@ -49,14 +49,14 @@ namespace Movement
         {
             currentState?.OnTriggerEnter(collider);
         }
-        public void OnTriggerStay(Collider collider)
-        {
-            currentState?.OnTriggerStay(collider);
-        }
-        public void OnTriggerExit(Collider collider)
-        {
-            currentState?.OnTriggerExit(collider);
-        }
+        //public void OnTriggerStay(Collider collider)
+        //{
+        //    currentState?.OnTriggerStay(collider);
+        //}
+        //public void OnTriggerExit(Collider collider)
+        //{
+        //    currentState?.OnTriggerExit(collider);
+        //}
     }
 }
 

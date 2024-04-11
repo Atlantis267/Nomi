@@ -16,6 +16,7 @@ namespace Movement
             if (other.CompareTag("Player"))
             {
                 gm.lastCheckPointPos = transform.position;
+                gm.lastCheckPointRotate = transform.forward;
             }
         }
     }

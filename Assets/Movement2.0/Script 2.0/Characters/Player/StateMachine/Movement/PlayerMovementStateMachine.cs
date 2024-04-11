@@ -27,6 +27,7 @@ namespace Movement
         public PlayerWallRunningState WallRunningState { get; }
         public PlayerClimbingIdleingState ClimbingHighState { get; }
         public PlayerSuiSeiJumpState SuiSeiJumpState { get; }
+        public PlayerJumpPadsState JumpPadsState { get; }
         public PlayerSuiSeiFallState SuiSeiFallState { get; }
 
         
@@ -57,6 +58,7 @@ namespace Movement
             FallingingState = new PlayerFallingState(this);
             SuiSeiJumpState = new PlayerSuiSeiJumpState(this);
             SuiSeiFallState = new PlayerSuiSeiFallState(this);
+            JumpPadsState = new PlayerJumpPadsState(this);
 
             WallRunningState = new PlayerWallRunningState(this);
             ClimbingHighState = new PlayerClimbingIdleingState(this);

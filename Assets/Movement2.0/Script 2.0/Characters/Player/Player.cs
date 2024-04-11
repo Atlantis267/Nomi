@@ -68,11 +68,11 @@ namespace Movement
         }
         private void OnTriggerStay(Collider collider)
         {
-            movementStateMachine.OnTriggerStay(collider);
+            //movementStateMachine.OnTriggerStay(collider);
         }
         private void OnTriggerExit(Collider collider)
         {
-            movementStateMachine.OnTriggerExit(collider);
+            //movementStateMachine.OnTriggerExit(collider);
         }
         private void OnDrawGizmos()
         {

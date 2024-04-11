@@ -38,7 +38,7 @@ namespace Movement
                 return;
             }
             OnMove();
-            AnimationFloat(stateMachine.Player.AnimationsData.IdlestateHash, 1f, 0.1f, Time.deltaTime);
+            //AnimationFloat(stateMachine.Player.AnimationsData.IdlestateHash, 1f, 0.1f, Time.deltaTime);
         }
         public override void PhysicsUpdate()
         {

@@ -11,6 +11,7 @@ namespace Movement
         [field: SerializeField] public AnimationCurve JumpForceModifierOnSlopeUpwards { get; private set; }
         [field: SerializeField] public AnimationCurve JumpForceModifierOnSlopeDownwards { get; private set; }
         [field: SerializeField] public float JumpForce { get; set; }
+        [field: SerializeField] public float JumpPadsForce { get; set; }
         [field: SerializeField] public float JumpDashForce { get; set; }
         [field: SerializeField]  public Vector3 StationaryForce { get; private set; }
         [field: SerializeField] public Vector3 WeekForce { get; private set; }

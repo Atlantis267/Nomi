@@ -12,7 +12,6 @@ namespace Movement
         #region IState Methods
         public override void Enter()
         {
-            stateMachine.ReusableData.CurrentJumpForce = airborneData.JumpData.StrongForce;
 
             base.Enter();
 

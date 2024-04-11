@@ -9,10 +9,13 @@ namespace Movement
         private Player player;
         private void OnTriggerEnter(Collider other)
         {
-            player = other.GetComponent<Player>();
-            if (player != null)
+            if (other.CompareTag("Player"))
             {
-                player.Die();
+                player = other.GetComponent<Player>();
+                if (player != null)
+                {
+                    player.Die();
+                }
             }
         }
     }

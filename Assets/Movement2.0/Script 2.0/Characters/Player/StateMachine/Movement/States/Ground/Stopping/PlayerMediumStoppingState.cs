@@ -12,8 +12,6 @@ namespace Movement
         #region IState Methods
         public override void Enter()
         {
-            stateMachine.ReusableData.CurrentJumpForce = airborneData.JumpData.MediumForce;
-
             base.Enter();
 
             stateMachine.ReusableData.MovementDelcelerationForce = movementData.StopData.MediumDecelerationForce;

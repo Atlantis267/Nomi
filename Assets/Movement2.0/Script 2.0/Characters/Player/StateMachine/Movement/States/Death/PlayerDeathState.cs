@@ -11,7 +11,7 @@ namespace Movement
         }
         public override void Enter()
         {
-            base.Enter();            
+            base.Enter();
             StartAnimation(stateMachine.Player.AnimationsData.DiestateHash);
             stateMachine.ReusableData.SpeedMultiplier = 0.0f;
             stateMachine.ReusableData.VerticalVelocity = 0.0f;

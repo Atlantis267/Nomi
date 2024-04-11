@@ -35,10 +35,10 @@ namespace Movement
 
             startTime = Time.time;
 
+            StartAnimation(stateMachine.Player.AnimationsData.IsDashHash);
             ParticalStart();
             stateMachine.Player.ParticalData.CameraParticle.Play();
-
-            StartAnimation(stateMachine.Player.AnimationsData.IsDashHash);
+            stateMachine.Player.Animator.SetFloat(stateMachine.Player.AnimationsData.FeetTweenHash, feetTween);
         }
         public override void Exit()
         {
@@ -50,6 +50,7 @@ namespace Movement
             ParticalStop();
 
             StopAnimation(stateMachine.Player.AnimationsData.IsDashHash);
+
         }
         public override void PhysicsUpdate()
         {
@@ -63,8 +64,6 @@ namespace Movement
         public override void OnAnimationEnterEvent()
         {
             base.OnAnimationEnterEvent();
-
-            stateMachine.Player.Animator.SetFloat(stateMachine.Player.AnimationsData.FeetTweenHash, feetTween);
         }
         public override void OnAnimationTransitionEvent()
         {

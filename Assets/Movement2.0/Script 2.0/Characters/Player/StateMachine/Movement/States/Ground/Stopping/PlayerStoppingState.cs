@@ -10,6 +10,7 @@ namespace Movement
         #region IState Methods
         public override void Enter()
         {
+            stateMachine.ReusableData.CurrentJumpForce = airborneData.JumpData.StationaryForce;
             base.Enter();
 
             stateMachine.ReusableData.SpeedMultiplier = 0.0f;

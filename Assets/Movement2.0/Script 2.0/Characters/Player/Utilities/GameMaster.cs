@@ -8,6 +8,7 @@ namespace Movement
     {
         private static GameMaster instance;
         public Vector3 lastCheckPointPos;
+        public Vector3 lastCheckPointRotate;
 
         private void Awake()
         {

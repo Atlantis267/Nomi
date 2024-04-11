@@ -6,6 +6,7 @@ namespace Movement
     {
         public Vector2 CurrentMovementInput { get; set; }
         public float SpeedMultiplier { get; set; } = 1f;
+        public float PlayerHeight { get; set; } 
         public float MovementDelcelerationForce { get; set; } = 1f;
         public float FallMulitiplier { get; set; } = 1f;
         public float Gravity { get; set; } = -35.8f;

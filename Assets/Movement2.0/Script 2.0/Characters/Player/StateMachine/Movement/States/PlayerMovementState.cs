@@ -85,30 +85,25 @@ namespace Movement
         }
         public virtual void OnTriggerEnter(Collider collider)
         {
-            if (stateMachine.Player.LayerData.IsStarLayer(collider.gameObject.layer))
-            {
-                OnContactWithStar(collider);
-                return;
-            }
         }
 
-        public void OnTriggerStay(Collider collider)
-        {
-            if (stateMachine.Player.LayerData.IsStarLayer(collider.gameObject.layer))
-            {
-                OnContactInStar(collider);
-                return;
-            }
-        }
+        //public void OnTriggerStay(Collider collider)
+        //{
+        //    if (stateMachine.Player.LayerData.IsStarLayer(collider.gameObject.layer))
+        //    {
+        //        OnContactInStar(collider);
+        //        return;
+        //    }
+        //}
 
-        public virtual void OnTriggerExit(Collider collider)
-        {
-            if (stateMachine.Player.LayerData.IsStarLayer(collider.gameObject.layer))
-            {
-                OnContactExitWithStar(collider);
-                return;
-            }
-        }
+        //public virtual void OnTriggerExit(Collider collider)
+        //{
+        //    if (stateMachine.Player.LayerData.IsStarLayer(collider.gameObject.layer))
+        //    {
+        //        OnContactExitWithStar(collider);
+        //        return;
+        //    }
+        //}
         #endregion
         #region Main Methods
         private void ReadMovementInput()
@@ -373,15 +368,15 @@ namespace Movement
         {
             stateMachine.ChangeState(stateMachine.SuiSeiJumpState);
         }
-        protected virtual void OnContactWithStar(Collider collider)
-        {
-        }
-        protected virtual void OnContactExitWithStar(Collider collider)
-        {
-        }
-        protected virtual void OnContactInStar(Collider collider)
-        {
-        }
+        //protected virtual void OnContactWithJumpPads(Collider collider)
+        //{
+        //}
+        //protected virtual void OnContactExitWithStar(Collider collider)
+        //{
+        //}
+        //protected virtual void OnContactInStar(Collider collider)
+        //{
+        //}
         protected void StopAllPartical()
         {
             stateMachine.Player.ParticalData.CameraParticle.Stop();
@@ -471,7 +466,7 @@ namespace Movement
         }
         protected bool IsGround()
         {
-            return Physics.CheckSphere(stateMachine.Player.playerTransform.position, .18f, stateMachine.Player.LayerData.GroundLayer);
+            return Physics.Raycast(stateMachine.Player.playerTransform.position, Vector3.down, stateMachine.ReusableData.PlayerHeight * 0.5f + 0.3f, stateMachine.Player.LayerData.GroundLayer , QueryTriggerInteraction.Ignore);
         }
         protected bool IsMovingUp(float minimumVelocity = 0.1f)
         {

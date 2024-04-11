@@ -23,6 +23,7 @@ namespace Movement
             yield return new WaitForSeconds(1);
             animator.SetBool("FadeIn", true);
             animator.SetBool("FadeOut", false);
+            player.movementStateMachine.ReusableData.IsRespawning = false;
 
         }
     }

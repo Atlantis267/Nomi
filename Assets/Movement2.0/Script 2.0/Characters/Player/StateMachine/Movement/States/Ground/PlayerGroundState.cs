@@ -55,7 +55,6 @@ namespace Movement
                     float amountToLift = stateMachine.ReusableData.GroundedGravity;
                     stateMachine.ReusableData.VerticalVelocity = amountToLift;
                     Vector3 liftForce = new Vector3(0f, amountToLift, 0f);
-                    stateMachine.Player.CharacterController.Move(liftForce * Time.deltaTime);
                 }
             }
         }
@@ -193,8 +192,9 @@ namespace Movement
         }
         protected virtual void OnJumpStarted(InputAction.CallbackContext context)
         {
+            Debug.Log("Jump");
             if (IsGround() && !stateMachine.ReusableData.IsSliding)
-            {
+            {             
                 stateMachine.ChangeState(stateMachine.JumpingState);
             }
         }

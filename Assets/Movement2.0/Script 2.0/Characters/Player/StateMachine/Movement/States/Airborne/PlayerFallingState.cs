@@ -44,6 +44,7 @@ namespace Movement
             playerHorizontalVelocity.y = stateMachine.ReusableData.VerticalVelocity;
             stateMachine.Player.CharacterController.Move(playerHorizontalVelocity * Time.deltaTime);
         }
+        
         private void Ground()
         {
             if (/*Physics.SphereCast(stateMachine.Player.playerTransform.position + (Vector3.up * stateMachine.ReusableData.GroundCheckOffset)
@@ -52,6 +53,15 @@ namespace Movement
                 , stateMachine.Player.LayerData.GroundLayer, QueryTriggerInteraction.Ignore)*/IsGround())
             {
                 //Debug.Log("isGround");
+                if (Physics.SphereCast(stateMachine.Player.playerTransform.position + (Vector3.up * stateMachine.ReusableData.GroundCheckOffset)
+                , stateMachine.Player.CharacterController.radius, Vector3.down, out RaycastHit hit
+                , stateMachine.ReusableData.GroundCheckOffset - stateMachine.Player.CharacterController.radius + 5 * stateMachine.Player.CharacterController.skinWidth
+                , stateMachine.Player.LayerData.JumpPadsLayer, QueryTriggerInteraction.Ignore))
+                {
+                    stateMachine.ChangeState(stateMachine.JumpPadsState);
+
+                    return;
+                }
                 float fallDistance = playerPositionOnEnter.y - stateMachine.Player.transform.position.y;
                 if (fallDistance < airborneData.FallData.MinimumDistanceHardFall)
                 {

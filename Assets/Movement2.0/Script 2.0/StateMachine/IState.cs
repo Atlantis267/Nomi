@@ -16,8 +16,8 @@ namespace Movement
         public void OnAnimationExitEvent();
         public void OnAnimationTransitionEvent();
         public void OnTriggerEnter(Collider collider);
-        public void OnTriggerExit(Collider collider);
-        public void OnTriggerStay(Collider collider);
+        //public void OnTriggerExit(Collider collider);
+        //public void OnTriggerStay(Collider collider);
 
 
     }
