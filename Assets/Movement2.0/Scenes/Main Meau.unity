@@ -1953,8 +1953,6 @@ MonoBehaviour:
   firstSelected: {fileID: 1779128289}
   mainMenu: {fileID: 2027821893}
   backButton: {fileID: 1105623084}
-  _loadingBarObject: {fileID: 0}
-  _loadingBar: {fileID: 0}
   _loadingScene:
     m_SceneAsset: {fileID: 102900000, guid: 676fc499b8803e94ea520ae45395beaa, type: 3}
     m_SceneName: Bootstrapper
@@ -2143,8 +2141,6 @@ MonoBehaviour:
   saveSlotsMenu: {fileID: 1738924895}
   _continueGameButton: {fileID: 1780132332}
   _loadGameButton: {fileID: 519385605}
-  _loadingBarObject: {fileID: 0}
-  _loadingBar: {fileID: 0}
   _loadingScene:
     m_SceneAsset: {fileID: 102900000, guid: 676fc499b8803e94ea520ae45395beaa, type: 3}
     m_SceneName: Bootstrapper
@@ -2291,7 +2287,7 @@ PrefabInstance:
     - target: {fileID: 8162912036465366743, guid: 463f0b2b235aa774daacb0d073d56bd3,
         type: 3}
       propertyPath: profileId
-      value: 0
+      value: test
       objectReference: {fileID: 0}
     - target: {fileID: 8162912036465366764, guid: 463f0b2b235aa774daacb0d073d56bd3,
         type: 3}

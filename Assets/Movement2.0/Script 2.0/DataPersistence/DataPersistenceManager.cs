@@ -25,7 +25,7 @@ namespace Movement
         [SerializeField] private float autoSaveTimeSeconds = 60f;
 
         private List<IDataPersistence> dataPersistenceObjects;
-        private string selectedProfileId = "";
+        private string selectedProfileId = "test";
 
 
         private Coroutine autoSaveCoroutine;
