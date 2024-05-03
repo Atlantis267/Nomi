@@ -164,7 +164,7 @@ namespace Movement
             float movementSpeed = GetMovementSpeed();
             Vector3 movementDirection = stateMachine.Player.Animator.deltaPosition;
             movementDirection = AdjustVelocityToSlope(movementDirection);
-            movementDirection.y += stateMachine.ReusableData.VerticalVelocity;
+            movementDirection.y += stateMachine.ReusableData.VerticalVelocity * Time.deltaTime;
             stateMachine.Player.CharacterController.Move(movementDirection * movementSpeed);
             averageVel = AverageVel(stateMachine.Player.Animator.velocity);
         }
@@ -364,6 +364,14 @@ namespace Movement
                 SuiseiJump();
             }
         }
+        protected void Showbady(bool state)
+        {
+            SkinnedMeshRenderer[] skinMeshList = stateMachine.Player.GetComponentsInChildren<SkinnedMeshRenderer>();
+            foreach (SkinnedMeshRenderer smr in skinMeshList)
+            {
+                smr.enabled = state;
+            }
+        }
         private void SuiseiJump()
         {
             stateMachine.ChangeState(stateMachine.SuiSeiJumpState);
@@ -466,7 +474,9 @@ namespace Movement
         }
         protected bool IsGround()
         {
-            return Physics.Raycast(stateMachine.Player.playerTransform.position, Vector3.down, stateMachine.ReusableData.PlayerHeight * 0.5f + 0.3f, stateMachine.Player.LayerData.GroundLayer , QueryTriggerInteraction.Ignore);
+            return Physics.SphereCast(stateMachine.Player.playerTransform.position + (Vector3.up * stateMachine.ReusableData.GroundCheckOffset), stateMachine.Player.CharacterController.radius, Vector3.down, out RaycastHit hit
+                , stateMachine.ReusableData.GroundCheckOffset - stateMachine.Player.CharacterController.radius + 3f * stateMachine.Player.CharacterController.skinWidth
+                , stateMachine.Player.LayerData.GroundLayer, QueryTriggerInteraction.Ignore);
         }
         protected bool IsMovingUp(float minimumVelocity = 0.1f)
         {

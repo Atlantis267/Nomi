@@ -22,7 +22,7 @@ namespace Movement
         public override void Update()
         {
             base.Update();
-            UpdateTargetRotation(stateMachine.Player.gm.lastCheckPointRotate, false);
+            UpdateTargetRotation(stateMachine.Player.CheckData.LastPointRotate, false);
         }
         public override void Exit()
         {
@@ -33,7 +33,7 @@ namespace Movement
         {
             stateMachine.ReusableData.SpeedMultiplier = 0.0f;
             ResetVerticalVelocity();
-            stateMachine.Player.playerTransform.position = stateMachine.Player.gm.lastCheckPointPos;
+            stateMachine.Player.playerTransform.position = stateMachine.Player.CheckData.LastPointPos;
             yield return null;
             StartAnimation(stateMachine.Player.AnimationsData.RespawnstateHash);
         }

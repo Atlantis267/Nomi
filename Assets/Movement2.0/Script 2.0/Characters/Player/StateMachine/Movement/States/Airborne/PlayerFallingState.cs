@@ -47,16 +47,10 @@ namespace Movement
         
         private void Ground()
         {
-            if (/*Physics.SphereCast(stateMachine.Player.playerTransform.position + (Vector3.up * stateMachine.ReusableData.GroundCheckOffset)
-                , stateMachine.Player.CharacterController.radius, Vector3.down, out RaycastHit hit
-                , stateMachine.ReusableData.GroundCheckOffset - stateMachine.Player.CharacterController.radius + 2 * stateMachine.Player.CharacterController.skinWidth
-                , stateMachine.Player.LayerData.GroundLayer, QueryTriggerInteraction.Ignore)*/IsGround())
+            if (IsGround())
             {
-                //Debug.Log("isGround");
-                if (Physics.SphereCast(stateMachine.Player.playerTransform.position + (Vector3.up * stateMachine.ReusableData.GroundCheckOffset)
-                , stateMachine.Player.CharacterController.radius, Vector3.down, out RaycastHit hit
-                , stateMachine.ReusableData.GroundCheckOffset - stateMachine.Player.CharacterController.radius + 5 * stateMachine.Player.CharacterController.skinWidth
-                , stateMachine.Player.LayerData.JumpPadsLayer, QueryTriggerInteraction.Ignore))
+                if (Physics.Raycast(stateMachine.Player.playerTransform.position,Vector3.down, stateMachine.Player.CharacterController.height * 0.5f + 0.2f
+                    , stateMachine.Player.LayerData.JumpPadsLayer, QueryTriggerInteraction.Ignore))
                 {
                     stateMachine.ChangeState(stateMachine.JumpPadsState);
 

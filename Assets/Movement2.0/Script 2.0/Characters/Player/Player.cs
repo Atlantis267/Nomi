@@ -6,7 +6,7 @@ namespace Movement
 {
     [RequireComponent(typeof(PlayerInputs))]
     [RequireComponent(typeof(CapsuleColliderUtilitiy))]
-    public class Player : MonoBehaviour
+    public class Player : MonoBehaviour, IDataPersistence
     {
         [field: Header("References")]
         [field: SerializeField] public PlayerSO Data { get; private set; }
@@ -32,8 +32,8 @@ namespace Movement
 
         public PlayerInputs Inputs { get; private set; }
         public CapsuleColliderUtilitiy ColliderUtilitiy { get; private set; }
+        public CheckData CheckData { get; private set; }
         public Transform playerCamera { get; private set; }
-        public GameMaster gm { get; private set; }
         public PlayerMovementStateMachine movementStateMachine;
 
         private void Awake()
@@ -43,8 +43,8 @@ namespace Movement
             Animator = GetComponent<Animator>();
             Inputs = GetComponent<PlayerInputs>();
             ColliderUtilitiy = GetComponent<CapsuleColliderUtilitiy>();
+            CheckData = GetComponent<CheckData>();
             cinemachineImpulseSource = GetComponent<CinemachineImpulseSource>();
-            gm = GameObject.FindGameObjectWithTag("GM").GetComponent<GameMaster>();
 
             AnimationsData.Intialoze();
             playerCamera = Camera.main.transform;
@@ -55,7 +55,7 @@ namespace Movement
         {
             Cursor.lockState = CursorLockMode.Locked;
             Cursor.visible = false;
-            playerTransform = transform;
+            playerTransform = this.transform;
             movementStateMachine.ChangeState(movementStateMachine.IdleingState);
         }
         public void Die()
@@ -78,6 +78,7 @@ namespace Movement
         {
             Gizmos.DrawWireSphere(transform.position, 3f);
         }
+
 
         private void Update()
         {
@@ -124,6 +125,16 @@ namespace Movement
         public void OnMovementStateAnimationTransitionEvent()
         {
             movementStateMachine.OnAnimationTransitionEvent();
+        }
+
+        public void LoadData(GameData data)
+        {
+            this.transform.position = data.playerPosition;
+        }
+
+        public void SaveData(GameData data)
+        {
+            data.playerPosition = this.transform.position;
         }
     }
 }

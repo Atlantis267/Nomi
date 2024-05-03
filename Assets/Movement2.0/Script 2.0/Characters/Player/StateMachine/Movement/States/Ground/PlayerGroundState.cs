@@ -9,6 +9,7 @@ namespace Movement
     public class PlayerGroundState : PlayerMovementState
     {
         private Vector3 slopSlideVelocity;
+        private Vector3 groundgravity;
 
         public PlayerGroundState(PlayerMovementStateMachine playerMovementStateMachine) : base(playerMovementStateMachine)
         {
@@ -17,7 +18,6 @@ namespace Movement
         {
             base.Enter();
             UpdateShouldSprintState();
-
             StartAnimation(stateMachine.Player.AnimationsData.GroundstateHash);
         }
         public override void Exit()
@@ -38,6 +38,10 @@ namespace Movement
         {
             base.Update();
 
+            if (!IsGround())
+            {
+                Debug.Log("not ISGROUND");
+            }
 
             OnSliding();
 
@@ -50,11 +54,16 @@ namespace Movement
         {
             if (!stateMachine.ReusableData.IsSliding)
             {
-                if (IsGround())
+                if (!IsGround())
                 {
                     float amountToLift = stateMachine.ReusableData.GroundedGravity;
-                    stateMachine.ReusableData.VerticalVelocity = amountToLift;
-                    Vector3 liftForce = new Vector3(0f, amountToLift, 0f);
+                    stateMachine.ReusableData.VerticalVelocity += amountToLift * Time.deltaTime;
+                    groundgravity = new Vector3(0.0f, stateMachine.ReusableData.VerticalVelocity, 0.0f);
+                    stateMachine.Player.CharacterController.Move(groundgravity);
+                }
+                else
+                {
+                    stateMachine.ReusableData.VerticalVelocity = stateMachine.ReusableData.GroundedGravity * Time.deltaTime;
                 }
             }
         }

@@ -182,7 +182,7 @@ Transform:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 7112370571658760877}
-  m_LocalRotation: {x: 0.19611613, y: 1e-45, z: -0, w: 0.9805807}
+  m_LocalRotation: {x: 0.19611613, y: -0, z: -0, w: 0.9805807}
   m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
@@ -378,6 +378,7 @@ GameObject:
   - component: {fileID: 7112370571980725000}
   - component: {fileID: 7112370571980725001}
   - component: {fileID: 7112370571980725002}
+  - component: {fileID: 1720211690}
   - component: {fileID: 7112370571980725003}
   - component: {fileID: 7112370571980725236}
   m_Layer: 0
@@ -394,7 +395,7 @@ Transform:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 7112370571980725238}
-  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
   m_LocalPosition: {x: -12.9, y: 25, z: -32.26}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
@@ -467,10 +468,10 @@ MonoBehaviour:
   <LayerData>k__BackingField:
     <GroundLayer>k__BackingField:
       serializedVersion: 2
-      m_Bits: 439
-    <StarLayer>k__BackingField:
+      m_Bits: 37303
+    <JumpPadsLayer>k__BackingField:
       serializedVersion: 2
-      m_Bits: 512
+      m_Bits: 32768
     <WallLayer>k__BackingField:
       serializedVersion: 2
       m_Bits: 128
@@ -545,10 +546,24 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: c88ec686c8e9bd149ac47652b1edacba, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  boostAmount: 0
+  boostAmount: 0.5
   boostDrainSpeed: 0.1
   boostGainAmount: 0.3
   boostSlider: {fileID: 0}
+--- !u!114 &1720211690
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 7112370571980725238}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: a4e042ca9aa187c40a85c0bf33a19a8e, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  LastPointPos: {x: 0, y: 0, z: 0}
+  LastPointRotate: {x: 0, y: 0, z: 0}
 --- !u!114 &7112370571980725003
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -646,7 +661,7 @@ Transform:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 7112370572449219168}
-  m_LocalRotation: {x: 0.033407446, y: 0.000000002149597, z: -7.1852656e-11, w: 0.99944186}
+  m_LocalRotation: {x: 0.03340745, y: 0.0000000021495974, z: -7.185268e-11, w: 0.99944186}
   m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
@@ -724,7 +739,7 @@ Transform:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 7112370572467907082}
-  m_LocalRotation: {x: -0.018807255, y: 0.0000000032326632, z: 6.080828e-11, w: 0.99982315}
+  m_LocalRotation: {x: -0.018807257, y: 0.0000000032221097, z: 6.060977e-11, w: 0.99982315}
   m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0

@@ -35,10 +35,6 @@ namespace Movement
         {
             stateMachine.Player.Inputs.PlayerActions.Movement.Enable();
         }
-        public override void OnAnimationTransitionEvent()
-        {
-            stateMachine.ChangeState(stateMachine.IdleingState);
-        }
         #endregion
         #region Reusable Methods
         protected override void AddInputActionCallback()
@@ -59,6 +55,10 @@ namespace Movement
                 return;
             }
             stateMachine.ChangeState(stateMachine.RunningState);
+        }
+        public override void OnAnimationTransitionEvent()
+        {
+            stateMachine.ChangeState(stateMachine.IdleingState);
         }
         #endregion
         #region Input Methods
