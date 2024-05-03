@@ -597,6 +597,11 @@ PrefabInstance:
     m_Modifications:
     - target: {fileID: 7839754765271705994, guid: 720e5717281de5744b200151ce161d63,
         type: 3}
+      propertyPath: fileName
+      value: data.game
+      objectReference: {fileID: 0}
+    - target: {fileID: 7839754765271705994, guid: 720e5717281de5744b200151ce161d63,
+        type: 3}
       propertyPath: _loadingBar
       value: 
       objectReference: {fileID: 0}
@@ -2287,7 +2292,7 @@ PrefabInstance:
     - target: {fileID: 8162912036465366743, guid: 463f0b2b235aa774daacb0d073d56bd3,
         type: 3}
       propertyPath: profileId
-      value: test
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 8162912036465366764, guid: 463f0b2b235aa774daacb0d073d56bd3,
         type: 3}
