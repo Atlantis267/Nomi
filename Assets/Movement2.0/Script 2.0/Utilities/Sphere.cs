@@ -6,14 +6,16 @@ namespace Movement
 {
     public class Sphere : MonoBehaviour
     {
-        private void OnTriggerEnter(Collider other)
+        private void OnTriggerStay(Collider other)
         {
             BoostSystem playerboostsystem = other.GetComponent<BoostSystem>();
 
             if (playerboostsystem != null)
             {
-                playerboostsystem.AddToBoost();
-                gameObject.SetActive(false);
+                if (Input.GetKeyDown("f"))
+                {
+                    playerboostsystem.AddToBoost();
+                }              
             }
         }
     }

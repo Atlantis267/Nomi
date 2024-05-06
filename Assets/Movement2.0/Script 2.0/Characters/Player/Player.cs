@@ -6,7 +6,7 @@ namespace Movement
 {
     [RequireComponent(typeof(PlayerInputs))]
     [RequireComponent(typeof(CapsuleColliderUtilitiy))]
-    public class Player : MonoBehaviour, IDataPersistence
+    public class Player : MonoBehaviour
     {
         [field: Header("References")]
         [field: SerializeField] public PlayerSO Data { get; private set; }
@@ -125,16 +125,6 @@ namespace Movement
         public void OnMovementStateAnimationTransitionEvent()
         {
             movementStateMachine.OnAnimationTransitionEvent();
-        }
-
-        public void LoadData(GameData data)
-        {
-            this.transform.position = data.playerPosition;
-        }
-
-        public void SaveData(GameData data)
-        {
-            data.playerPosition = this.transform.position;
         }
     }
 }

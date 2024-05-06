@@ -17,6 +17,9 @@ namespace Movement
         [Header("Sences to Load")]
         [SerializeField] private SceneField _loadingScene;
 
+        [Header("Confirmation Popup")]
+        [SerializeField] private ConfirmationPopupMenu confirmationPopupMenu;
+
         private SaveSlot[] saveSlots;
 
         private bool isLoadingGame = false;
@@ -33,15 +36,57 @@ namespace Movement
         public void OnSaveSlotClicked(SaveSlot saveSlot)
         {
             DisableMenuButtons();
-            this.DeactivateMenu();
-            DataPersistenceManager.instance.ChangeSelectedProfileId(saveSlot.GetProfileId());
-
-            Debug.Log("New Dame");
-            if (!isLoadingGame)
+            if (isLoadingGame)
             {
-                DataPersistenceManager.instance.NewGame();
+                DataPersistenceManager.instance.ChangeSelectedProfileId(saveSlot.GetProfileId());
+                SaveGameAndLoadScene();
             }
+            else if (saveSlot.hasData)
+            {
+                confirmationPopupMenu.ActivateMenu(
+                     "Starting a New Game with this slot will override the currently saved data. Are you sure?",
+                      () => 
+                      {
+                          DataPersistenceManager.instance.ChangeSelectedProfileId(saveSlot.GetProfileId());
+                          DataPersistenceManager.instance.NewGame();
+                          SaveGameAndLoadScene();
+                      },
+                      () =>
+                      {
+                          this.ActivateMenu(isLoadingGame);
+                      }
+                );
+            }
+            else
+            {
+                DataPersistenceManager.instance.ChangeSelectedProfileId(saveSlot.GetProfileId());
+                DataPersistenceManager.instance.NewGame();
+                SaveGameAndLoadScene();
+            }
+        }
+        private void SaveGameAndLoadScene()
+        {
+            DataPersistenceManager.instance.SaveGame();
             SceneManager.LoadSceneAsync(_loadingScene);
+        }
+        public void OnClearClicked(SaveSlot saveSlot)
+        {
+            DisableMenuButtons();
+
+            confirmationPopupMenu.ActivateMenu
+                (
+                 "Are you sure you want to delete this saved data?",
+                 () => 
+                 {
+                     DataPersistenceManager.instance.DeleteProfileData(saveSlot.GetProfileId());
+                     ActivateMenu(isLoadingGame);
+                 },
+                 // function to execute if we select 'cancel'
+                 () =>
+                 {
+                     ActivateMenu(isLoadingGame);
+                 }
+                );
         }
         public void ActivateMenu(bool isLoadingGame)
         {

@@ -13,8 +13,9 @@ namespace Movement
 
 
         [Header("Main Meau Object")]
-        [SerializeField] private Button _continueGameButton;
-        [SerializeField] private Button _loadGameButton;
+        [SerializeField] private Button newGameButton;
+        [SerializeField] private Button continueGameButton;
+        [SerializeField] private Button loadGameButton;
 
 
         [Header("Sences to Load")]
@@ -22,10 +23,14 @@ namespace Movement
 
         private void Start()
         {
+            DisableButtonsDependingOnData();
+        }
+        private void DisableButtonsDependingOnData()
+        {
             if (!DataPersistenceManager.instance.HasGameData())
             {
-                _continueGameButton.interactable = false;
-                _loadGameButton.interactable = false;
+                continueGameButton.interactable = false;
+                loadGameButton.interactable = false;
             }
         }
         public void OnNewGameClicked()
@@ -42,14 +47,19 @@ namespace Movement
         }
         public void OnContinueGameClicked()
         {
-            Debug.Log("Continoue");
-            this.DeactivateMenu();
+            DisableMenuButtons();
             DataPersistenceManager.instance.SaveGame();
             SceneManager.LoadSceneAsync(_loadingScene);
+        }
+        private void DisableMenuButtons()
+        {
+            newGameButton.interactable = false;
+            continueGameButton.interactable = false;
         }
         public void ActivateMenu()
         {
             this.gameObject.SetActive(true);
+            DisableButtonsDependingOnData();
         }
 
         public void DeactivateMenu()

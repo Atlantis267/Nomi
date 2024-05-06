@@ -17,6 +17,11 @@ namespace Movement
         [SerializeField] private TextMeshProUGUI percentageCompleteText;
         [SerializeField] private TextMeshProUGUI playerCountText;
 
+        [Header("Clear Data Button")]
+        [SerializeField] private Button clearButton;
+
+        public bool hasData { get; private set; } = false;
+
         private Button saveSlotButton;
 
         private void Awake()
@@ -29,14 +34,18 @@ namespace Movement
         {
             if (data == null)
             {
+                hasData = false;
                 noDataContent.SetActive(true);
                 hasDataContent.SetActive(false);
+                clearButton.gameObject.SetActive(false);
             }
             // there is data for this profileId
             else
             {
+                hasData = true;
                 noDataContent.SetActive(false);
                 hasDataContent.SetActive(true);
+                clearButton.gameObject.SetActive(true);
 
                 percentageCompleteText.text = data.GetPercentageComplete() + "% COMPLETE";
                 playerCountText.text = "LEVEL COUNT: " + data.playercount;
@@ -49,6 +58,7 @@ namespace Movement
         public void SetInteractable(bool interactable)
         {
             saveSlotButton.interactable = interactable;
+            clearButton.interactable = interactable;
         }
     }
 }

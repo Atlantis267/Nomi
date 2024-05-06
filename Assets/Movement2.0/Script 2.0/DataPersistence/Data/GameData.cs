@@ -1,7 +1,6 @@
 using System;
 using System.Collections.Generic;
 using UnityEngine;
-using UnityEngine.UI;
 
 namespace Movement
 {
@@ -21,7 +20,7 @@ namespace Movement
         public GameData()
         {
             this.playercount = 0;
-            playerPosition = new Vector3(-10f, 0f, -40f);
+            playerPosition = Vector3.zero;
             lastCheckPointPos = Vector3.zero;
             lastCheckPointRotate = Vector3.zero;
 

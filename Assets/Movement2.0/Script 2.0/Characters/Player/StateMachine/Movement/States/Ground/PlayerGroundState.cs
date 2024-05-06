@@ -38,10 +38,10 @@ namespace Movement
         {
             base.Update();
 
-            if (!IsGround())
-            {
-                Debug.Log("not ISGROUND");
-            }
+            //if (!IsGround())
+            //{
+            //    Debug.Log("not ISGROUND");
+            //}
 
             OnSliding();
 

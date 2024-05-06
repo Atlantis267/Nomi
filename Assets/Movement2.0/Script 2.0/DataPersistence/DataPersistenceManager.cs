@@ -24,16 +24,19 @@ namespace Movement
         [Header("Auto Saving Configuration")]
         [SerializeField] private float autoSaveTimeSeconds = 60f;
 
+        public GameData gameData;
         private List<IDataPersistence> dataPersistenceObjects;
+        private FileDataHandler dataHandler;
+
+
         private string selectedProfileId = "";
 
 
         private Coroutine autoSaveCoroutine;
-        private FileDataHandler dataHandler;
 
 
         public static DataPersistenceManager instance { get; private set; }
-        public GameData gameData;
+
 
 
         private void Awake()
@@ -54,13 +57,7 @@ namespace Movement
 
             this.dataHandler = new FileDataHandler(Application.persistentDataPath, fileName, useEncryption);
 
-            this.selectedProfileId = dataHandler.GetMostRecentlyUpdatedProfileId();
-
-            if (overrideSelectedProfileId)
-            {
-                this.selectedProfileId = testSelectedProfileId;
-                Debug.LogWarning("Overrode selected profile id with test id: " + testSelectedProfileId);
-            }
+            InitializeSelectedProfileId();
         }
         private void OnEnable()
         {
@@ -87,6 +84,23 @@ namespace Movement
             this.selectedProfileId = newProfileId;
             LoadGame();
         }
+        public void DeleteProfileData(string profileId)
+        {
+            dataHandler.Delete(profileId);
+
+            InitializeSelectedProfileId();
+
+            LoadGame();
+        }
+        private void InitializeSelectedProfileId()
+        {
+            this.selectedProfileId = dataHandler.GetMostRecentlyUpdatedProfileId();
+            if (overrideSelectedProfileId)
+            {
+                this.selectedProfileId = testSelectedProfileId;
+                Debug.LogWarning("Overrode selected profile id with test id: " + testSelectedProfileId);
+            }
+        }
         public void NewGame()
         {
             this.gameData = new GameData();
@@ -98,7 +112,6 @@ namespace Movement
             {
                 return;
             }
-
             this.gameData = dataHandler.Load(selectedProfileId);
 
             if (this.gameData == null && initializeDataIfNull)
@@ -111,6 +124,7 @@ namespace Movement
                 Debug.Log("No data was found. A New Game needs to be started before data can be loaded.");
                 return;
             }
+
             foreach (IDataPersistence dataPersistenceObj in dataPersistenceObjects)
             {
                 dataPersistenceObj.LoadData(gameData);
