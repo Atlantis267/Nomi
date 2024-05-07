@@ -11,7 +11,7 @@ namespace Movement
         public float boostAmount;
         [Header("Parameters")]
         [SerializeField] float boostDrainSpeed = .1f;
-        [SerializeField] float boostGainAmount = .3f;
+        [SerializeField] float boostGainAmount = .2f;
 
 
         [Header("UI")]
@@ -33,6 +33,7 @@ namespace Movement
             if (player.movementStateMachine.ReusableData.IsAirDashing || player.movementStateMachine.ReusableData.IsDashing || player.movementStateMachine.ReusableData.IsSprinting)
             {
                 boostAmount -= boostDrainSpeed * Time.deltaTime;
+                boostAmount = Mathf.Clamp(boostAmount, 0, 1);
             }
             if (boostAmount <= 0.005f)
             {
@@ -53,8 +54,8 @@ namespace Movement
         }
         public void AddToBoost()
         {
-            float total = boostAmount + boostGainAmount;
-            boostAmount = Mathf.Clamp(boostAmount + boostGainAmount, 0, 1);
+            boostAmount += boostGainAmount * Time.deltaTime;
+            boostAmount = Mathf.Clamp(boostAmount, 0, 1);
         }
     }
 

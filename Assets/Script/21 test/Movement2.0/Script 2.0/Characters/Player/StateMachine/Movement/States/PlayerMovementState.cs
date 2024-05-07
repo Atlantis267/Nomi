@@ -286,7 +286,7 @@ namespace Movement
             stateMachine.Player.Inputs.PlayerActions.WalkToggle.started -= OnWalkToggleStarted;
 
             stateMachine.Player.Inputs.PlayerActions.Suisei.started -= OnSuiseiStrated;
-            stateMachine.Player.Inputs.PlayerActions.Suisei.started -= OnSuiseiStrated;
+            stateMachine.Player.Inputs.PlayerActions.Suisei.started -= OnSuiSeiCanceled;
         }
         protected void DelcelerateHorizontally()
         {
