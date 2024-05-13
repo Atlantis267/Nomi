@@ -26,7 +26,7 @@ RenderSettings:
   m_AmbientIntensity: 1
   m_AmbientMode: 0
   m_SubtractiveShadowColor: {r: 0.42, g: 0.478, b: 0.627, a: 1}
-  m_SkyboxMaterial: {fileID: 10304, guid: 0000000000000000f000000000000000, type: 0}
+  m_SkyboxMaterial: {fileID: 2100000, guid: 737024f24a4498b4ea58a67c1667a3db, type: 2}
   m_HaloStrength: 0.5
   m_FlareStrength: 1
   m_FlareFadeSpeed: 3
@@ -38,7 +38,7 @@ RenderSettings:
   m_ReflectionIntensity: 1
   m_CustomReflection: {fileID: 0}
   m_Sun: {fileID: 0}
-  m_IndirectSpecularColor: {r: 0.12731749, g: 0.13414757, b: 0.1210787, a: 1}
+  m_IndirectSpecularColor: {r: 0.022107633, g: 0.011648666, b: 0.019674858, a: 1}
   m_UseRadianceAmbientProbe: 0
 --- !u!157 &3
 LightmapSettings:
@@ -600,8 +600,8 @@ MonoBehaviour:
         guid: ce071e2dc9b50674e936128c583279f0
       SceneType: 5
     - Reference:
-        asset: {fileID: 102900000, guid: b7aa36c6427d1ce499bbffa9c4f9dd5b, type: 3}
-        guid: b7aa36c6427d1ce499bbffa9c4f9dd5b
+        asset: {fileID: 102900000, guid: c62469e7cea463f40b323cd5d10d7735, type: 3}
+        guid: c62469e7cea463f40b323cd5d10d7735
       SceneType: 5
   - GroupName: LevelTwo
     Scenes:

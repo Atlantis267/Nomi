@@ -51,6 +51,14 @@ namespace Movement
             DataPersistenceManager.instance.SaveGame();
             SceneManager.LoadSceneAsync(_loadingScene);
         }
+        public void OnQuitClicked()
+        {
+#if UNITY_EDITOR
+            UnityEditor.EditorApplication.isPlaying = false;
+#else
+            Application.Quit();
+#endif
+        }
         private void DisableMenuButtons()
         {
             newGameButton.interactable = false;
