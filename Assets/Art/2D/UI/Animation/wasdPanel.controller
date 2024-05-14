@@ -14,7 +14,7 @@ AnimatorStateMachine:
     m_Position: {x: 310, y: 50, z: 0}
   - serializedVersion: 1
     m_State: {fileID: -789227533637450404}
-    m_Position: {x: 330, y: 140, z: 0}
+    m_Position: {x: 280, y: 140, z: 0}
   m_ChildStateMachines: []
   m_AnyStateTransitions: []
   m_EntryTransitions: []
@@ -61,7 +61,7 @@ AnimatorStateTransition:
   m_Name: 
   m_Conditions:
   - m_ConditionMode: 1
-    m_ConditionEvent: PanelD
+    m_ConditionEvent: PD
     m_EventTreshold: 0
   m_DstStateMachine: {fileID: 0}
   m_DstState: {fileID: -789227533637450404}
@@ -112,7 +112,7 @@ AnimatorController:
   m_Name: wasdPanel
   serializedVersion: 5
   m_AnimatorParameters:
-  - m_Name: PanelD
+  - m_Name: PD
     m_Type: 9
     m_DefaultFloat: 0
     m_DefaultInt: 0
