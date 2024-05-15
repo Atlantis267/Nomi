@@ -50396,12 +50396,12 @@ PrefabInstance:
     - target: {fileID: 2054199627597927343, guid: 966c2fa7903c8e24aaa6e9f36a061f51,
         type: 3}
       propertyPath: m_LocalRotation.y
-      value: 0.0000000021495974
+      value: 0.0000000021496247
       objectReference: {fileID: 0}
     - target: {fileID: 2054199627597927343, guid: 966c2fa7903c8e24aaa6e9f36a061f51,
         type: 3}
       propertyPath: m_LocalRotation.z
-      value: -7.185267e-11
+      value: -7.1853586e-11
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 966c2fa7903c8e24aaa6e9f36a061f51, type: 3}
@@ -51118,8 +51118,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: d788eeaaa29ac3e4ea491c2072cb864c, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  shiftAnime: {fileID: 0}
-  panelAnime: {fileID: 0}
+  Shift: {fileID: 1957126934}
+  ShiftPanel: {fileID: 1622084803}
 --- !u!1 &1038396519 stripped
 GameObject:
   m_CorrespondingSourceObject: {fileID: 919132149155446097, guid: c2a95423b139c684886a804e99dd75bb,
@@ -91513,12 +91513,12 @@ PrefabInstance:
     - target: {fileID: 7112370571658760867, guid: 31461dacaaf460148a0c5f56d2536866,
         type: 3}
       propertyPath: m_LocalRotation.y
-      value: -0
+      value: -9.610139e-37
       objectReference: {fileID: 0}
     - target: {fileID: 7112370571658760867, guid: 31461dacaaf460148a0c5f56d2536866,
         type: 3}
       propertyPath: m_LocalRotation.z
-      value: -0
+      value: 8.918678e-38
       objectReference: {fileID: 0}
     - target: {fileID: 7112370571793614672, guid: 31461dacaaf460148a0c5f56d2536866,
         type: 3}
@@ -91628,12 +91628,12 @@ PrefabInstance:
     - target: {fileID: 7112370572449219174, guid: 31461dacaaf460148a0c5f56d2536866,
         type: 3}
       propertyPath: m_LocalRotation.y
-      value: 0.000000002149597
+      value: 0.0000000021496245
       objectReference: {fileID: 0}
     - target: {fileID: 7112370572449219174, guid: 31461dacaaf460148a0c5f56d2536866,
         type: 3}
       propertyPath: m_LocalRotation.z
-      value: -7.1852656e-11
+      value: -7.1853586e-11
       objectReference: {fileID: 0}
     - target: {fileID: 7112370572467907080, guid: 31461dacaaf460148a0c5f56d2536866,
         type: 3}
@@ -91643,17 +91643,17 @@ PrefabInstance:
     - target: {fileID: 7112370572467907080, guid: 31461dacaaf460148a0c5f56d2536866,
         type: 3}
       propertyPath: m_LocalRotation.x
-      value: -0.018807262
+      value: -0.018807258
       objectReference: {fileID: 0}
     - target: {fileID: 7112370572467907080, guid: 31461dacaaf460148a0c5f56d2536866,
         type: 3}
       propertyPath: m_LocalRotation.y
-      value: 0.0000000018623159
+      value: -4.994779e-10
       objectReference: {fileID: 0}
     - target: {fileID: 7112370572467907080, guid: 31461dacaaf460148a0c5f56d2536866,
         type: 3}
       propertyPath: m_LocalRotation.z
-      value: 3.503126e-11
+      value: -9.39547e-12
       objectReference: {fileID: 0}
     - target: {fileID: 7112370572674216028, guid: 31461dacaaf460148a0c5f56d2536866,
         type: 3}
@@ -98471,6 +98471,7 @@ GameObject:
   - component: {fileID: 1957126937}
   - component: {fileID: 1957126936}
   - component: {fileID: 1957126938}
+  - component: {fileID: 1957126939}
   m_Layer: 5
   m_Name: Shift
   m_TagString: Untagged
@@ -98557,6 +98558,18 @@ Animator:
   m_AllowConstantClipSamplingOptimization: 1
   m_KeepAnimatorStateOnDisable: 0
   m_WriteDefaultValuesOnDisable: 0
+--- !u!114 &1957126939
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1957126934}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 340455d655507234683e2ef95e679fb2, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!4 &1958512031 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: 8822026444824302974, guid: 7ec252a5a066bd44d800b54c6bf6186a,
@@ -108578,7 +108591,7 @@ PrefabInstance:
     - target: {fileID: 3752360939964088140, guid: 01a49c131e185d4488a3f80ca2dba9db,
         type: 3}
       propertyPath: m_IsActive
-      value: 0
+      value: 1
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 01a49c131e185d4488a3f80ca2dba9db, type: 3}
