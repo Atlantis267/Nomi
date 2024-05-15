@@ -5,18 +5,28 @@ using UnityEngine;
 public class PanelD : MonoBehaviour
 {
     private Animator animator;
-    // Start is called before the first frame update
+    public Animator shiftAnime;
+    public Animator panelAnime;
+    private float waitToShift = 5.0f;
     void Start()
     {
         animator = gameObject.GetComponent<Animator>();
+        //shiftAnime = GameObject.Find("Shift").GetComponent<Animator>();
+        //panelAnime = GameObject.Find("ShiftPanel").GetComponent<Animator>();
     }
 
-    // Update is called once per frame
     void Update()
     {
-        if(Input.GetKeyDown(KeyCode.W) && Input.GetKeyDown(KeyCode.A) && Input.GetKeyDown(KeyCode.S) && Input.GetKeyDown(KeyCode.D)) 
+        if(W.isWpress && A.isApress && S.isSpress && D.isDpress) 
         {
-            animator.SetTrigger("PD");
+           
         }
+    }
+    IEnumerator WaitTime()
+    {
+        animator.SetTrigger("PD");
+        yield return new WaitForSeconds(waitToShift);
+        //panelAnime.SetTrigger();
+        //shiftAnime.SetTrigger();
     }
 }
