@@ -18,7 +18,7 @@ public class Shift : MonoBehaviour
     }
     private void Update()
     {
-        if (Input.GetKeyUp(KeyCode.E))
+        if (Input.GetKeyUp(KeyCode.E) && W.isWpress && A.isApress && S.isSpress && D.isDpress)
         {  
             panelAnime.SetTrigger("StartSP");
             w_1transAnime.SetTrigger("StartW_1");
