@@ -1180,7 +1180,7 @@ GameObject:
   m_Component:
   - component: {fileID: 257188115}
   m_Layer: 0
-  m_Name: GameObject
+  m_Name: Portal3
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -1198,9 +1198,10 @@ Transform:
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children:
+  - {fileID: 1172791087}
   - {fileID: 631737703}
   m_Father: {fileID: 0}
-  m_RootOrder: 20
+  m_RootOrder: 19
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &267868130
 GameObject:
@@ -2590,7 +2591,7 @@ Transform:
   m_Children:
   - {fileID: 1334840965}
   m_Father: {fileID: 0}
-  m_RootOrder: 21
+  m_RootOrder: 20
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &607243825
 GameObject:
@@ -2714,7 +2715,7 @@ PrefabInstance:
     - target: {fileID: -8679921383154817045, guid: bc3d04cd155006c4c99dd0de89872c4e,
         type: 3}
       propertyPath: m_RootOrder
-      value: 0
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: -8679921383154817045, guid: bc3d04cd155006c4c99dd0de89872c4e,
         type: 3}
@@ -5862,7 +5863,7 @@ GameObject:
   - component: {fileID: 1172791085}
   - component: {fileID: 1172791084}
   m_Layer: 0
-  m_Name: Quad
+  m_Name: Portal2
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -5939,13 +5940,13 @@ Transform:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1172791083}
-  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 9.565649, y: 5.22, z: 13.409999}
+  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
+  m_LocalPosition: {x: 0.06564903, y: 0.21999979, z: 0.4099989}
   m_LocalScale: {x: 8.51864, y: 7.86336, z: 8.51864}
   m_ConstrainProportionsScale: 0
   m_Children: []
-  m_Father: {fileID: 0}
-  m_RootOrder: 19
+  m_Father: {fileID: 257188115}
+  m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &1188506779
 GameObject:
