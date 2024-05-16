@@ -8,7 +8,7 @@ public class Shift : MonoBehaviour
     private Animator panelAnime;
     static public bool isShiftPress;
     static public bool isW_1Press;
-    private float waitTime = 8.0f;
+    private float waitTime = 7.8f;
     void Start()
     {
         transAnime = gameObject.GetComponent<Animator>();
@@ -36,7 +36,7 @@ public class Shift : MonoBehaviour
         }
         if (isShiftPress && isW_1Press)
         {
-            panelAnime.SetTrigger("StartSP");
+            panelAnime.SetTrigger("SPD");
         }
     }
     IEnumerator WaitTime() 
