@@ -8,7 +8,7 @@ public class Shift : MonoBehaviour
     private Animator panelAnime;
     static public bool isShiftPress;
     static public bool isW_1Press;
-    private float waitTime = 8.0f;
+    private float waitTime = 7.5f;
     void Start()
     {
         transAnime = gameObject.GetComponent<Animator>();
@@ -39,9 +39,11 @@ public class Shift : MonoBehaviour
             panelAnime.SetTrigger("SPD");
         }
     }
+    
     IEnumerator WaitTime() 
     {
         yield return new WaitForSeconds(waitTime);
         w_1transAnime.SetTrigger("W_1D");
     }
+    
 }

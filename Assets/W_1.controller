@@ -60,13 +60,13 @@ AnimatorController:
   m_Name: W_1
   serializedVersion: 5
   m_AnimatorParameters:
-  - m_Name: W_1D
+  - m_Name: StartW_1
     m_Type: 9
     m_DefaultFloat: 0
     m_DefaultInt: 0
     m_DefaultBool: 0
     m_Controller: {fileID: 0}
-  - m_Name: StartW_1
+  - m_Name: W_1D
     m_Type: 9
     m_DefaultFloat: 0
     m_DefaultInt: 0
@@ -96,10 +96,10 @@ AnimatorStateMachine:
   m_ChildStates:
   - serializedVersion: 1
     m_State: {fileID: 6490496211698549045}
-    m_Position: {x: 330, y: 60, z: 0}
+    m_Position: {x: 380, y: 80, z: 0}
   - serializedVersion: 1
     m_State: {fileID: -3205060135470224146}
-    m_Position: {x: 320, y: 140, z: 0}
+    m_Position: {x: 360, y: 170, z: 0}
   - serializedVersion: 1
     m_State: {fileID: 7534533175336611565}
     m_Position: {x: 380, y: -10, z: 0}
