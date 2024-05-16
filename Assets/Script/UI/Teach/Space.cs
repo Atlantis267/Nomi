@@ -6,11 +6,15 @@ public class Space : MonoBehaviour
 {
     private Animator transAnime;
     private Animator spPAnime;
+    static public bool isSpacePress;
+    private bool isFirstPress = true;
     private float waitTime = 8.0f;
+    private float waitJumpTime = 0.5f;
     void Start()
     {
         transAnime = gameObject.GetComponent<Animator>();
         spPAnime = GameObject.Find("SpacePanel").GetComponent<Animator>();
+        isSpacePress = false;
     }
 
     
@@ -22,14 +26,21 @@ public class Space : MonoBehaviour
         }
         if (Input.GetKeyDown(KeyCode.Space))
         {
-            Time.timeScale = 0f;
+            isSpacePress = true;
 
-            if (Input.GetKeyDown(KeyCode.Space))
+            if (isFirstPress)
+            {
+                StartCoroutine(WaitJumpTime());
+                transAnime.SetTrigger("SSp_1");
+            }
+            else
             {
                 Time.timeScale = 1f;
                 transAnime.SetTrigger("SpD");
                 spPAnime.SetTrigger("SpPD");
             }
+
+            isFirstPress = !isFirstPress;
         }
     }
     IEnumerator WaitTime()
@@ -37,5 +48,10 @@ public class Space : MonoBehaviour
         yield return new WaitForSeconds(waitTime);
         transAnime.SetTrigger("StartSpace");
         spPAnime.SetTrigger("StartSpP");
+    }
+    IEnumerator WaitJumpTime()
+    {
+        yield return new WaitForSeconds(waitJumpTime);
+        Time.timeScale = 0f;
     }
 }
