@@ -13,7 +13,7 @@ public class Ctrl : MonoBehaviour
     {
         transAnime = gameObject.GetComponent<Animator>();
         cPAnime = GameObject.Find("CtrlPanel").GetComponent<Animator>();
-        w_2transAnime= GameObject.Find("W_2").GetComponent<Animator>();
+        //w_2transAnime= GameObject.Find("W_2").GetComponent<Animator>();
     }
 
 
@@ -23,6 +23,7 @@ public class Ctrl : MonoBehaviour
         {
             StartCoroutine(WaitTime());
         }
+        /*
         if (Input.GetKeyDown(KeyCode.W))
         {
             StartCoroutine(WaitW_2Time());
@@ -33,17 +34,18 @@ public class Ctrl : MonoBehaviour
             cPAnime.SetTrigger("CPD");
 
         }
+        */
     }
     IEnumerator WaitTime()
     {
         yield return new WaitForSeconds(waitTime);
         transAnime.SetTrigger("StartCA");
         cPAnime.SetTrigger("StartCP");
-        w_2transAnime.SetTrigger("StartW_2");
+        //w_2transAnime.SetTrigger("StartW_2");
     }
     IEnumerator WaitW_2Time()
     {
         yield return new WaitForSeconds(waitW_2Time);
-        w_2transAnime.SetTrigger("W_2D");
+        //w_2transAnime.SetTrigger("W_2D");
     }
 }

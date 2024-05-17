@@ -8,7 +8,7 @@ public class Shift : MonoBehaviour
     private Animator panelAnime;
     static public bool isShiftPress;
     static public bool isW_1Press;
-    private float waitTime = 7.5f;
+    private float waitTime = 8.0f;
     void Start()
     {
         transAnime = gameObject.GetComponent<Animator>();

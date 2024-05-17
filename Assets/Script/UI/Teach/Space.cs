@@ -10,6 +10,7 @@ public class Space : MonoBehaviour
     private bool isFirstPress = true;
     private float waitTime = 8.0f;
     private float waitJumpTime = 0.5f;
+    private float waitAnime = 2.0f;
     void Start()
     {
         transAnime = gameObject.GetComponent<Animator>();
@@ -38,6 +39,7 @@ public class Space : MonoBehaviour
                 Time.timeScale = 1f;
                 transAnime.SetTrigger("SpD");
                 spPAnime.SetTrigger("SpPD");
+                StartCoroutine(WaitAnime());
             }
 
             isFirstPress = !isFirstPress;
@@ -53,5 +55,10 @@ public class Space : MonoBehaviour
     {
         yield return new WaitForSeconds(waitJumpTime);
         Time.timeScale = 0f;
+    }
+    IEnumerator WaitAnime()
+    {
+        yield return new WaitForSeconds(waitAnime);
+        gameObject.SetActive(false);
     }
 }
