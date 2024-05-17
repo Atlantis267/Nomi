@@ -28,13 +28,13 @@ public class Ctrl : MonoBehaviour
         {
             StartCoroutine(WaitW_2Time());
         }
+        */
         if (Input.GetKeyDown(KeyCode.LeftControl))
         {
             transAnime.SetTrigger("CD");
             cPAnime.SetTrigger("CPD");
 
         }
-        */
     }
     IEnumerator WaitTime()
     {
