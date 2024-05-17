@@ -32,7 +32,7 @@ namespace Movement
             AddForceState();
             UpdateConsecutiveDashes();
             FeetTween();
-            Showbady(false);
+            //Showbady(false);
 
             startTime = Time.time;
 
@@ -48,7 +48,7 @@ namespace Movement
 
             SetBaseRotationData();
             ParticalStop();
-            Showbady(true);
+            //Showbady(true);
 
             StopAnimation(stateMachine.Player.AnimationsData.IsDashHash);
 
