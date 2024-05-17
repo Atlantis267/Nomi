@@ -7,7 +7,7 @@ public class PanelD : MonoBehaviour
     private Animator animator;
     //[SerializeField] private GameObject Shift;
     //[SerializeField] private GameObject ShiftPanel;
-    private float waitToShift = 5.0f;
+    //private float waitToShift = 5.0f;
     void Start()
     {
         animator = gameObject.GetComponent<Animator>();    }
