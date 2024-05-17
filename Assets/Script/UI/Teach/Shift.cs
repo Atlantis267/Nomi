@@ -8,7 +8,7 @@ public class Shift : MonoBehaviour
     private Animator panelAnime;
     static public bool isShiftPress;
     static public bool isW_1Press;
-    private float waitTime = 8.0f;
+    //private float waitTime = 8.0f;
     void Start()
     {
         transAnime = gameObject.GetComponent<Animator>();
@@ -29,9 +29,10 @@ public class Shift : MonoBehaviour
             transAnime.SetTrigger("SFD");
             isShiftPress = true;
         }
-        if (Input.GetKeyDown(KeyCode.W))
+        if (Input.GetKey(KeyCode.W) && isShiftPress)
         {
-            StartCoroutine(WaitTime());
+            //StartCoroutine(WaitTime());
+            w_1transAnime.SetTrigger("W_1D");
             isW_1Press = true;
         }
         if (isShiftPress && isW_1Press)
@@ -39,11 +40,11 @@ public class Shift : MonoBehaviour
             panelAnime.SetTrigger("SPD");
         }
     }
-    
+    /*
     IEnumerator WaitTime() 
     {
         yield return new WaitForSeconds(waitTime);
         w_1transAnime.SetTrigger("W_1D");
     }
-    
+    */
 }

@@ -8,8 +8,8 @@ public class Space : MonoBehaviour
     private Animator spPAnime;
     static public bool isSpacePress;
     private bool isFirstPress = true;
-    private float waitTime = 8.0f;
-    private float waitJumpTime = 0.5f;
+    private float waitTime = 5.0f;
+    private float waitJumpTime = 0.03f;
     private float waitAnime = 2.0f;
     void Start()
     {
