@@ -26,13 +26,14 @@ public class Shift : MonoBehaviour
         }
         if (Input.GetKeyDown(KeyCode.LeftShift))
         {
-            transAnime.SetTrigger("SFD");
+            //transAnime.SetTrigger("SFD");
             isShiftPress = true;
         }
         if (Input.GetKey(KeyCode.W) && isShiftPress)
         {
             //StartCoroutine(WaitTime());
             w_1transAnime.SetTrigger("W_1D");
+            transAnime.SetTrigger("SFD");
             isW_1Press = true;
         }
         if (isShiftPress && isW_1Press)

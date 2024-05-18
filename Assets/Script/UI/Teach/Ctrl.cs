@@ -7,13 +7,16 @@ public class Ctrl : MonoBehaviour
     private Animator transAnime;
     private Animator cPAnime;
     private Animator w_2transAnime;
-    private float waitTime = 8.0f;
-    private float waitW_2Time = 7.5f;
+    private bool isFristPress = true;
+    private float waitTime = 5.0f;
+    private float waitW_2Time = 0.5f;
+    static public bool isCtrlPress;
     void Start()
     {
         transAnime = gameObject.GetComponent<Animator>();
         cPAnime = GameObject.Find("CtrlPanel").GetComponent<Animator>();
-        //w_2transAnime= GameObject.Find("W_2").GetComponent<Animator>();
+        isCtrlPress = false;
+        w_2transAnime= GameObject.Find("W_2").GetComponent<Animator>();
     }
 
 
@@ -31,17 +34,32 @@ public class Ctrl : MonoBehaviour
         */
         if (Input.GetKeyDown(KeyCode.LeftControl))
         {
-            transAnime.SetTrigger("CD");
-            cPAnime.SetTrigger("CPD");
-
+            isCtrlPress = true;
+        }
+        if (Input.GetKey(KeyCode.W))
+        {
+            if (isCtrlPress)
+            {
+                w_2transAnime.SetTrigger("W_2D");
+                if (isFristPress)
+                {
+                    transAnime.SetTrigger("CF");
+                }
+                else
+                {
+                    transAnime.SetTrigger("CD");
+                    cPAnime.SetTrigger("CPD");
+                }
+                isFristPress = !isFristPress;
+            }
         }
     }
     IEnumerator WaitTime()
     {
         yield return new WaitForSeconds(waitTime);
+        w_2transAnime.SetTrigger("StartW_2");
         transAnime.SetTrigger("StartCA");
         cPAnime.SetTrigger("StartCP");
-        //w_2transAnime.SetTrigger("StartW_2");
     }
     IEnumerator WaitW_2Time()
     {
