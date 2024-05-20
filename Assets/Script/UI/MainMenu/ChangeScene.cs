@@ -8,6 +8,7 @@ public class ChangeScene : MonoBehaviour
 {
     [SerializeField] private Animator flowerAnime;
     [SerializeField] private Animator transAnime;
+    [SerializeField] private GameObject Information;
     private float transWaitTime = 1.0f;
     private float transWaitTime2 = 1.8f;
     void Awake()

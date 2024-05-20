@@ -318,46 +318,11 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 0}
     m_Modifications:
-    - target: {fileID: 868315245237892631, guid: 31461dacaaf460148a0c5f56d2536866,
-        type: 3}
-      propertyPath: m_Materials.Array.data[0]
-      value: 
-      objectReference: {fileID: 2100000, guid: 3310d581e3e7fc746a9839c2eef78d4b, type: 2}
-    - target: {fileID: 868315245237892631, guid: 31461dacaaf460148a0c5f56d2536866,
-        type: 3}
-      propertyPath: m_Materials.Array.data[1]
-      value: 
-      objectReference: {fileID: 2100000, guid: 7f218be35701a1c47880d86205f4d6a3, type: 2}
-    - target: {fileID: 2698897125516875412, guid: 31461dacaaf460148a0c5f56d2536866,
-        type: 3}
-      propertyPath: m_Enabled
-      value: 1
-      objectReference: {fileID: 0}
-    - target: {fileID: 2698897125516875412, guid: 31461dacaaf460148a0c5f56d2536866,
-        type: 3}
-      propertyPath: m_Materials.Array.data[0]
-      value: 
-      objectReference: {fileID: 2100000, guid: 7f218be35701a1c47880d86205f4d6a3, type: 2}
-    - target: {fileID: 4847889968393652213, guid: 31461dacaaf460148a0c5f56d2536866,
-        type: 3}
-      propertyPath: m_Materials.Array.data[0]
-      value: 
-      objectReference: {fileID: 2100000, guid: 3310d581e3e7fc746a9839c2eef78d4b, type: 2}
-    - target: {fileID: 7112370571265794488, guid: 31461dacaaf460148a0c5f56d2536866,
-        type: 3}
-      propertyPath: m_IsActive
-      value: 0
-      objectReference: {fileID: 0}
     - target: {fileID: 7112370571980725002, guid: 31461dacaaf460148a0c5f56d2536866,
         type: 3}
       propertyPath: boostSlider
       value: 
       objectReference: {fileID: 1072618907}
-    - target: {fileID: 7112370571980725005, guid: 31461dacaaf460148a0c5f56d2536866,
-        type: 3}
-      propertyPath: m_Avatar
-      value: 
-      objectReference: {fileID: 9000000, guid: f479c428d17fc424c9641e700b61e248, type: 3}
     - target: {fileID: 7112370571980725007, guid: 31461dacaaf460148a0c5f56d2536866,
         type: 3}
       propertyPath: <UIData>k__BackingField.<boostSlider>k__BackingField
@@ -368,11 +333,6 @@ PrefabInstance:
       propertyPath: <ParticalData>k__BackingField.<CameraParticle>k__BackingField
       value: 
       objectReference: {fileID: 2047099782}
-    - target: {fileID: 7112370571980725007, guid: 31461dacaaf460148a0c5f56d2536866,
-        type: 3}
-      propertyPath: <LayerData>k__BackingField.<GroundLayer>k__BackingField.m_Bits
-      value: 50623
-      objectReference: {fileID: 0}
     - target: {fileID: 7112370571980725237, guid: 31461dacaaf460148a0c5f56d2536866,
         type: 3}
       propertyPath: m_RootOrder
@@ -446,47 +406,17 @@ PrefabInstance:
     - target: {fileID: 7112370572467907080, guid: 31461dacaaf460148a0c5f56d2536866,
         type: 3}
       propertyPath: m_LocalRotation.x
-      value: -0.01880726
+      value: -0.018807262
       objectReference: {fileID: 0}
     - target: {fileID: 7112370572467907080, guid: 31461dacaaf460148a0c5f56d2536866,
         type: 3}
       propertyPath: m_LocalRotation.y
-      value: 8.2456315e-17
+      value: 0.0000000018623159
       objectReference: {fileID: 0}
     - target: {fileID: 7112370572467907080, guid: 31461dacaaf460148a0c5f56d2536866,
         type: 3}
       propertyPath: m_LocalRotation.z
-      value: 1.1287082e-18
-      objectReference: {fileID: 0}
-    - target: {fileID: 7112370573124216178, guid: 31461dacaaf460148a0c5f56d2536866,
-        type: 3}
-      propertyPath: m_Orbits.Array.data[0].m_Height
-      value: 5
-      objectReference: {fileID: 0}
-    - target: {fileID: 7112370573124216178, guid: 31461dacaaf460148a0c5f56d2536866,
-        type: 3}
-      propertyPath: m_Orbits.Array.data[0].m_Radius
-      value: 10
-      objectReference: {fileID: 0}
-    - target: {fileID: 8267004291054479189, guid: 31461dacaaf460148a0c5f56d2536866,
-        type: 3}
-      propertyPath: MaxWobble
-      value: 0.01
-      objectReference: {fileID: 0}
-    - target: {fileID: 8267004291054479189, guid: 31461dacaaf460148a0c5f56d2536866,
-        type: 3}
-      propertyPath: m_Enabled
-      value: 1
-      objectReference: {fileID: 0}
-    - target: {fileID: 8267004291054479189, guid: 31461dacaaf460148a0c5f56d2536866,
-        type: 3}
-      propertyPath: fillAmount
-      value: 1.25
-      objectReference: {fileID: 0}
-    - target: {fileID: 8267004291054479189, guid: 31461dacaaf460148a0c5f56d2536866,
-        type: 3}
-      propertyPath: WobbleSpeedMove
-      value: 0.5
+      value: 3.503126e-11
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 31461dacaaf460148a0c5f56d2536866, type: 3}

@@ -1,5 +1,5 @@
 fileFormatVersion: 2
-guid: f479c428d17fc424c9641e700b61e248
+guid: 9581bdaa440c4a342adb26bdcd9f4ddf
 ModelImporter:
   serializedVersion: 21300
   internalIDToNameTable: []
@@ -7,27 +7,27 @@ ModelImporter:
   - first:
       type: UnityEngine:Material
       assembly: UnityEngine.CoreModule
-      name: lambert30
+      name: lambert36
     second: {fileID: 2100000, guid: d4ef31400f073fc479157676bca8e467, type: 2}
   - first:
       type: UnityEngine:Material
       assembly: UnityEngine.CoreModule
-      name: lambert31
+      name: lambert37
     second: {fileID: 2100000, guid: 1b056419b4d6e2f44a264dacdec5e63b, type: 2}
   - first:
       type: UnityEngine:Material
       assembly: UnityEngine.CoreModule
-      name: lambert32
+      name: lambert38
     second: {fileID: 2100000, guid: 2f176468fe6b5744080acb0d2e0fe1c6, type: 2}
   - first:
       type: UnityEngine:Material
       assembly: UnityEngine.CoreModule
-      name: lambert33
+      name: lambert39
     second: {fileID: 2100000, guid: c71cbbd3d5211e241bf662e678c07dcd, type: 2}
   - first:
       type: UnityEngine:Material
       assembly: UnityEngine.CoreModule
-      name: lambert34
+      name: lambert40
     second: {fileID: 2100000, guid: 2d0fd2328605d7c4db863768f3085d51, type: 2}
   materials:
     materialImportMode: 2
@@ -458,13 +458,13 @@ ModelImporter:
         length: 0
         modified: 0
     skeleton:
-    - name: Robot8(Clone)
+    - name: Robot9(Clone)
       parentName: 
       position: {x: 0, y: 0, z: 0}
       rotation: {x: 0, y: 0, z: 0, w: 1}
       scale: {x: 1, y: 1, z: 1}
     - name: Armature.001
-      parentName: Robot8(Clone)
+      parentName: Robot9(Clone)
       position: {x: -0, y: 0, z: 0}
       rotation: {x: 0.00000008146034, y: 0, z: -0, w: 1}
       scale: {x: 0.2677009, y: 0.2677009, z: 0.2677009}
@@ -778,7 +778,7 @@ ModelImporter:
       rotation: {x: 0.044519458, y: 0.00000011909107, z: -0.0000000033611263, w: 0.99900854}
       scale: {x: 1, y: 1, z: 1}
     - name: Robot
-      parentName: Robot8(Clone)
+      parentName: Robot9(Clone)
       position: {x: -0, y: 0, z: 0}
       rotation: {x: 0, y: -0, z: -0, w: 1}
       scale: {x: 0.01, y: 0.01, z: 0.01}

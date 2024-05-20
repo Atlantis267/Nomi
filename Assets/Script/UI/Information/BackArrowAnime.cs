@@ -5,6 +5,7 @@ using UnityEngine.SceneManagement;
 
 public class BackArrowAnime : MonoBehaviour
 {
+    [SerializeField] private GameObject MainMeau;
     private Animator transAnime;
     private float transWaitTime = 1.5f;
     void Start()

@@ -236,6 +236,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   flowerAnime: {fileID: 0}
   transAnime: {fileID: 0}
+  Information: {fileID: 0}
 --- !u!1 &90678910
 GameObject:
   m_ObjectHideFlags: 0
@@ -777,7 +778,6 @@ GameObject:
   - component: {fileID: 415053763}
   - component: {fileID: 415053762}
   - component: {fileID: 415053761}
-  - component: {fileID: 415053760}
   m_Layer: 5
   m_Name: Panel
   m_TagString: Untagged
@@ -805,20 +805,6 @@ RectTransform:
   m_AnchoredPosition: {x: 5.3361816, y: -9.338318}
   m_SizeDelta: {x: 106.7241, y: 93.3835}
   m_Pivot: {x: 0.5, y: 0.5}
---- !u!114 &415053760
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 415053758}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: fc124dc1ca860c74daf01bf851a4245b, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  transAnime: {fileID: 0}
-  transWaitTime: 1.8
 --- !u!95 &415053761
 Animator:
   serializedVersion: 5
@@ -934,6 +920,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   flowerAnime: {fileID: 1675772495}
   transAnime: {fileID: 415053761}
+  Information: {fileID: 0}
 --- !u!1 &753219542
 GameObject:
   m_ObjectHideFlags: 0
