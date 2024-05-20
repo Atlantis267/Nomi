@@ -44,10 +44,19 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: dfaa417a0fcb6344d9608becd9dd7972, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  fileName: data.game
+  disableDataPersistence: 0
+  initializeDataIfNull: 0
+  overrideSelectedProfileId: 0
+  testSelectedProfileId: test
+  fileName: 
   useEncryption: 0
+  autoSaveTimeSeconds: 60
   gameData:
+    lastUpdated: 0
     playercount: 0
-    playerPosition: {x: -12.9, y: 1, z: -32.26}
+    playerPosition: {x: 0, y: 0, z: 0}
+    pointchecked:
+      keys: []
+      values: 
     lastCheckPointPos: {x: 0, y: 0, z: 0}
     lastCheckPointRotate: {x: 0, y: 0, z: 0}
