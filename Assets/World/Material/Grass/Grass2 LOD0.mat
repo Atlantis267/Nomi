@@ -39,8 +39,6 @@ Material:
   m_Name: Grass2 LOD0
   m_Shader: {fileID: -6465566751694194690, guid: 4f99ad5fad8a7eb4b8e4e349aa672a77,
     type: 3}
-  m_Parent: {fileID: 0}
-  m_ModifiedSerializedProperties: 0
   m_ValidKeywords:
   - _MAIN_LIGHT_SHADOW
   - _MAIN_LIGHT_SHADOW_CASCADE
@@ -57,7 +55,6 @@ Material:
   - TransparentBackface
   - TransparentDepthPrepass
   - TransparentDepthPostpass
-  m_LockedProperties: 
   m_SavedProperties:
     serializedVersion: 3
     m_TexEnvs:
@@ -132,9 +129,9 @@ Material:
     - _ZWrite: 0
     - _ZWriteControl: 0
     m_Colors:
-    - _BottomColor: {r: 0.11859204, g: 0.20216809, b: 0.38679248, a: 0}
+    - _BottomColor: {r: 0.8313726, g: 0.49411768, b: 0.21960786, a: 0}
     - _DoubleSidedConstants: {r: 1, g: 1, b: -1, a: 0}
     - _EmissionColor: {r: 1, g: 1, b: 1, a: 1}
-    - _TopColor: {r: 0.3970843, g: 0.38069338, b: 0.667, a: 0}
+    - _TopColor: {r: 0.9686275, g: 0.77647066, b: 0.5176471, a: 0}
     - _Wind_Derection: {r: 1, g: 0, b: 0, a: 0}
   m_BuildTextureStacks: []

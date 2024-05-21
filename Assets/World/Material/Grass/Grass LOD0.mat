@@ -39,8 +39,6 @@ Material:
   m_Name: Grass LOD0
   m_Shader: {fileID: -6465566751694194690, guid: 4f99ad5fad8a7eb4b8e4e349aa672a77,
     type: 3}
-  m_Parent: {fileID: 0}
-  m_ModifiedSerializedProperties: 0
   m_ValidKeywords:
   - _MAIN_LIGHT_SHADOW
   - _MAIN_LIGHT_SHADOW_CASCADE
@@ -57,7 +55,6 @@ Material:
   - TransparentBackface
   - TransparentDepthPrepass
   - TransparentDepthPostpass
-  m_LockedProperties: 
   m_SavedProperties:
     serializedVersion: 3
     m_TexEnvs:
@@ -125,16 +122,16 @@ Material:
     - _UseShadowThreshold: 0
     - _WiggleOffect: 0.2
     - _Wind_Speed: 1.2
-    - _Wind_Strength: 0.4
+    - _Wind_Strength: 0.5
     - _ZTest: 4
     - _ZTestDepthEqualForOpaque: 4
     - _ZTestTransparent: 4
     - _ZWrite: 0
     - _ZWriteControl: 0
     m_Colors:
-    - _BottomColor: {r: 0.20261884, g: 0.13333336, b: 0.3529412, a: 0}
+    - _BottomColor: {r: 0.754717, g: 0.34130514, b: 0, a: 0}
     - _DoubleSidedConstants: {r: 1, g: 1, b: -1, a: 0}
     - _EmissionColor: {r: 1, g: 1, b: 1, a: 1}
-    - _TopColor: {r: 0.4016327, g: 0.3647059, b: 0.654902, a: 0}
+    - _TopColor: {r: 0.9725491, g: 0.78823537, b: 0.53333336, a: 0}
     - _Wind_Derection: {r: 1, g: 0, b: 0, a: 0}
   m_BuildTextureStacks: []

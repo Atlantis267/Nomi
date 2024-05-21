@@ -15,6 +15,7 @@ Material:
   - _NORMALMAP
   - _OCCLUSIONMAP
   - _PARALLAXMAP
+  - _USEOCCLUSION_ON
   m_LightmapFlags: 4
   m_EnableInstancingVariants: 0
   m_DoubleSidedGI: 0
@@ -128,7 +129,7 @@ Material:
     - _Surface: 0
     - _UseAlphaClipping: 0
     - _UseEmission: 0
-    - _UseOcclusion: 0
+    - _UseOcclusion: 1
     - _WorkflowMode: 1
     - _ZWrite: 1
     m_Colors:
