@@ -10,6 +10,7 @@ namespace Movement
     {
         [Header("Menu Navigation")]
         [SerializeField] private MainMenu mainMenu;
+        [SerializeField] private GameObject blur;
 
         [Header("Menu Buttons")]
         [SerializeField] private Button backButton;
@@ -31,6 +32,7 @@ namespace Movement
         public void OnBackClicked()
         {
             mainMenu.ActivateMenu();
+            blur.SetActive(false);
             this.DeactivateMenu();
         }
         public void OnSaveSlotClicked(SaveSlot saveSlot)

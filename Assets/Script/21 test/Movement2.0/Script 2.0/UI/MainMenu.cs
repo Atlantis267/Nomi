@@ -10,6 +10,7 @@ namespace Movement
     {
         [Header("Menu Navigation")]
         [SerializeField] private SaveSlotsMenu saveSlotsMenu;
+        [SerializeField] private GameObject blur;
 
 
         [Header("Main Meau Object")]
@@ -36,12 +37,14 @@ namespace Movement
         public void OnNewGameClicked()
         {
             saveSlotsMenu.ActivateMenu(false);
+            blur.SetActive(true);
             this.DeactivateMenu();
         }
 
         public void OnLoadGameClicked()
         {
             saveSlotsMenu.ActivateMenu(true);
+            blur.SetActive(true);
             this.DeactivateMenu();
             
         }
