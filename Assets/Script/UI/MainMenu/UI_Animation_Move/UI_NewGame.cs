@@ -24,6 +24,7 @@ public class UI_NewGame : MonoBehaviour,IPointerEnterHandler,IPointerExitHandler
     {
         if (eventData.pointerEnter.CompareTag("NewGame")) 
         {
+            Debug.Log("point");
             isPointerIn = true;
         }
     }
