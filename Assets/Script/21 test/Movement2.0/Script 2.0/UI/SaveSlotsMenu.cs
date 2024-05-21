@@ -11,6 +11,8 @@ namespace Movement
         [Header("Menu Navigation")]
         [SerializeField] private MainMenu mainMenu;
         [SerializeField] private GameObject blur;
+        [SerializeField] private Animator fade;
+        [SerializeField] private GameObject fadeimage;
 
         [Header("Menu Buttons")]
         [SerializeField] private Button backButton;
@@ -41,17 +43,17 @@ namespace Movement
             if (isLoadingGame)
             {
                 DataPersistenceManager.instance.ChangeSelectedProfileId(saveSlot.GetProfileId());
-                SaveGameAndLoadScene();
+                StartCoroutine(SaveGameAndLoadScene());
             }
             else if (saveSlot.hasData)
             {
                 confirmationPopupMenu.ActivateMenu(
                      "Starting a New Game with this slot will override the currently saved data. Are you sure?",
-                      () => 
+                      () =>
                       {
                           DataPersistenceManager.instance.ChangeSelectedProfileId(saveSlot.GetProfileId());
                           DataPersistenceManager.instance.NewGame();
-                          SaveGameAndLoadScene();
+                          StartCoroutine(SaveGameAndLoadScene());
                       },
                       () =>
                       {
@@ -63,11 +65,15 @@ namespace Movement
             {
                 DataPersistenceManager.instance.ChangeSelectedProfileId(saveSlot.GetProfileId());
                 DataPersistenceManager.instance.NewGame();
-                SaveGameAndLoadScene();
+                StartCoroutine(SaveGameAndLoadScene());
             }
         }
-        private void SaveGameAndLoadScene()
+        private IEnumerator SaveGameAndLoadScene()
         {
+            fadeimage.SetActive(true);
+            yield return null;
+            fade.SetTrigger("Fade");
+            yield return new WaitForSeconds(1f);
             DataPersistenceManager.instance.SaveGame();
             SceneManager.LoadSceneAsync(_loadingScene);
         }

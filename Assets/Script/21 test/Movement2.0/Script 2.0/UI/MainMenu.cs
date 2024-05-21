@@ -11,6 +11,8 @@ namespace Movement
         [Header("Menu Navigation")]
         [SerializeField] private SaveSlotsMenu saveSlotsMenu;
         [SerializeField] private GameObject blur;
+        [SerializeField] private Animator fade;
+        [SerializeField] private GameObject fadeimage;
 
 
         [Header("Main Meau Object")]
@@ -50,9 +52,7 @@ namespace Movement
         }
         public void OnContinueGameClicked()
         {
-            DisableMenuButtons();
-            DataPersistenceManager.instance.SaveGame();
-            SceneManager.LoadSceneAsync(_loadingScene);
+            StartCoroutine(OnContinueClicked());
         }
         public void OnQuitClicked()
         {
@@ -76,6 +76,17 @@ namespace Movement
         public void DeactivateMenu()
         {
             this.gameObject.SetActive(false);
+        }
+
+        IEnumerator OnContinueClicked()
+        {
+            DisableMenuButtons();
+            fadeimage.SetActive(true);
+            yield return null;
+            fade.SetTrigger("Fade");
+            yield return new WaitForSeconds(1f);
+            DataPersistenceManager.instance.SaveGame();
+            SceneManager.LoadSceneAsync(_loadingScene);
         }
     }
 }
