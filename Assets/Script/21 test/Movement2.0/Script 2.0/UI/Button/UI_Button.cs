@@ -2,10 +2,10 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class UI_NEWGameButton : MonoBehaviour
+public class UI_Button : MonoBehaviour
 {
-    [SerializeField] private float movement = 100.0f;
-    [SerializeField] private float speed = 3.0f;
+    [SerializeField] private float movement = 15f;
+    [SerializeField] private float speed = 1000f;
     private Vector3 startPosition;
     private Vector3 endPosition;
     void Start()
@@ -15,8 +15,7 @@ public class UI_NEWGameButton : MonoBehaviour
     }
 
     public void Move()
-    {
-        Debug.Log("point");
+    {        
         transform.position = Vector3.Lerp(transform.position, endPosition, Time.deltaTime * speed);
     }
 
