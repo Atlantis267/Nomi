@@ -19,6 +19,7 @@ namespace Movement
         [field: SerializeField] public PlayerLayerData LayerData { get; private set; }
         [field: SerializeField] public PlayerAnimationData AnimationsData { get; private set; }
         [field: SerializeField] public PlayerParticalData ParticalData { get; private set; }
+        [field: SerializeField] public PlayerSoundlData SoundData { get; private set; }
         [field: SerializeField] public PlayerUIData UIData { get; private set; }
         [field: SerializeField] public PlayerTestingData TestingData { get; private set; }
 
@@ -61,6 +62,10 @@ namespace Movement
         public void Die()
         {
             movementStateMachine.ChangeState(movementStateMachine.DeathState);
+        }
+        public void PlayFootStepSound()
+        {
+            SoundData.FootStepsSound.Play();
         }
         private void OnTriggerEnter(Collider collider)
         {
@@ -125,6 +130,10 @@ namespace Movement
         public void OnMovementStateAnimationTransitionEvent()
         {
             movementStateMachine.OnAnimationTransitionEvent();
+        }
+        public void OnMovementStateAnimationSoundEvent()
+        {
+            movementStateMachine.OnAnimationExitEvent();
         }
     }
 }

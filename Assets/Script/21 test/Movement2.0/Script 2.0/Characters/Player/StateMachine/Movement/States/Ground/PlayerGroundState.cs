@@ -23,7 +23,7 @@ namespace Movement
         public override void Exit()
         {
             base.Exit();
-
+            stateMachine.Player.SoundData.FootStepsSound.Stop();
             StopAnimation(stateMachine.Player.AnimationsData.GroundstateHash);
         }
         public override void PhysicsUpdate()

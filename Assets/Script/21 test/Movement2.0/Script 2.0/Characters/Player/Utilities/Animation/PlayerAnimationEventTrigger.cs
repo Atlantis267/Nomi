@@ -30,6 +30,15 @@ namespace Movement
 
             player.OnMovementStateAnimationExitEvent();
         }
+        public void TriggerOnMovementStateAnimationSoundEvent()
+        {
+            if (IsInAnimationTransition())
+            {
+                return;
+            }
+
+            player.OnMovementStateAnimationSoundEvent();
+        }
 
         public void TriggerOnMovementStateAnimationTransitionEvent()
         {

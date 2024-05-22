@@ -15,6 +15,7 @@ namespace Movement
         {
             base.Enter();
             Velocity();
+            stateMachine.Player.SoundData.JumpSound.Play();
             stateMachine.ReusableData.ShouldAirDash = true;
             stateMachine.ReusableData.VerticalVelocity = airborneData.JumpData.JumpForce;
         }

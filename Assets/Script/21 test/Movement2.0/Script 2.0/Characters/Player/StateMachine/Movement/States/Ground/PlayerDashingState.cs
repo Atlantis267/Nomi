@@ -32,6 +32,7 @@ namespace Movement
             AddForceState();
             UpdateConsecutiveDashes();
             FeetTween();
+            stateMachine.Player.SoundData.DashSound.Play();
             //Showbady(false);
 
             startTime = Time.time;

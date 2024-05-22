@@ -83,6 +83,10 @@ namespace Movement
         public virtual void OnAnimationTransitionEvent()
         {
         }
+
+        public virtual void OnAnimationSoundEvent()
+        {
+        }
         public virtual void OnTriggerEnter(Collider collider)
         {
         }

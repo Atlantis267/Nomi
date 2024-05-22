@@ -41,6 +41,10 @@ namespace Movement
         {
             currentState?.OnAnimationExitEvent();
         }
+        public void OnAnimationSoundEvent()
+        {
+            currentState?.OnAnimationSoundEvent();
+        }
         public void OnAnimationTransitionEvent()
         {
             currentState?.OnAnimationTransitionEvent();
