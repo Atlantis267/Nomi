@@ -40,6 +40,8 @@ namespace Movement
                 if (reloadDupScenes == false && loadedScenes.Contains(sceneData.Name)) continue;
 
                 var operation = SceneManager.LoadSceneAsync(sceneData.Reference.Path, LoadSceneMode.Additive);
+
+                await Task.Delay(TimeSpan.FromSeconds(3.5f));
                 operationGroup.Operations.Add(operation);
                 OnSceneLoaded.Invoke(sceneData.Name);
 
@@ -78,8 +80,6 @@ namespace Movement
             {
                 var operation = SceneManager.UnloadSceneAsync(scene);
                 if (operation == null) continue;
-
-                await Task.Delay(TimeSpan.FromSeconds(2.5f));
 
                 operationGroup.Operations.Add(operation);
 
