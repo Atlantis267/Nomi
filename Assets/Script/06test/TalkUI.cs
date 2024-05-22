@@ -54,6 +54,12 @@ public class TalkUI : MonoBehaviour
                 cancelTyping = true;
             }
         }
+         if (index == textList.Count)
+        {
+           gameObject.SetActive(false);
+           index = 0;
+           return;
+        }
     }
 
     // 当其他 Collider 离开触发器时调用此方法
