@@ -6,6 +6,8 @@ using TMPro;
 
 public class TalkUI : MonoBehaviour
 {
+    public GameObject talkUI;
+
     [Header("UI組件")]
     public TextMeshProUGUI textLabel;  // 用于显示文本的 UI 元素
     public Image faceImage;
@@ -34,27 +36,17 @@ public class TalkUI : MonoBehaviour
         StartCoroutine(SetTextUI());
     }
 
-    // private void Start()
-    // {
-    //     // 确保一开始文本是隐藏的
-    //     if (textUI != null)
-    //     {
-    //         textUI.gameObject.SetActive(false);
-    //     }
-    //     else
-    //     {
-    //         Debug.LogWarning("Text UI is not assigned!");
-    //     }
-    // }
 
     // 当其他 Collider 进入触发器时调用此方法
     private void OnTriggerEnter(Collider other)
     {
-        if (textLabel != null)
+         if (talkUI != null)
         {
             // 显示文本并设置内容
-            textLabel.gameObject.SetActive(true);
-            //textUI.text = displayText;
+            talkUI.gameObject.SetActive(true);
+        }
+        if (textLabel != null)
+        {
              if (textFinished && !cancelTyping){
                 StartCoroutine(SetTextUI());
             }
