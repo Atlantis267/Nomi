@@ -17,10 +17,11 @@ public class TalkUI : MonoBehaviour
     public int index;
     public float textSpeed;
     private float timer = 0.0f;
-    private float interval = 2f;
+    private float interval = 4.5f;
 
 
     bool could;
+    bool textFinished;
 
     List<string> textList = new List<string>();
 
@@ -32,7 +33,7 @@ public class TalkUI : MonoBehaviour
 
     private void OnEnable()
     {
-        //textFinished = true;
+        textFinished = true;
         //StartCoroutine(SetTextUI());
     }
 
@@ -51,7 +52,7 @@ public class TalkUI : MonoBehaviour
         if (could)
         {
             talkUI.SetActive(true);
-            if (timer >= interval)
+            if (timer >= interval && textFinished)
             {
                 StartCoroutine(SetTextUI());
                 timer -= interval;
@@ -82,12 +83,16 @@ public class TalkUI : MonoBehaviour
 
     IEnumerator SetTextUI()
     {
+        textFinished = false;
+        textLabel.text = "";
+
         for (int i = 0; i < textList[index].Length; i++)
         {
             textLabel.text += textList[index][i];
 
             yield return new WaitForSeconds(textSpeed);
         }
+        textFinished = true;
         index++;
     }
 }
