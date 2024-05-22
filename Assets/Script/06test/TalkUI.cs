@@ -9,7 +9,7 @@ public class TalkUI : MonoBehaviour
     [Header("UI組件")]
     public TextMeshProUGUI textUI;  // 用于显示文本的 UI 元素
     public Image faceImage;
-    //public string displayText = "Hello, World!";  // 要显示的文本内容
+    public string displayText = "Hello, World!";  // 要显示的文本内容
     [Header("文本文件")]
     public TextAsset textFile;
     public int index;
