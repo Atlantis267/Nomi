@@ -102,11 +102,6 @@ public class TalkUI : MonoBehaviour
                 break;
         }
 
-        // for (int i = 0; i < textList[index].Length; i++)
-        // {
-        //     textLabel.text += textList[index][i];
-        //     yield return new WaitForSeconds(textSpeed);
-        // }
         int letter = 0;
         while(!cancelTyping && letter <textList[index].Length - 1)
         {
