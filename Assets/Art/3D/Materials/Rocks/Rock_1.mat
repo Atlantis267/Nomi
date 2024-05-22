@@ -11,6 +11,8 @@ Material:
   m_Shader: {fileID: 4800000, guid: 24b3661f6f60a7e419661acd12eda004, type: 3}
   m_ValidKeywords: []
   m_InvalidKeywords:
+  - _GLOSSYREFLECTIONS_OFF
+  - _METALLICGLOSSMAP
   - _METALLICSPECGLOSSMAP
   - _NORMALMAP
   - _OCCLUSIONMAP
@@ -110,6 +112,7 @@ Material:
     - _IsFace: 0
     - _MainLightIgnoreCelShade: 0
     - _Metallic: 0
+    - _Mode: 0
     - _OcclusionRemapEnd: 1
     - _OcclusionRemapStart: 0
     - _OcclusionStrength: 1
@@ -127,6 +130,7 @@ Material:
     - _SpecularHighlights: 1
     - _SrcBlend: 1
     - _Surface: 0
+    - _UVSec: 0
     - _UseAlphaClipping: 0
     - _UseEmission: 0
     - _UseOcclusion: 1
