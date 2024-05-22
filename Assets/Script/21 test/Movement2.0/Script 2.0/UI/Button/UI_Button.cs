@@ -23,4 +23,12 @@ public class UI_Button : MonoBehaviour
     {
         transform.position = startPosition;
     }
+    public void Open()
+    {
+        this.gameObject.SetActive(true);
+    }
+    public void Close()
+    {
+        this.gameObject.SetActive(false);
+    }
 }
