@@ -79,6 +79,8 @@ namespace Movement
                 var operation = SceneManager.UnloadSceneAsync(scene);
                 if (operation == null) continue;
 
+                await Task.Delay(TimeSpan.FromSeconds(2.5f));
+
                 operationGroup.Operations.Add(operation);
 
                 OnSceneUnloaded.Invoke(scene);
