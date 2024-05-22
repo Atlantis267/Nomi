@@ -10,67 +10,62 @@ public class TalkUI : MonoBehaviour
 
     [Header("UI組件")]
     public TextMeshProUGUI textLabel;  // 用于显示文本的 UI 元素
-    public Image faceImage;
-    //public string displayText = "Hello, World!";  // 要显示的文本内容
+
+
     [Header("文本文件")]
     public TextAsset textFile;
     public int index;
     public float textSpeed;
+    private float timer = 0.0f;
+    private float interval = 2f;
 
-     [Header("頭像")]
-    public Sprite face01, face02;
 
-    bool textFinished;
-    bool cancelTyping;
+    bool could;
+
     List<string> textList = new List<string>();
 
-    void Awake()
+    private void Start()
     {
-         GetTextFormFile(textFile);
+        GetTextFormFile(textFile);
         index = 0;
     }
 
     private void OnEnable()
     {
-        textFinished = true;
-        StartCoroutine(SetTextUI());
+        //textFinished = true;
+        //StartCoroutine(SetTextUI());
     }
 
-
-    // 当其他 Collider 进入触发器时调用此方法
     private void OnTriggerEnter(Collider other)
     {
-         if (talkUI != null)
+        if (other.CompareTag("Player"))
         {
-            // 显示文本并设置内容
-            talkUI.gameObject.SetActive(true);
-        }
-        if (textLabel != null)
-        {
-             if (textFinished && !cancelTyping){
-                StartCoroutine(SetTextUI());
-            }
-            else if(!textFinished && !cancelTyping){
-                cancelTyping = true;
-            }
-        }
-         if (index == textList.Count)
-        {
-           gameObject.SetActive(false);
-           index = 0;
-           return;
+            could = true;
+            this.gameObject.GetComponent<BoxCollider>().enabled = false;
         }
     }
 
-    // 当其他 Collider 离开触发器时调用此方法
-    private void OnTriggerExit(Collider other)
+    private void Update()
     {
-        if (textLabel != null)
+        timer += Time.deltaTime;
+        if (could)
         {
-            // 隐藏文本
-            textLabel.gameObject.SetActive(false);
+            talkUI.SetActive(true);
+            if (timer >= interval)
+            {
+                StartCoroutine(SetTextUI());
+                timer -= interval;
+            }
+        }
+        if (index == textList.Count)
+        {
+            gameObject.SetActive(false);
+            talkUI.SetActive(false);
+            index = 0;
+            return;
         }
     }
+
 
     void GetTextFormFile(TextAsset file)
     {
@@ -85,31 +80,14 @@ public class TalkUI : MonoBehaviour
         }
     }
 
-    IEnumerator SetTextUI(){
-        textFinished = false;
-        textLabel.text = "";
-
-        switch(textList[index]){
-            case "A":
-                faceImage.sprite = face01;
-                index++;
-                break;
-            case "B":
-                faceImage.sprite = face02;
-                index++;
-                break;
-        }
-
-        int letter = 0;
-        while(!cancelTyping && letter <textList[index].Length - 1)
+    IEnumerator SetTextUI()
+    {
+        for (int i = 0; i < textList[index].Length; i++)
         {
-            textLabel.text += textList[index][letter];
-            letter++;
+            textLabel.text += textList[index][i];
+
             yield return new WaitForSeconds(textSpeed);
         }
-        textLabel.text = textList[index];
-        cancelTyping = false;
-        textFinished = true;
         index++;
     }
 }
