@@ -52,33 +52,12 @@ namespace Movement
         {
             await sceneLoader.LoadSceneGroup(index);
         }
-        //private void OnTriggerEnter(Collider other)
-        //{
-        //    if (other.CompareTag("Player"))
-        //    {
-        //        StartCoroutine(ProgressLoadingBar());
-        //        //LoadScene();
-        //    }
-        //}
-        //private void LoadScene()
-        //{
-        //    for(int i = 0; i < _levelSceneToload.Length; i++)
-        //    {
-        //        bool isSceneLoading = false;
-        //        for(int j = 0; j< SceneManager.sceneCount; j++)
-        //        {
-        //            Scene loadedScene = SceneManager.GetSceneAt(j);
-        //            if(loadedScene.name == _levelSceneToload[i].SceneName)
-        //            {
-        //                isSceneLoading = true;
-        //                break;
-        //            }
-        //        }
-        //        if (!isSceneLoading)
-        //        {
-        //            SceneManager.LoadSceneAsync(_levelSceneToload[i], LoadSceneMode.Additive);
-        //        }
-        //    }
-        //}
+        private void OnTriggerEnter(Collider other)
+        {
+            if (other.CompareTag("Player"))
+            {
+                SceneManager.LoadSceneAsync("Information", LoadSceneMode.Single);
+            }
+        }
     }
 }

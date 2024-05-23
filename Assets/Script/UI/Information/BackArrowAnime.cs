@@ -10,6 +10,8 @@ public class BackArrowAnime : MonoBehaviour
     private float transWaitTime = 1.5f;
     void Start()
     {
+        Cursor.lockState = CursorLockMode.Confined;
+        Cursor.visible = true;
         transAnime = gameObject.GetComponent<Animator>();
     }
     IEnumerator WaitAnimationToMenu()
