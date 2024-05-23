@@ -11,6 +11,7 @@ GameObject:
   - component: {fileID: 1686549123073714261}
   - component: {fileID: 2362147799883130864}
   - component: {fileID: 517069125488595770}
+  - component: {fileID: 637607773210353068}
   m_Layer: 0
   m_Name: PillarBroken
   m_TagString: Untagged
@@ -25,8 +26,7 @@ Transform:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 2030001730296378095}
-  m_LocalRotation: {x: 0.000000021819753, y: -0.05732913, z: -0.0000000012529675,
-    w: 0.9983554}
+  m_LocalRotation: {x: 0, y: -0.057328798, z: 0, w: 0.9983554}
   m_LocalPosition: {x: 133.52, y: 2.44, z: 104.22}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
@@ -84,3 +84,17 @@ MeshRenderer:
   m_SortingLayer: 0
   m_SortingOrder: 0
   m_AdditionalVertexStreams: {fileID: 0}
+--- !u!64 &637607773210353068
+MeshCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2030001730296378095}
+  m_Material: {fileID: 0}
+  m_IsTrigger: 0
+  m_Enabled: 1
+  serializedVersion: 4
+  m_Convex: 0
+  m_CookingOptions: 30
+  m_Mesh: {fileID: -2221855606307988679, guid: 8b0d8245ef96b7a43b00c35796bdd701, type: 3}
