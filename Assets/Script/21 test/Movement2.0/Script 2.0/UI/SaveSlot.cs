@@ -47,8 +47,8 @@ namespace Movement
                 hasDataContent.SetActive(true);
                 clearButton.gameObject.SetActive(true);
 
-                percentageCompleteText.text = data.GetPercentageComplete() + "% COMPLETE";
-                playerCountText.text = "LEVEL COUNT: " + data.playercount;
+                percentageCompleteText.text = data.GetPercentageComplete() + "% 完成";
+                playerCountText.text = "關卡: " + data.playercount;
             }
         }
         public string GetProfileId()
