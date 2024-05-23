@@ -58,7 +58,7 @@ namespace Movement
                     BoostSystem playerboostsystem = player.GetComponent<BoostSystem>();
                     if (interactInput)
                     {
-                        playerboostsystem.AddToBoost();
+                        StartCoroutine(playerboostsystem.AddToBoost());
                     }
                     break;
                 }
