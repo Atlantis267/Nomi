@@ -11,6 +11,7 @@ namespace Movement
         [field: SerializeField] public AudioSource FootStepsSound { get; private set; }
         [field: SerializeField] public AudioSource JumpSound { get; private set; }
         [field: SerializeField] public AudioSource DashSound { get; private set; }
+        [field: SerializeField] public AudioSource JumpPadsSound { get; private set; }
     }
 }
 

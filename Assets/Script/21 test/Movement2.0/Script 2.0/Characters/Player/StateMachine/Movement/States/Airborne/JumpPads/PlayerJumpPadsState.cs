@@ -14,6 +14,7 @@ namespace Movement
         {
             base.Enter();
             Velocity();
+            stateMachine.Player.SoundData.JumpPadsSound.Play();
             stateMachine.ReusableData.ShouldAirDash = true;
             stateMachine.ReusableData.VerticalVelocity = airborneData.JumpData.JumpPadsForce;
         }
