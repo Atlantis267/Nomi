@@ -31,10 +31,10 @@ MonoBehaviour:
   active: 1
   shadows:
     m_OverrideState: 1
-    m_Value: {x: 0.8306, y: 1, z: 0.9717735, w: 0.24106488}
+    m_Value: {x: 1, y: 0.99625826, z: 0.834216, w: 0.24106488}
   midtones:
     m_OverrideState: 1
-    m_Value: {x: 1, y: 0.9178176, z: 0.9401684, w: 0.005412446}
+    m_Value: {x: 1, y: 0.8742971, z: 0.824201, w: 0.005412446}
   highlights:
     m_OverrideState: 0
     m_Value: {x: 1, y: 1, z: 1, w: 0}
@@ -68,7 +68,7 @@ MonoBehaviour:
     m_Value: 1
   intensity:
     m_OverrideState: 1
-    m_Value: 5.5
+    m_Value: 10
   scatter:
     m_OverrideState: 1
     m_Value: 0.895
@@ -137,6 +137,7 @@ MonoBehaviour:
   - {fileID: -1805991225071511021}
   - {fileID: -7344991725898177416}
   - {fileID: 4088676870611916110}
+  - {fileID: 8459673401273288882}
 --- !u!114 &4088676870611916110
 MonoBehaviour:
   m_ObjectHideFlags: 3
@@ -152,7 +153,7 @@ MonoBehaviour:
   active: 1
   color:
     m_OverrideState: 1
-    m_Value: {r: 0.18761505, g: 0.09678713, b: 0.23584908, a: 1}
+    m_Value: {r: 0.8396226, g: 0.6145814, b: 0.25743148, a: 1}
   center:
     m_OverrideState: 1
     m_Value: {x: 0.5, y: 0.5}
@@ -165,3 +166,43 @@ MonoBehaviour:
   rounded:
     m_OverrideState: 0
     m_Value: 0
+--- !u!114 &8459673401273288882
+MonoBehaviour:
+  m_ObjectHideFlags: 3
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: cdfbdbb87d3286943a057f7791b43141, type: 3}
+  m_Name: ChannelMixer
+  m_EditorClassIdentifier: 
+  active: 1
+  redOutRedIn:
+    m_OverrideState: 1
+    m_Value: 110
+  redOutGreenIn:
+    m_OverrideState: 0
+    m_Value: 0
+  redOutBlueIn:
+    m_OverrideState: 1
+    m_Value: -30
+  greenOutRedIn:
+    m_OverrideState: 0
+    m_Value: 0
+  greenOutGreenIn:
+    m_OverrideState: 0
+    m_Value: 100
+  greenOutBlueIn:
+    m_OverrideState: 0
+    m_Value: 0
+  blueOutRedIn:
+    m_OverrideState: 0
+    m_Value: 0
+  blueOutGreenIn:
+    m_OverrideState: 0
+    m_Value: 0
+  blueOutBlueIn:
+    m_OverrideState: 0
+    m_Value: 100
