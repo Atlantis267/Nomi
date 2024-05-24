@@ -17,14 +17,16 @@ public class TechUI : MonoBehaviour
     }
     IEnumerator PlayAnimation()
     {
+        TeachUI.SetActive(true);
+        yield return new WaitForSeconds(2f);
         transAnimeW.SetTrigger("WD");
-        yield return new WaitForSeconds(1f);
+        yield return new WaitForSeconds(2f);
         transAnimeA.SetTrigger("AD");
-        yield return new WaitForSeconds(1f);
+        yield return new WaitForSeconds(2f);
         transAnimeS.SetTrigger("SD");
-        yield return new WaitForSeconds(1f);
+        yield return new WaitForSeconds(2f);
         transAnimeD.SetTrigger("DD");
-        yield return new WaitForSeconds(1f);
+        yield return new WaitForSeconds(2f);
         TeachUI.SetActive(false);
         this.gameObject.SetActive(false);
     }

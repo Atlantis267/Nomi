@@ -40,8 +40,6 @@ namespace Movement
                 if (reloadDupScenes == false && loadedScenes.Contains(sceneData.Name)) continue;
 
                 var operation = SceneManager.LoadSceneAsync(sceneData.Reference.Path, LoadSceneMode.Additive);
-
-                await Task.Delay(TimeSpan.FromSeconds(3.5f));
                 operationGroup.Operations.Add(operation);
                 OnSceneLoaded.Invoke(sceneData.Name);
 
@@ -49,7 +47,7 @@ namespace Movement
             while (!operationGroup.IsDone)
             {
                 progress?.Report(operationGroup.Progress);
-                await Task.Delay(100);
+                await Task.Delay(300);
             }
             Scene activeScene = SceneManager.GetSceneByName(ActiveSceneGroup.FindSceneNameByType(SceneType.ActiveScene));
             if (activeScene.IsValid())
@@ -87,7 +85,7 @@ namespace Movement
             }
             while (!operationGroup.IsDone)
             {
-                await Task.Delay(100);
+                await Task.Delay(300);
             }
 
             await AsyncOperationExtensions.AsTask(Resources.UnloadUnusedAssets());
