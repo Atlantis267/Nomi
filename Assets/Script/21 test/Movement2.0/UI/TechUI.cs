@@ -5,11 +5,7 @@ using UnityEngine;
 
 public class TechUI : MonoBehaviour
 {
-    public Animator transAnimeW;
-    public Animator transAnimeA;
-    public Animator transAnimeS;
-    public Animator transAnimeD;
-    public GameObject TeachUI;
+    public Animator transAnime;
 
     private void Start()
     {
@@ -17,18 +13,11 @@ public class TechUI : MonoBehaviour
     }
     IEnumerator PlayAnimation()
     {
-        TeachUI.SetActive(true);
-        yield return new WaitForSeconds(2f);
-        transAnimeW.SetTrigger("WD");
-        yield return new WaitForSeconds(2f);
-        transAnimeA.SetTrigger("AD");
-        yield return new WaitForSeconds(2f);
-        transAnimeS.SetTrigger("SD");
-        yield return new WaitForSeconds(2f);
-        transAnimeD.SetTrigger("DD");
-        yield return new WaitForSeconds(2f);
-        TeachUI.SetActive(false);
-        this.gameObject.SetActive(false);
+        transAnime.SetTrigger("TeachUI");
+        yield return new WaitForSeconds(3.5f);
+        transAnime.SetTrigger("WASD");
+        yield return new WaitForSeconds(2.5f);
+        transAnime.SetTrigger("Space");
     }
 
 }

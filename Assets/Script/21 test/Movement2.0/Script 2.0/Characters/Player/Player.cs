@@ -35,6 +35,9 @@ namespace Movement
         public CapsuleColliderUtilitiy ColliderUtilitiy { get; private set; }
         public CheckData CheckData { get; private set; }
         public Transform playerCamera { get; private set; }
+
+        public SceneLoader sceneLoader { get; private set; }
+
         public PlayerMovementStateMachine movementStateMachine;
 
         private void Awake()
@@ -46,6 +49,7 @@ namespace Movement
             ColliderUtilitiy = GetComponent<CapsuleColliderUtilitiy>();
             CheckData = GetComponent<CheckData>();
             cinemachineImpulseSource = GetComponent<CinemachineImpulseSource>();
+            sceneLoader = GameObject.FindGameObjectWithTag("SceneLoader").GetComponent<SceneLoader>();
 
             AnimationsData.Intialoze();
             playerCamera = Camera.main.transform;
@@ -54,6 +58,17 @@ namespace Movement
 
         private void Start()
         {
+            if (sceneLoader != null)
+            {
+                if (sceneLoader.isLoading)
+                {
+                    Inputs.PlayerActions.Movement.Disable();
+                }
+                else
+                {
+                    Inputs.PlayerActions.Movement.Enable();
+                }
+            }
             Cursor.lockState = CursorLockMode.Locked;
             Cursor.visible = false;
             playerTransform = this.transform;
@@ -87,6 +102,17 @@ namespace Movement
 
         private void Update()
         {
+            if (sceneLoader != null)
+            {
+                if (sceneLoader.isLoading)
+                {
+                    Inputs.PlayerActions.Movement.Disable();
+                }
+                else
+                {
+                    Inputs.PlayerActions.Movement.Enable();
+                }
+            }
             movementStateMachine.HandleInput();
             movementStateMachine.Update();
             //if (Input.GetKey(KeyCode.LeftAlt))

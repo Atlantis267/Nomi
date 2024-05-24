@@ -7,6 +7,8 @@ public class Change : MonoBehaviour
 {
     private void Awake()
     {
+        Cursor.lockState = CursorLockMode.Confined;
+        Cursor.visible = true;
         DontDestroyOnLoad(this.gameObject);
     }
     void Update()
@@ -17,7 +19,7 @@ public class Change : MonoBehaviour
         }
         if (Input.GetKeyDown(KeyCode.F2))
         {
-            SceneManager.LoadSceneAsync("MainMeau", LoadSceneMode.Single);
+            SceneManager.LoadSceneAsync("Main Meau", LoadSceneMode.Single);
         }
     }
 }

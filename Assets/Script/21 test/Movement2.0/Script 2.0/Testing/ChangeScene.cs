@@ -47,6 +47,18 @@ namespace Movement
             {
                 LoadSceneGroup(sceneLoader, 0);
             }
+            if (Input.GetKeyDown("o"))
+            {
+                LoadSceneGroup(sceneLoader, 2);
+            }
+            if (Input.GetKeyDown("l"))
+            {
+                LoadSceneGroup(sceneLoader, 3);
+            }
+            if (Input.GetKeyDown("k"))
+            {
+                LoadSceneGroup(sceneLoader, 4);
+            }
         }
         static async void LoadSceneGroup(SceneLoader sceneLoader, int index)
         {
@@ -56,7 +68,7 @@ namespace Movement
         {
             if (other.CompareTag("Player"))
             {
-                SceneManager.LoadSceneAsync("Information", LoadSceneMode.Single);
+                LoadSceneGroup(sceneLoader, 2);
             }
         }
     }

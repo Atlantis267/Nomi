@@ -29,6 +29,7 @@ TagManager:
   - GM
   - EnergyBall
   - UI
+  - SceneLoader
   layers:
   - Default
   - TransparentFX
@@ -65,4 +66,7 @@ TagManager:
   m_SortingLayers:
   - name: Default
     uniqueID: 0
+    locked: 0
+  - name: LoadinBar
+    uniqueID: 3465945629
     locked: 0

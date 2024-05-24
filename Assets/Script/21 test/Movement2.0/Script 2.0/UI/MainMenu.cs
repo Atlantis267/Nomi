@@ -26,6 +26,8 @@ namespace Movement
 
         private void Start()
         {
+            Cursor.lockState = CursorLockMode.Confined;
+            Cursor.visible = true;
             DisableButtonsDependingOnData();
         }
         private void DisableButtonsDependingOnData()

@@ -38,7 +38,7 @@ namespace Movement
             {
                 var sceneData = group.Scenes[i];
                 if (reloadDupScenes == false && loadedScenes.Contains(sceneData.Name)) continue;
-
+                await Task.Delay(TimeSpan.FromSeconds(2.5f));
                 var operation = SceneManager.LoadSceneAsync(sceneData.Reference.Path, LoadSceneMode.Additive);
                 operationGroup.Operations.Add(operation);
                 OnSceneLoaded.Invoke(sceneData.Name);

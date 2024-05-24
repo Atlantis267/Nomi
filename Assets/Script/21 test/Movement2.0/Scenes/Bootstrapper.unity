@@ -201,8 +201,8 @@ Canvas:
   m_OverridePixelPerfect: 0
   m_SortingBucketNormalizedSize: 0
   m_AdditionalShaderChannelsFlag: 25
-  m_SortingLayerID: 0
-  m_SortingOrder: 0
+  m_SortingLayerID: -829021667
+  m_SortingOrder: 2
   m_TargetDisplay: 0
 --- !u!224 &126447111
 RectTransform:
@@ -451,7 +451,7 @@ MonoBehaviour:
   m_MinValue: 0
   m_MaxValue: 1
   m_WholeNumbers: 0
-  m_Value: 1
+  m_Value: 0
   m_OnValueChanged:
     m_PersistentCalls:
       m_Calls: []
@@ -480,14 +480,14 @@ RectTransform:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1188202276}
-  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
+  m_LocalRotation: {x: 0, y: 0, z: 1, w: 0}
   m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 1328281655}
   m_RootOrder: 0
-  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 180}
   m_AnchorMin: {x: 0, y: 0}
   m_AnchorMax: {x: 0, y: 0}
   m_AnchoredPosition: {x: 0, y: 0}
@@ -513,12 +513,12 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_Sprite: {fileID: 21300000, guid: ab21ef4e2cd676746894f4766cb14f59, type: 3}
+  m_Sprite: {fileID: 21300000, guid: d9e548082e66fa0408a50c041dbd8377, type: 3}
   m_Type: 3
   m_PreserveAspect: 0
   m_FillCenter: 1
   m_FillMethod: 1
-  m_FillAmount: 1
+  m_FillAmount: 0
   m_FillClockwise: 1
   m_FillOrigin: 0
   m_UseSpriteMesh: 0
@@ -656,7 +656,7 @@ GameObject:
   - component: {fileID: 1577779025}
   m_Layer: 0
   m_Name: SceneLoader
-  m_TagString: Untagged
+  m_TagString: SceneLoader
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -716,7 +716,37 @@ MonoBehaviour:
         asset: {fileID: 102900000, guid: b7aa36c6427d1ce499bbffa9c4f9dd5b, type: 3}
         guid: b7aa36c6427d1ce499bbffa9c4f9dd5b
       SceneType: 5
-  isLoading: 0
+  - GroupName: LevelThree
+    Scenes:
+    - Reference:
+        asset: {fileID: 102900000, guid: ce071e2dc9b50674e936128c583279f0, type: 3}
+        guid: ce071e2dc9b50674e936128c583279f0
+      SceneType: 5
+    - Reference:
+        asset: {fileID: 102900000, guid: cbf7c11a5e2b6064a867e8b92e1671c9, type: 3}
+        guid: cbf7c11a5e2b6064a867e8b92e1671c9
+      SceneType: 5
+  - GroupName: LevelFour
+    Scenes:
+    - Reference:
+        asset: {fileID: 102900000, guid: ce071e2dc9b50674e936128c583279f0, type: 3}
+        guid: ce071e2dc9b50674e936128c583279f0
+      SceneType: 5
+    - Reference:
+        asset: {fileID: 102900000, guid: 6518d964183b8f745b0d2a363729c77c, type: 3}
+        guid: 6518d964183b8f745b0d2a363729c77c
+      SceneType: 5
+  - GroupName: LevelFive
+    Scenes:
+    - Reference:
+        asset: {fileID: 102900000, guid: ce071e2dc9b50674e936128c583279f0, type: 3}
+        guid: ce071e2dc9b50674e936128c583279f0
+      SceneType: 5
+    - Reference:
+        asset: {fileID: 102900000, guid: d0a5b68f002f7cd43ac6ade25fa70022, type: 3}
+        guid: d0a5b68f002f7cd43ac6ade25fa70022
+      SceneType: 5
+  <isLoading>k__BackingField: 0
 --- !u!1001 &1582632494
 PrefabInstance:
   m_ObjectHideFlags: 0

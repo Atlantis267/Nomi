@@ -13,7 +13,7 @@ namespace Movement
         [SerializeField] Camera loadingCamera;
         [SerializeField] SceneGroup[] sceneGroups;
         float targetProgress;
-        [SerializeField] bool isLoading;
+        [field: SerializeField] public bool isLoading { get; private set; }
 
         public readonly SceneGroupManager manager = new SceneGroupManager();
 
@@ -57,7 +57,7 @@ namespace Movement
             await manager.LoadScenes(sceneGroups[index], progress);
             EnableLoadingCanvas(false);
         }
-        void EnableLoadingCanvas(bool enable = true)
+        public void EnableLoadingCanvas(bool enable = true)
         {
             isLoading = enable;
             loadingCanvas.gameObject.SetActive(enable);
